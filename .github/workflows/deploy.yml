@@ -22,7 +22,9 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           
+          echo "🚀 Deploying files to server..."
           rsync -avz \
+            --progress \
             --delete \
             --exclude='.git' \
             --exclude='.github' \
@@ -31,4 +33,5 @@ jobs:
             ./ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/artlife/
           
-          echo "✅ Website deployed to: http://154.159.237.238/"
+          echo "✅ Deployment complete!"
+          echo "🌐 Visit: http://${{ secrets.SSH_HOST }}/"
