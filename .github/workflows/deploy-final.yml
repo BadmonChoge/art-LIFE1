@@ -1,0 +1,8 @@
+name: Deploy Final
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: cp -r * /var/www/artlife/ && echo "✅ Deployed!"
