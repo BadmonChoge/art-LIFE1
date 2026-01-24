@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Contact Us | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* Enhanced Contact Page */
+    .contact-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .contact-intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .contact-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Contact Methods Grid */
+    .contact-methods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-xl) 0;
+      padding: 0 var(--spacing-md);
+    }
+
+    .contact-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .contact-card:hover::before {
+      opacity: 1;
+    }
+
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(218, 165, 32, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--spacing-md);
+      transition: all var(--transition-normal);
+    }
+
+    .contact-card:hover .contact-icon {
+      background: var(--primary);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .contact-icon i {
+      font-size: 2rem;
+      color: var(--primary);
+      transition: all var(--transition-normal);
+    }
+
+    .contact-card:hover .contact-icon i {
+      color: var(--dark);
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      color: var(--light);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .contact-description {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+      font-size: 0.95rem;
+    }
+
+    .contact-details {
+      margin-top: var(--spacing-md);
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      margin-top: var(--spacing-sm);
+    }
+
+    .contact-link:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .contact-link i {
+      font-size: 1.2rem;
+    }
+
+    /* Contact Form */
+    .contact-form-section {
+      margin: var(--spacing-2xl) 0;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .form-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .form-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: var(--spacing-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      color: var(--light);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    textarea.form-input {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-label {
+      position: absolute;
+      top: -10px;
+      left: var(--spacing-sm);
+      background: var(--dark);
+      padding: 0 var(--spacing-xs);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--spacing-xl);
+    }
+
+    .submit-btn {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Office Location */
+    .office-section {
+      margin: var(--spacing-2xl) 0;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .office-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+    }
+
+    .office-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .office-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .office-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .office-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+
+    .office-details {
+      padding: var(--spacing-lg);
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+    }
+
+    .office-details h4 {
+      color: var(--light);
+      margin-bottom: var(--spacing-md);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .office-details h4 i {
+      color: var(--primary);
+    }
+
+    .office-address {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .office-address p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .office-hours {
+      margin-top: var(--spacing-lg);
+    }
+
+    .hours-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--spacing-xs) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+    }
+
+    .hours-list li:last-child {
+      border-bottom: none;
+    }
+
+    .office-visual {
+      position: relative;
+      min-height: 300px;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      background: rgba(42, 42, 45, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .map-icon {
+      font-size: 4rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .map-text {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .map-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .map-btn:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    /* Social Media Connect */
+    .social-connect {
+      margin: var(--spacing-2xl) 0;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .social-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .social-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto var(--spacing-xl);
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .social-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .social-button.instagram:hover {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+
+    .social-button.twitter:hover {
+      background: #1DA1F2;
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+
+    .social-button.linkedin:hover {
+      background: #0077B5;
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+
+    .social-button i {
+      font-size: 1.3rem;
+    }
+
+    /* Response Status */
+    .response-status {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--dark);
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: translateX(120%);
+      transition: transform 0.4s ease;
+      z-index: 1000;
+      border-left: 4px solid var(--primary);
+      max-width: 400px;
+    }
+
+    .response-status.show {
+      transform: translateX(0);
+    }
+
+    .response-status.success {
+      border-left-color: #4CAF50;
+    }
+
+    .response-status.error {
+      border-left-color: #F44336;
+    }
+
+    .response-content {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .response-content i {
+      font-size: 1.5rem;
+    }
+
+    .response-success i {
+      color: #4CAF50;
+    }
+
+    .response-error i {
+      color: #F44336;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-methods-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-form-section,
+      .office-section,
+      .social-connect {
+        padding: var(--spacing-lg);
+      }
+      
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .social-button {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .office-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .response-status {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+        transform: translateY(-120%);
+      }
+      
+      .response-status.show {
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .contact-card {
+        padding: var(--spacing-lg);
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .submit-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .social-button {
+        padding: var(--spacing-sm) var(--spacing-md);
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .contact-card,
+      .contact-link,
+      .social-button,
+      .map-btn,
+      .submit-btn {
+        transition: none;
+      }
+      
+      .contact-card:hover,
+      .social-button:hover,
+      .map-btn:hover,
+      .submit-btn:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link active">About</a>
+        
+        <!-- Vertical Section Menu -->
+        <div class="section-menu">
+          <a href="About.html" class="section-menu-item" data-target="GTKU">
+            <span>Get to know us</span>
+          </a>
+          <a href="OurJourney.html" class="section-menu-item" data-target="history">
+            <span>Our Journey</span>
+          </a>
+          <a href="People.html" class="section-menu-item" data-target="people">
+            <span>People</span>
+          </a> 
+          <a href="Contact.html" class="section-menu-item active" data-target="contact">
+            <span>Contact Us</span>
+          </a> 
+          <a href="FAQ.html" class="section-menu-item" data-target="faq-page">
+            <span>FAQ</span>
+          </a>
+        </div>
+        
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="contact-container">
+          <!-- Contact Intro -->
+          <div class="contact-intro">
+            <h1 class="main-heading">Contact Us</h1>
+            <p>Whether you're an artist seeking opportunities, a supporter wanting to collaborate, or a partner looking to connect — we're here to help. Reach out through any of the channels below, or send us a message directly.</p>
+          </div>
+
+          <!-- Contact Methods -->
+          <div class="contact-methods-grid">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email Us</h3>
+              <p class="contact-description">Send detailed inquiries, proposals, or questions via email. We typically respond within 24-48 hours.</p>
+              <div class="contact-details">
+                <a href="mailto:info@artlifegroup.or.ke" class="contact-link">
+                  <i class="fas fa-paper-plane"></i> info@artlifegroup.or.ke
+                </a>
+              </div>
+            </div>
+            
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h3>Call Us</h3>
+              <p class="contact-description">Speak directly with our team during business hours for immediate assistance or urgent matters.</p>
+              <div class="contact-details">
+                <a href="tel:+254788632283" class="contact-link">
+                  <i class="fas fa-phone-alt"></i> +254 788 632 283
+                </a>
+              </div>
+            </div>
+            
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <h3>Business Hours</h3>
+              <p class="contact-description">We're available during standard business hours. Outside these times, email is your best option.</p>
+              <div class="contact-details">
+                <div class="hours-info">
+                  <p>Mon-Fri: 9:00 AM - 5:00 PM</p>
+                  <p>Sat: 10:00 AM - 2:00 PM</p>
+                  <p>Sun: Closed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-section">
+            <div class="form-header">
+              <h2 class="form-title">Send Us a Message</h2>
+              <p class="form-subtitle">Fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+            
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="name">Full Name</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address</label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter your phone number">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" class="form-input" placeholder="What is this regarding?" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="message">Your Message</label>
+                <textarea id="message" name="message" class="form-input" placeholder="Please provide details about your inquiry..." required></textarea>
+              </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="submit-btn" id="submit-btn">
+                  <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Office Location -->
+          <div class="office-section">
+            <div class="office-header">
+              <h2 class="office-title">Visit Our Offices</h2>
+              <p class="office-subtitle">Come see us at our Nairobi headquarters. We recommend scheduling an appointment in advance.</p>
+            </div>
+            
+            <div class="office-content">
+              <div class="office-details">
+                <h4><i class="fas fa-map-marker-alt"></i> Our Address</h4>
+                <div class="office-address">
+                  <p><strong>View Park Towers</strong></p>
+                  <p>Monrovia Street</p>
+                  <p>Upper Hill, Nairobi</p>
+                  <p>P.O BOX 52276, 00100</p>
+                  <p>Nairobi, Kenya</p>
+                </div>
+                
+                <h4><i class="fas fa-clock"></i> Visiting Hours</h4>
+                <div class="office-hours">
+                  <ul class="hours-list">
+                    <li><span>Monday - Friday:</span> <span>9:00 AM - 5:00 PM</span></li>
+                    <li><span>Saturday:</span> <span>10:00 AM - 2:00 PM</span></li>
+                    <li><span>Sunday:</span> <span>Closed</span></li>
+                    <li><span>Public Holidays:</span> <span>Closed</span></li>
+                  </ul>
+                </div>
+                
+                <div style="margin-top: var(--spacing-lg);">
+                  <a href="https://maps.google.com/?q=View+Park+Towers,+Monrovia+Street,+Nairobi,+Kenya" 
+                     target="_blank" 
+                     class="map-btn">
+                    <i class="fas fa-directions"></i> Get Directions
+                  </a>
+                </div>
+              </div>
+              
+              <div class="office-visual">
+                <div class="map-placeholder">
+                  <div class="map-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                  </div>
+                  <p class="map-text">View Park Towers, Nairobi</p>
+                  <p class="map-text" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0;">Upper Hill Business District</p>
+                  <a href="https://maps.google.com/?q=View+Park+Towers,+Monrovia+Street,+Nairobi,+Kenya" 
+                     target="_blank" 
+                     class="map-btn">
+                    <i class="fas fa-external-link-alt"></i> Open in Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Connect -->
+          <div class="social-connect">
+            <h2 class="social-title">Connect on Social Media</h2>
+            <p class="social-subtitle">Follow us for updates, events, and behind-the-scenes content from the Art-Life community.</p>
+            
+            <div class="social-buttons">
+              <a href="https://www.instagram.com/art_life_group_/" 
+                 target="_blank" 
+                 class="social-button instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+              
+              <a href="https://x.com/Art_Life_Group" 
+                 target="_blank" 
+                 class="social-button twitter">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter / X</span>
+              </a>
+              
+              <a href="https://ke.linkedin.com/company/art-life-group" 
+                 target="_blank" 
+                 class="social-button linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Response Status -->
+  <div id="response-status" class="response-status">
+    <div class="response-content">
+      <i class="fas fa-check-circle"></i>
+      <div>
+        <h4>Message Sent Successfully!</h4>
+        <p>Thank you for contacting us. We'll respond within 24-48 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED CONTACT PAGE SYSTEM
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initContactSystem();
+      });
+      
+      function initContactSystem() {
+        console.log('📞 Enhanced Contact System Initialized');
+        
+        // Elements
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const responseStatus = document.getElementById('response-status');
+        const responseIcon = responseStatus.querySelector('i');
+        const responseTitle = responseStatus.querySelector('h4');
+        const responseMessage = responseStatus.querySelector('p');
+        
+        // Form validation
+        function validateForm(formData) {
+          const errors = [];
+          
+          // Name validation
+          if (!formData.name.trim()) {
+            errors.push('Name is required');
+          }
+          
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!formData.email || !emailRegex.test(formData.email)) {
+            errors.push('Valid email is required');
+          }
+          
+          // Message validation
+          if (!formData.message.trim() || formData.message.length < 10) {
+            errors.push('Message must be at least 10 characters');
+          }
+          
+          return errors;
+        }
+        
+        // Show response status
+        function showResponse(type, title, message) {
+          responseStatus.className = 'response-status show ' + type;
+          
+          if (type === 'success') {
+            responseIcon.className = 'fas fa-check-circle';
+            responseTitle.textContent = title;
+            responseMessage.textContent = message;
+          } else {
+            responseIcon.className = 'fas fa-exclamation-circle';
+            responseTitle.textContent = title;
+            responseMessage.textContent = message;
+          }
+          
+          // Hide after 5 seconds
+          setTimeout(() => {
+            responseStatus.classList.remove('show');
+          }, 5000);
+        }
+        
+        // Handle form submission
+        async function handleSubmit(e) {
+          e.preventDefault();
+          
+          // Get form data
+          const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+          };
+          
+          // Validate
+          const errors = validateForm(formData);
+          
+          if (errors.length > 0) {
+            showResponse('error', 'Validation Error', errors.join(', '));
+            return;
+          }
+          
+          // Disable button and show loading
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+          
+          try {
+            // Simulate API call (replace with actual endpoint)
+            await simulateApiCall(formData);
+            
+            // Show success
+            showResponse('success', 'Message Sent Successfully!', 'Thank you for contacting us. We\'ll respond within 24-48 hours.');
+            
+            // Reset form
+            contactForm.reset();
+            
+          } catch (error) {
+            // Show error
+            showResponse('error', 'Sending Failed', 'There was an error sending your message. Please try again or use email directly.');
+          } finally {
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+          }
+        }
+        
+        // Simulate API call (replace with actual implementation)
+        function simulateApiCall(formData) {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              // Simulate 90% success rate
+              if (Math.random() > 0.1) {
+                console.log('Form submitted:', formData);
+                resolve({ success: true });
+              } else {
+                reject(new Error('Network error'));
+              }
+            }, 1500);
+          });
+        }
+        
+        // Input validation on blur
+        function setupInputValidation() {
+          const inputs = contactForm.querySelectorAll('.form-input');
+          
+          inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+              validateInput(this);
+            });
+            
+            input.addEventListener('input', function() {
+              clearInputError(this);
+            });
+          });
+        }
+        
+        function validateInput(input) {
+          const value = input.value.trim();
+          let isValid = true;
+          let errorMessage = '';
+          
+          switch (input.id) {
+            case 'name':
+              if (!value) {
+                isValid = false;
+                errorMessage = 'Name is required';
+              } else if (value.length < 2) {
+                isValid = false;
+                errorMessage = 'Name must be at least 2 characters';
+              }
+              break;
+              
+            case 'email':
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!value) {
+                isValid = false;
+                errorMessage = 'Email is required';
+              } else if (!emailRegex.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email';
+              }
+              break;
+              
+            case 'message':
+              if (!value) {
+                isValid = false;
+                errorMessage = 'Message is required';
+              } else if (value.length < 10) {
+                isValid = false;
+                errorMessage = 'Message must be at least 10 characters';
+              }
+              break;
+              
+            case 'subject':
+              if (!value) {
+                isValid = false;
+                errorMessage = 'Subject is required';
+              }
+              break;
+          }
+          
+          if (!isValid) {
+            showInputError(input, errorMessage);
+          } else {
+            clearInputError(input);
+          }
+          
+          return isValid;
+        }
+        
+        function showInputError(input, message) {
+          clearInputError(input);
+          
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'input-error';
+          errorDiv.style.color = '#F44336';
+          errorDiv.style.fontSize = '0.85rem';
+          errorDiv.style.marginTop = '4px';
+          errorDiv.textContent = message;
+          
+          input.parentNode.appendChild(errorDiv);
+          input.style.borderColor = '#F44336';
+        }
+        
+        function clearInputError(input) {
+          const errorDiv = input.parentNode.querySelector('.input-error');
+          if (errorDiv) {
+            errorDiv.remove();
+          }
+          input.style.borderColor = '';
+        }
+        
+        // Copy email to clipboard
+        function setupEmailCopy() {
+          const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+          
+          emailLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              // Optional: Add copy to clipboard functionality
+              const email = this.href.replace('mailto:', '');
+              
+              // Show tooltip or notification
+              showResponse('success', 'Email Copied', `${email} is ready to paste`);
+              
+              // Try to copy to clipboard if user wants
+              if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).catch(() => {
+                  // Fallback if clipboard fails
+                });
+              }
+            });
+          });
+        }
+        
+        // Initialize phone number formatting
+        function formatPhoneNumber(input) {
+          const phoneInput = document.getElementById('phone');
+          
+          phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Format as +254 XXX XXX XXX
+            if (value.length > 0) {
+              if (value.startsWith('254')) {
+                value = '+254 ' + value.substring(3);
+              } else if (value.startsWith('0')) {
+                value = '+254 ' + value.substring(1);
+              }
+              
+              // Add spaces for readability
+              if (value.length > 7) {
+                value = value.substring(0, 7) + ' ' + value.substring(7);
+              }
+              if (value.length > 11) {
+                value = value.substring(0, 11) + ' ' + value.substring(11);
+              }
+            }
+            
+            e.target.value = value;
+          });
+        }
+        
+        // Event Listeners
+        contactForm.addEventListener('submit', handleSubmit);
+        
+        // Initialize
+        setupInputValidation();
+        setupEmailCopy();
+        formatPhoneNumber();
+        
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+
+</body>
+</html>

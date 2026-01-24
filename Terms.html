@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Terms of Service | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* ========== ENHANCED TERMS OF SERVICE STYLES ========== */
+    .terms-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .terms-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .terms-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Important Notice */
+    .terms-notice {
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      border: 2px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terms-notice::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .notice-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .notice-icon {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .notice-title {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .notice-content {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .notice-cta {
+      display: inline-block;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--primary);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      margin-top: var(--spacing-sm);
+    }
+
+    .notice-cta:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Terms Navigation */
+    .terms-navigation {
+      position: sticky;
+      top: 20px;
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 100;
+    }
+
+    .terms-nav-title {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terms-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .terms-nav-link {
+      padding: var(--spacing-sm);
+      color: var(--text-light);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .terms-nav-link:hover,
+    .terms-nav-link.active {
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      padding-left: var(--spacing-md);
+    }
+
+    .terms-nav-link::before {
+      content: '§';
+      color: var(--primary);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .terms-nav-link.active::before {
+      opacity: 1;
+    }
+
+    /* Terms Sections */
+    .terms-section {
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-lg);
+      border-left: 4px solid var(--primary);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terms-section:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .terms-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .terms-section:hover::before {
+      opacity: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-number {
+      width: 50px;
+      height: 50px;
+      background: rgba(218, 165, 32, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .section-title-content h2 {
+      font-size: 1.8rem;
+      color: var(--light);
+      margin: 0 0 var(--spacing-xs) 0;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .section-content {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .section-content ul {
+      padding-left: var(--spacing-lg);
+      margin: var(--spacing-md) 0;
+    }
+
+    .section-content li {
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      padding-left: var(--spacing-sm);
+    }
+
+    .section-content li::marker {
+      color: var(--primary);
+    }
+
+    /* Prohibited Activities Grid */
+    .prohibited-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .prohibited-card {
+      background: rgba(233, 30, 99, 0.05);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(233, 30, 99, 0.2);
+      transition: all var(--transition-fast);
+    }
+
+    .prohibited-card:hover {
+      border-color: rgba(233, 30, 99, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .prohibited-icon {
+      font-size: 1.5rem;
+      color: #E91E63;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .prohibited-title {
+      color: var(--light);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .prohibited-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* User Rights Grid */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .right-card {
+      background: rgba(76, 175, 80, 0.05);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+      transition: all var(--transition-fast);
+    }
+
+    .right-card:hover {
+      border-color: rgba(76, 175, 80, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .right-icon {
+      font-size: 2rem;
+      color: #4CAF50;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .right-title {
+      color: var(--light);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .right-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Liability Grid */
+    .liability-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .liability-item {
+      text-align: center;
+      padding: var(--spacing-md);
+      background: rgba(255, 152, 0, 0.05);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 152, 0, 0.2);
+    }
+
+    .liability-icon {
+      font-size: 2rem;
+      color: #FF9800;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .liability-title {
+      color: var(--light);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .liability-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Acceptance Section */
+    .acceptance-box {
+      background: rgba(33, 150, 243, 0.05);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-xl) 0;
+      border: 2px solid rgba(33, 150, 243, 0.2);
+      text-align: center;
+    }
+
+    .acceptance-icon {
+      font-size: 3rem;
+      color: #2196F3;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .acceptance-title {
+      color: var(--light);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .acceptance-text {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .acceptance-actions {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .acceptance-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .acceptance-btn.primary {
+      background: var(--primary);
+      color: var(--dark);
+    }
+
+    .acceptance-btn.secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .acceptance-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      margin-top: var(--spacing-2xl);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-title {
+      color: var(--light);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-text {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-link {
+      display: inline-block;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--primary);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .contact-link:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .terms-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .terms-navigation {
+        position: static;
+        margin-bottom: var(--spacing-lg);
+      }
+      
+      .section-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+      }
+      
+      .section-title-content h2 {
+        font-size: 1.5rem;
+      }
+      
+      .prohibited-grid,
+      .rights-grid,
+      .liability-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .terms-section {
+        padding: var(--spacing-lg);
+      }
+      
+      .acceptance-actions {
+        flex-direction: column;
+      }
+      
+      .acceptance-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .terms-section {
+        padding: var(--spacing-md);
+      }
+      
+      .section-title-content h2 {
+        font-size: 1.3rem;
+      }
+      
+      .contact-section {
+        padding: var(--spacing-lg);
+      }
+      
+      .contact-icon {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .terms-section,
+      .prohibited-card,
+      .right-card,
+      .acceptance-btn,
+      .terms-nav-link {
+        transition: none;
+      }
+      
+      .terms-section:hover,
+      .prohibited-card:hover,
+      .right-card:hover,
+      .acceptance-btn:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link">About</a>
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="terms-container">
+          <!-- Terms Intro -->
+          <div class="terms-intro">
+            <h1 class="main-heading">Terms of Service</h1>
+            <p>Welcome to Art-Life. These Terms of Service govern your use of our website, programs, and services. By accessing or using any part of Art-Life, you agree to be bound by these terms and our community guidelines.</p>
+          </div>
+
+          <!-- Important Notice -->
+          <div class="terms-notice">
+            <div class="notice-header">
+              <div class="notice-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div>
+                <h3 class="notice-title">Important Legal Notice</h3>
+                <div class="notice-content">
+                  <p>By using Art-Life's website or services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. These terms constitute a legally binding agreement between you and Art-Life.</p>
+                  <p><strong>Last Updated:</strong> <span id="terms-update-date"></span></p>
+                </div>
+                <a href="#AoT" class="notice-cta">
+                  <i class="fas fa-scroll"></i> Review Full Terms
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms Navigation -->
+          <div class="terms-navigation">
+            <div class="terms-nav-title">
+              <i class="fas fa-gavel"></i> Quick Navigation
+            </div>
+            <nav class="terms-nav-links">
+              <a href="#AoT" class="terms-nav-link">
+                <i class="fas fa-check-circle"></i> Acceptance of Terms
+              </a>
+              <a href="#UR" class="terms-nav-link">
+                <i class="fas fa-user-shield"></i> User Responsibilities
+              </a>
+              <a href="#Intellect" class="terms-nav-link">
+                <i class="fas fa-copyright"></i> Intellectual Property
+              </a>
+              <a href="#Termi" class="terms-nav-link">
+                <i class="fas fa-ban"></i> Termination
+              </a>
+              <a href="#Modif" class="terms-nav-link">
+                <i class="fas fa-sync-alt"></i> Modifications
+              </a>
+              <a href="#LoL" class="terms-nav-link">
+                <i class="fas fa-balance-scale"></i> Limitation of Liability
+              </a>
+              <a href="#Law" class="terms-nav-link">
+                <i class="fas fa-landmark"></i> Governing Law
+              </a>
+              <a href="#Cont" class="terms-nav-link">
+                <i class="fas fa-envelope"></i> Contact
+              </a>
+            </nav>
+          </div>
+
+          <!-- Acceptance of Terms Section -->
+          <section id="AoT" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">1</div>
+              <div class="section-title-content">
+                <h2>Acceptance of Terms</h2>
+                <p class="section-subtitle">Your agreement to be bound by these terms</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>By accessing or using the Art-Life website, participating in our programs, or engaging with our services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any part of these terms, you must discontinue use of the platform immediately.</p>
+              <p>Your continued access constitutes your acknowledgment and understanding of these terms and any future modifications.</p>
+              
+              <div class="acceptance-box">
+                <div class="acceptance-icon">
+                  <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="acceptance-title">Your Agreement Matters</h3>
+                <p class="acceptance-text">By continuing to use Art-Life, you confirm that you have read these terms and agree to abide by them. This agreement helps us maintain a safe, respectful, and creative community for all artists and art lovers.</p>
+                <div class="acceptance-actions">
+                  <button class="acceptance-btn primary" id="accept-terms">
+                    <i class="fas fa-check"></i> I Understand & Accept
+                  </button>
+                  <a href="Privacy.html" class="acceptance-btn secondary">
+                    <i class="fas fa-shield-alt"></i> Review Privacy Policy
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- User Responsibilities Section -->
+          <section id="UR" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">2</div>
+              <div class="section-title-content">
+                <h2>User Responsibilities</h2>
+                <p class="section-subtitle">How we expect our community members to engage</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>As a user of Art-Life, you agree to use the platform in a respectful, lawful, and constructive manner. You are responsible for ensuring that any content you contribute aligns with community guidelines and applicable laws.</p>
+              
+              <div class="prohibited-grid">
+                <div class="prohibited-card">
+                  <div class="prohibited-icon">
+                    <i class="fas fa-times-circle"></i>
+                  </div>
+                  <div class="prohibited-title">Harmful Content</div>
+                  <div class="prohibited-description">Do not upload or distribute harmful, defamatory, or illegal content</div>
+                </div>
+                <div class="prohibited-card">
+                  <div class="prohibited-icon">
+                    <i class="fas fa-network-wired"></i>
+                  </div>
+                  <div class="prohibited-title">Platform Integrity</div>
+                  <div class="prohibited-description">Do not interfere with or disrupt the platform's functionality or security</div>
+                </div>
+                <div class="prohibited-card">
+                  <div class="prohibited-icon">
+                    <i class="fas fa-user-secret"></i>
+                  </div>
+                  <div class="prohibited-title">Identity Misrepresentation</div>
+                  <div class="prohibited-description">Do not impersonate others or misrepresent affiliations</div>
+                </div>
+                <div class="prohibited-card">
+                  <div class="prohibited-icon">
+                    <i class="fas fa-lock"></i>
+                  </div>
+                  <div class="prohibited-title">Unauthorized Access</div>
+                  <div class="prohibited-description">Do not attempt to gain unauthorized access to data or restricted areas</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Intellectual Property Section -->
+          <section id="Intellect" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">3</div>
+              <div class="section-title-content">
+                <h2>Intellectual Property</h2>
+                <p class="section-subtitle">Protecting creative work and respecting ownership</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>All content and materials on this website—including but not limited to artwork, graphics, text, logos, audio, and video—are the intellectual property of Art-Life or used with proper permission. These materials are protected by copyright, trademark, and other relevant laws.</p>
+              
+              <div class="rights-grid">
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-paint-brush"></i>
+                  </div>
+                  <div class="right-title">Artist Rights</div>
+                  <div class="right-description">Artists retain ownership of their original work submitted to Art-Life</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-camera"></i>
+                  </div>
+                  <div class="right-title">Platform Content</div>
+                  <div class="right-description">Art-Life owns all platform design, layout, and original content</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-handshake"></i>
+                  </div>
+                  <div class="right-title">Proper Attribution</div>
+                  <div class="right-description">Always credit artists when sharing their work from our platform</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-file-contract"></i>
+                  </div>
+                  <div class="right-title">Usage Permissions</div>
+                  <div class="right-description">Seek explicit written permission before reusing any content</div>
+                </div>
+              </div>
+              
+              <p><strong>Important:</strong> Users may not reproduce, copy, redistribute, or create derivative works from any site content without explicit written permission. Attribution does not replace permission.</p>
+            </div>
+          </section>
+
+          <!-- Termination Section -->
+          <section id="Termi" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">4</div>
+              <div class="section-title-content">
+                <h2>Termination</h2>
+                <p class="section-subtitle">When and why access may be suspended or terminated</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>We reserve the right to suspend or terminate your access to Art-Life at any time, with or without notice, for behaviors including (but not limited to):</p>
+              <ul>
+                <li><strong>Violating Terms:</strong> Breaching any part of these Terms of Service</li>
+                <li><strong>Community Harm:</strong> Engaging in harassment or abuse of other users</li>
+                <li><strong>Platform Misuse:</strong> Manipulating or misusing platform features</li>
+                <li><strong>Legal Compliance:</strong> Violating applicable laws or regulations</li>
+              </ul>
+              <p>Upon termination, you must cease all use of the platform. In certain cases, your data or content may also be removed from our systems.</p>
+            </div>
+          </section>
+
+          <!-- Modifications Section -->
+          <section id="Modif" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">5</div>
+              <div class="section-title-content">
+                <h2>Modifications</h2>
+                <p class="section-subtitle">How and when these terms may change</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>Art-Life reserves the right to revise or update these Terms of Service at any time to reflect changes in our services, legal requirements, or community standards.</p>
+              <p>We will attempt to notify users of significant changes through platform announcements or email notifications when appropriate. However, it is your responsibility to review these terms periodically for updates.</p>
+              <p><strong>Continued use of the platform after updates indicates your acceptance of the revised terms.</strong> If you disagree with any changes, you must discontinue using Art-Life services.</p>
+            </div>
+          </section>
+
+          <!-- Limitation of Liability Section -->
+          <section id="LoL" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">6</div>
+              <div class="section-title-content">
+                <h2>Limitation of Liability</h2>
+                <p class="section-subtitle">Understanding our responsibilities and limitations</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>Art-Life is not liable for certain types of damages or issues beyond our control. This includes:</p>
+              
+              <div class="liability-grid">
+                <div class="liability-item">
+                  <div class="liability-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                  </div>
+                  <div class="liability-title">Indirect Damages</div>
+                  <div class="liability-description">Any indirect or consequential damages resulting from platform use</div>
+                </div>
+                <div class="liability-item">
+                  <div class="liability-icon">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="liability-title">User Content</div>
+                  <div class="liability-description">Content submitted by users, including accuracy and legality</div>
+                </div>
+                <div class="liability-item">
+                  <div class="liability-icon">
+                    <i class="fas fa-server"></i>
+                  </div>
+                  <div class="liability-title">Technical Issues</div>
+                  <div class="liability-description">Technical problems or downtime beyond our reasonable control</div>
+                </div>
+                <div class="liability-item">
+                  <div class="liability-icon">
+                    <i class="fas fa-external-link-alt"></i>
+                  </div>
+                  <div class="liability-title">Third-Party Services</div>
+                  <div class="liability-description">Services, content, or actions of third parties we link to</div>
+                </div>
+              </div>
+              
+              <p>This limitation of liability applies to the fullest extent permitted by applicable law and does not affect any statutory rights that cannot be excluded.</p>
+            </div>
+          </section>
+
+          <!-- Governing Law Section -->
+          <section id="Law" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">7</div>
+              <div class="section-title-content">
+                <h2>Governing Law</h2>
+                <p class="section-subtitle">Legal jurisdiction and dispute resolution</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>These Terms of Service are governed by and construed in accordance with the laws of Kenya. Any disputes arising from or relating to these terms or your use of Art-Life shall be subject to the exclusive jurisdiction of the courts located in Nairobi, Kenya.</p>
+              
+              <p>Before pursuing formal legal action, we encourage users to contact us directly to resolve any issues through our dispute resolution process, which prioritizes mediation and amicable settlement.</p>
+            </div>
+          </section>
+
+          <!-- Contact Section -->
+          <section id="Cont" class="terms-section">
+            <div class="section-header">
+              <div class="section-number">8</div>
+              <div class="section-title-content">
+                <h2>Contact</h2>
+                <p class="section-subtitle">How to reach us with questions or concerns</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <div class="contact-section">
+                <div class="contact-icon">
+                  <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="contact-title">Questions About These Terms?</h3>
+                <p class="contact-text">If you have questions, feedback, or concerns regarding these Terms of Service, please don't hesitate to get in touch. We value transparent communication and will do our best to respond promptly and respectfully.</p>
+                <a href="Contact.html" class="contact-link">
+                  <i class="fas fa-envelope"></i> Contact Our Legal Team
+                </a>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html" class="active">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED TERMS OF SERVICE INTERACTIVITY
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initTermsSystem();
+      });
+      
+      function initTermsSystem() {
+        console.log('⚖️ Enhanced Terms System Initialized');
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Set update date
+        const updateDateElement = document.getElementById('terms-update-date');
+        if (updateDateElement) {
+          const now = new Date();
+          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+          updateDateElement.textContent = now.toLocaleDateString('en-US', options);
+        }
+        
+        // Navigation highlighting
+        const navLinks = document.querySelectorAll('.terms-nav-link');
+        const sections = document.querySelectorAll('.terms-section');
+        
+        // Smooth scroll for navigation links
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+              // Update active navigation link
+              navLinks.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+              
+              // Smooth scroll to section
+              targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Add active class to section
+              sections.forEach(s => s.classList.remove('active'));
+              targetSection.classList.add('active');
+            }
+          });
+        });
+        
+        // Intersection Observer for section highlighting
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              const correspondingLink = document.querySelector(`.terms-nav-link[href="#${id}"]`);
+              
+              if (correspondingLink) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                correspondingLink.classList.add('active');
+              }
+              
+              // Animate section entry
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '-100px 0px -100px 0px'
+        });
+        
+        // Observe all sections
+        sections.forEach(section => {
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(20px)';
+          section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(section);
+        });
+        
+        // Terms acceptance button
+        const acceptButton = document.getElementById('accept-terms');
+        if (acceptButton) {
+          acceptButton.addEventListener('click', function() {
+            const originalHTML = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i> Terms Accepted!';
+            this.style.backgroundColor = '#4CAF50';
+            this.disabled = true;
+            
+            // Show confirmation message
+            const confirmation = document.createElement('div');
+            confirmation.innerHTML = `
+              <div style="
+                background: rgba(76, 175, 80, 0.1);
+                border: 2px solid #4CAF50;
+                border-radius: var(--border-radius);
+                padding: var(--spacing-md);
+                margin-top: var(--spacing-md);
+                text-align: center;
+                color: var(--text-light);
+                animation: fadeIn 0.5s ease;
+              ">
+                <i class="fas fa-check-circle" style="color: #4CAF50; font-size: 1.5rem; margin-bottom: 8px;"></i>
+                <p style="margin: 0;">Thank you for accepting our Terms of Service. Your commitment helps us maintain a respectful and creative community.</p>
+              </div>
+            `;
+            
+            this.parentElement.parentElement.appendChild(confirmation);
+            
+            // Store acceptance in localStorage (optional)
+            localStorage.setItem('artlife-terms-accepted', 'true');
+            
+            // Reset button after 5 seconds
+            setTimeout(() => {
+              this.innerHTML = originalHTML;
+              this.style.backgroundColor = '';
+              this.disabled = false;
+              confirmation.remove();
+            }, 5000);
+          });
+        }
+        
+        // Check if terms were previously accepted
+        if (localStorage.getItem('artlife-terms-accepted') === 'true') {
+          console.log('Terms previously accepted by user');
+        }
+        
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.prohibited-card, .right-card, .liability-item');
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }, index * 100);
+              cardObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        cards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+          cardObserver.observe(card);
+        });
+        
+        // Print-friendly version
+        const printButton = document.createElement('button');
+        printButton.innerHTML = '<i class="fas fa-print"></i> Print Terms';
+        printButton.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: var(--primary);
+          color: var(--dark);
+          border: none;
+          padding: 10px 20px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          z-index: 1000;
+          transition: all 0.3s ease;
+        `;
+        
+        printButton.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+          this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
+        });
+        
+        printButton.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+        });
+        
+        printButton.addEventListener('click', function() {
+          window.print();
+        });
+        
+        document.body.appendChild(printButton);
+        
+        // Hide print button when printing
+        const style = document.createElement('style');
+        style.textContent = `
+          @media print {
+            button {
+              display: none !important;
+            }
+            .terms-navigation {
+              display: none !important;
+            }
+            .site-footer {
+              display: none !important;
+            }
+            .terms-notice {
+              break-before: page;
+            }
+            .terms-section {
+              break-inside: avoid;
+              border: 1px solid #ddd;
+              box-shadow: none !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // Add fade-in animation
+        const fadeInStyle = document.createElement('style');
+        fadeInStyle.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `;
+        document.head.appendChild(fadeInStyle);
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Projects | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts - Silent Production Version -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts that work immediately */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* Projects Container */
+    .projects-container {
+      padding: var(--spacing-lg) 0;
+    }
+
+    /* View Toggle */
+    .view-toggle {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-sm);
+      background: rgba(42, 42, 45, 0.5);
+      border-radius: var(--border-radius);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .view-btn {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .view-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .view-btn:hover:not(.active) {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(218, 165, 32, 0.05);
+    }
+
+    /* Projects Stats Bar */
+    .projects-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      margin-bottom: var(--spacing-xl);
+      backdrop-filter: blur(5px);
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: var(--spacing-md);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      transition: all var(--transition-fast);
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-xs);
+      color: var(--primary);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-trend {
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    .stat-trend.up {
+      color: #4CAF50;
+    }
+
+    .stat-trend.down {
+      color: #f44336;
+    }
+
+    /* Themes Overview Section - Enhanced */
+    .themes-overview {
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .themes-overview h3 {
+      text-align: center;
+      color: var(--primary-light);
+      margin-bottom: var(--spacing-lg);
+      font-size: 1.5rem;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .theme-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+      transition: all var(--transition-normal);
+      border-left: 4px solid var(--primary);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .theme-card.climate {
+      border-left-color: #4CAF50;
+    }
+
+    .theme-card.women {
+      border-left-color: #E91E63;
+    }
+
+    .theme-card.youth {
+      border-left-color: #2196F3;
+    }
+
+    .theme-card.diplomacy {
+      border-left-color: #9C27B0;
+    }
+
+    .theme-card.institutional {
+      border-left-color: #607D8B;
+    }
+
+    .theme-card h4 {
+      color: var(--light);
+      margin-bottom: var(--spacing-xs);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .theme-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .theme-count {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .theme-progress {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: var(--spacing-xs);
+      overflow: hidden;
+    }
+
+    .theme-progress-bar {
+      height: 100%;
+      background: currentColor;
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    /* Timeline Visualization */
+    .timeline-visualization {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      display: none;
+    }
+
+    .timeline-visualization.active {
+      display: block;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .timeline-years {
+      display: flex;
+      gap: var(--spacing-lg);
+      overflow-x: auto;
+      padding: var(--spacing-sm) 0;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .timeline-year {
+      min-width: 100px;
+      text-align: center;
+      cursor: pointer;
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius);
+      transition: all var(--transition-fast);
+    }
+
+    .timeline-year.active {
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .timeline-year:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .timeline-projects {
+      min-height: 200px;
+      position: relative;
+    }
+
+    .timeline-project {
+      position: absolute;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .timeline-project:hover {
+      transform: scale(1.05);
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Filter Section - Enhanced */
+    .projects-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-md);
+      background: rgba(42, 42, 45, 0.7);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      align-items: center;
+    }
+
+    .filter-btn {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+      position: relative;
+    }
+
+    .filter-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .filter-btn:hover {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .filter-btn.with-badge {
+      position: relative;
+    }
+
+    .filter-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--primary);
+      color: var(--dark);
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    /* Filter Dropdown Styles */
+    .theme-filter-container,
+    .year-filter-container,
+    .impact-filter-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .theme-select,
+    .year-select,
+    .impact-select {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: rgba(42, 42, 45, 0.9);
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      min-width: 150px;
+      appearance: none;
+      padding-right: 30px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23DAA520' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 16px;
+    }
+
+    .theme-select:hover,
+    .year-select:hover,
+    .impact-select:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    .theme-select:focus,
+    .year-select:focus,
+    .impact-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .theme-select:not([value="all-themes"]),
+    .year-select:not([value="all-years"]),
+    .impact-select:not([value="all-impacts"]) {
+      border-color: var(--primary);
+      color: var(--primary);
+      background-color: rgba(218, 165, 32, 0.1);
+    }
+
+    /* Active Filter Chips */
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-md);
+      padding: var(--spacing-sm);
+      background: rgba(42, 42, 45, 0.5);
+      border-radius: var(--border-radius);
+      min-height: 50px;
+      align-items: center;
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: rgba(218, 165, 32, 0.15);
+      border: 1px solid rgba(218, 165, 32, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--primary-light);
+    }
+
+    .filter-chip .remove {
+      margin-left: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .filter-chip .remove:hover {
+      color: var(--secondary);
+    }
+
+    .clear-all {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px 12px;
+      border-radius: var(--border-radius);
+      transition: all var(--transition-fast);
+    }
+
+    .clear-all:hover {
+      color: var(--secondary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .projects-grid.hidden {
+      display: none;
+    }
+
+    .project-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-placeholder {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+    }
+
+    .project-placeholder span {
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-family: var(--font-accent);
+    }
+
+    /* Project Indicators */
+    .project-year {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      padding: 4px 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .project-timeline {
+      position: absolute;
+      top: 50px;
+      left: var(--spacing-sm);
+      padding: 6px 12px;
+      background: rgba(33, 150, 243, 0.2);
+      color: #2196F3;
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(33, 150, 243, 0.3);
+    }
+
+    .project-status {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    .project-status[data-status="ongoing"] {
+      background-color: var(--secondary);
+      color: var(--dark);
+    }
+
+    .project-status[data-status="completed"] {
+      background-color: var(--primary);
+      color: var(--dark);
+    }
+
+    .project-status[data-status="upcoming"] {
+      background-color: var(--dark);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    /* Progress Indicator */
+    .project-progress {
+      position: absolute;
+      bottom: var(--spacing-sm);
+      left: var(--spacing-sm);
+      right: var(--spacing-sm);
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: var(--border-radius);
+      padding: 8px 12px;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .progress-days {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .project-content {
+      padding: var(--spacing-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-xs);
+      color: var(--light);
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+      font-size: 0.9rem;
+    }
+
+    .project-date {
+      color: var(--primary);
+      font-family: var(--font-accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-cycle {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Theme Tags on Project Cards */
+    .project-themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .theme-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(218, 165, 32, 0.3);
+    }
+
+    .theme-tag.climate {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+      border-color: rgba(76, 175, 80, 0.3);
+    }
+
+    .theme-tag.women {
+      background: rgba(233, 30, 99, 0.1);
+      color: #E91E63;
+      border-color: rgba(233, 30, 99, 0.3);
+    }
+
+    .theme-tag.youth {
+      background: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+      border-color: rgba(33, 150, 243, 0.3);
+    }
+
+    .theme-tag.diplomacy {
+      background: rgba(156, 39, 176, 0.1);
+      color: #9C27B0;
+      border-color: rgba(156, 39, 176, 0.3);
+    }
+
+    .theme-tag.institutional {
+      background: rgba(96, 125, 139, 0.1);
+      color: #607D8B;
+      border-color: rgba(96, 125, 139, 0.3);
+    }
+
+    .project-description {
+      margin-bottom: var(--spacing-md);
+      flex: 1;
+      color: var(--text-light);
+    }
+
+    /* Impact Metrics */
+    .project-impact {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .impact-metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--spacing-xs);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      min-width: 70px;
+    }
+
+    .impact-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .impact-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .project-link {
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-small {
+      padding: 4px 12px;
+      font-size: 0.85rem;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+    }
+
+    .btn-outline:hover {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    /* Chart Visualization */
+    .chart-visualization {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      display: none;
+    }
+
+    .chart-visualization.active {
+      display: block;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .chart-container {
+      height: 300px;
+      position: relative;
+    }
+
+    .chart-legend {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
+    /* No Results Message */
+    .no-results {
+      text-align: center;
+      padding: var(--spacing-xl) var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+
+    .no-results.active {
+      display: block;
+    }
+
+    .no-results h3 {
+      color: var(--primary-light);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .no-results p {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* CTA Section */
+    .project-cta {
+      text-align: center;
+      padding: var(--spacing-xl) var(--spacing-md);
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      margin-top: var(--spacing-xl);
+    }
+
+    .project-cta h2 {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--primary-light);
+    }
+
+    .project-cta p {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Project Modal */
+    .project-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .project-modal.active { display: flex; }
+
+    .project-modal-content {
+      background: rgba(42,42,45,0.95);
+      border-radius: var(--border-radius-lg);
+      max-width: 900px;
+      width: 100%;
+      max-height: 90%;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      color: #fff;
+    }
+
+    .project-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Modal Theme Tags */
+    .modal-themes {
+      display: flex;
+      gap: 8px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .project-image {
+        height: 280px;
+      }
+      
+      .themes-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .projects-stats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1199px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .project-image {
+        height: 260px;
+      }
+      
+      .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .projects-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+      }
+      
+      .project-image {
+        height: 220px;
+      }
+      
+      .project-content {
+        padding: var(--spacing-sm);
+      }
+      
+      .project-content h2 {
+        font-size: 1.3rem;
+      }
+      
+      .projects-filter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .theme-filter-container,
+      .year-filter-container,
+      .impact-filter-container {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .theme-select,
+      .year-select,
+      .impact-select {
+        width: 100%;
+      }
+      
+      .projects-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 480px) and (max-width: 767px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .projects-filter {
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--spacing-sm);
+      }
+      
+      .filter-btn {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .theme-filter-container,
+      .year-filter-container,
+      .impact-filter-container {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .theme-select,
+      .year-select,
+      .impact-select {
+        width: 100%;
+      }
+      
+      .project-image {
+        height: 220px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .projects-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .view-toggle {
+        flex-direction: column;
+      }
+      
+      .view-btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .projects-container {
+        padding: var(--spacing-md) 0;
+      }
+      
+      .main-heading {
+        margin-bottom: var(--spacing-lg);
+        font-size: 2rem;
+      }
+      
+      .main-heading::after {
+        width: 80px;
+      }
+      
+      .projects-filter {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm);
+      }
+      
+      .filter-btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .theme-select,
+      .year-select,
+      .impact-select {
+        width: 100%;
+        min-width: 100%;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .project-image {
+        height: 200px;
+      }
+      
+      .project-content {
+        padding: var(--spacing-sm);
+      }
+      
+      .project-content h2 {
+        font-size: 1.3rem;
+      }
+      
+      .project-description {
+        font-size: 0.9rem;
+      }
+      
+      .project-cta {
+        padding: var(--spacing-lg) var(--spacing-sm);
+        margin: var(--spacing-lg) var(--spacing-xs) 0;
+      }
+      
+      .project-cta h2 {
+        font-size: 1.5rem;
+      }
+      
+      .project-cta p {
+        font-size: 0.9rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .themes-overview {
+        padding: var(--spacing-md);
+      }
+      
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .projects-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .project-card,
+      .project-image img,
+      .btn,
+      .reveal,
+      .theme-card,
+      .stat-card {
+        transition: none;
+      }
+      
+      .project-card:hover,
+      .theme-card:hover,
+      .stat-card:hover {
+        transform: none;
+      }
+    }
+
+    /* NUCLEAR OPTION - Disable interfering animations */
+    .project-card {
+      animation: none !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    
+    .project-card[style*="display: flex"] {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    
+    .project-card[style*="display: none"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+    
+    .scroll-content .project-card {
+      will-change: auto !important;
+    }
+
+  </style>
+  
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+        <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+      <a href="About.html" class="nav-link">About</a>        
+      <a href="WhatWeDo.html" class="nav-link">What we do</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="Projects.html" class="nav-link active">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="projects-container">
+          <h1 class="main-heading">Our Projects</h1>
+          
+          <!-- Projects Stats Bar -->
+          <div class="projects-stats reveal">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-spinner"></i>
+              </div>
+              <div class="stat-value" id="current-count">7</div>
+              <div class="stat-label">Current Projects</div>
+              <div class="stat-trend up">+2 from last year</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="stat-value" id="completed-count">8</div>
+              <div class="stat-label">Completed</div>
+              <div class="stat-trend up">100% success rate</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-value" id="beneficiaries-count">5,000+</div>
+              <div class="stat-label">Beneficiaries</div>
+              <div class="stat-trend up">Growing impact</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="stat-value" id="locations-count">15+</div>
+              <div class="stat-label">Locations</div>
+              <div class="stat-trend up">Nationwide reach</div>
+            </div>
+          </div>
+          
+          <!-- View Toggle -->
+          <div class="view-toggle reveal">
+            <button class="view-btn active" data-view="grid">
+              <i class="fas fa-th"></i> Grid View
+            </button>
+            <button class="view-btn" data-view="timeline">
+              <i class="fas fa-stream"></i> Timeline View
+            </button>
+            <button class="view-btn" data-view="charts">
+              <i class="fas fa-chart-pie"></i> Analytics
+            </button>
+          </div>
+          
+          <!-- Themes Overview -->
+          <div class="themes-overview reveal">
+            <h3>Our Programmatic Themes</h3>
+            <div class="themes-grid">
+              <div class="theme-card" data-theme="art-life-hood">
+                <h4>Art-Life-Hood <span class="theme-count">Core</span></h4>
+                <p>Community arts integration and neighborhood empowerment through creative expression and social dialogue</p>
+                <div class="theme-progress">
+                  <div class="theme-progress-bar" style="width: 90%; background: var(--primary);"></div>
+                </div>
+              </div>
+              <div class="theme-card climate" data-theme="climate-action">
+                <h4>Climate Action <span class="theme-count">5+</span></h4>
+                <p>Arts-driven environmental advocacy, tree planting, and sustainability campaigns across Kenya</p>
+                <div class="theme-progress">
+                  <div class="theme-progress-bar" style="width: 75%; background: #4CAF50;"></div>
+                </div>
+              </div>
+              <div class="theme-card women" data-theme="women-empowerment">
+                <h4>Women Empowerment <span class="theme-count">3+</span></h4>
+                <p>Supporting women artists with art-preneurship, life skills, and advocacy against gender-based marginalization</p>
+                <div class="theme-progress">
+                  <div class="theme-progress-bar" style="width: 65%; background: #E91E63;"></div>
+                </div>
+              </div>
+              <div class="theme-card youth" data-theme="youth-development">
+                <h4>Youth Development <span class="theme-count">6+</span></h4>
+                <p>Training, mentorship, and capacity building for young artists in monetization and professional skills</p>
+                <div class="theme-progress">
+                  <div class="theme-progress-bar" style="width: 85%; background: #2196F3;"></div>
+                </div>
+              </div>
+              <div class="theme-card diplomacy" data-theme="cultural-diplomacy">
+                <h4>Cultural Diplomacy <span class="theme-count">2+</span></h4>
+                <p>International arts exchanges, symposiums, and cultural partnerships promoting global dialogue</p>
+                <div class="theme-progress">
+                  <div class="theme-progress-bar" style="width: 55%; background: #9C27B0;"></div>
+                </div>
+              </div>
+              <div class="theme-card institutional" data-theme="institutional">
+                <h4>Institutional <span class="theme-count">4+</span></h4>
+                <p>Capacity building, conferences, awards, and structural development for sustainable arts ecosystem</p>
+                <div class="theme-progress">
+                  <div class="theme-progress-bar" style="width: 80%; background: #607D8B;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Filters Display -->
+          <div class="active-filters reveal" id="active-filters">
+            <div class="filter-chip">
+              All Projects <span class="remove" data-filter="category" data-value="all">×</span>
+            </div>
+            <div class="clear-all" onclick="resetFilters()">
+              <i class="fas fa-redo"></i> Clear All
+            </div>
+          </div>
+            
+          <!-- Projects Filter -->
+          <div class="projects-filter reveal">
+            <button class="filter-btn active with-badge" data-filter="all">
+              <i class="fas fa-layer-group"></i> All Projects
+              <span class="filter-badge" id="all-count">15</span>
+            </button>
+            <button class="filter-btn with-badge" data-filter="current">
+              <i class="fas fa-spinner"></i> Current
+              <span class="filter-badge" id="current-badge">7</span>
+            </button>
+            <button class="filter-btn with-badge" data-filter="past">
+              <i class="fas fa-history"></i> Past
+              <span class="filter-badge" id="past-badge">6</span>
+            </button>
+            <button class="filter-btn with-badge" data-filter="upcoming">
+              <i class="fas fa-calendar-plus"></i> Upcoming
+              <span class="filter-badge" id="upcoming-badge">2</span>
+            </button>
+            
+            <!-- Theme Filter Dropdown -->
+            <div class="theme-filter-container">
+              <select id="theme-filter" class="theme-select">
+                <option value="all-themes">All Themes</option>
+                <option value="art-life-hood">Art-Life-Hood</option>
+                <option value="climate-action">Climate Action</option>
+                <option value="women-empowerment">Women Empowerment</option>
+                <option value="youth-development">Youth Development</option>
+                <option value="cultural-diplomacy">Cultural Diplomacy</option>
+                <option value="institutional">Institutional</option>
+              </select>
+            </div>
+            
+            <!-- Year Selector -->
+            <div class="year-filter-container">
+              <select id="year-filter" class="year-select">
+                <option value="all-years">All Years</option>
+                <option value="2026" selected>2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2027">2027</option>
+              </select>
+            </div>
+            
+            <!-- Impact Filter -->
+            <div class="impact-filter-container">
+              <select id="impact-filter" class="impact-select">
+                <option value="all-impacts">All Impact Levels</option>
+                <option value="high">High Impact</option>
+                <option value="medium">Medium Impact</option>
+                <option value="low">Low Impact</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- No Results Message -->
+          <div class="no-results" id="no-results-message">
+            <h3>No Projects Found</h3>
+            <p>Try adjusting your filters or view all projects.</p>
+            <button onclick="resetFilters()" class="btn">
+              <i class="fas fa-redo"></i> Reset All Filters
+            </button>
+          </div>
+
+          <!-- Timeline Visualization -->
+          <div class="timeline-visualization" id="timeline-view">
+            <div class="timeline-header">
+              <h3>Project Timeline</h3>
+              <button class="btn btn-small" onclick="switchView('grid')">
+                <i class="fas fa-th"></i> Back to Grid
+              </button>
+            </div>
+            <div class="timeline-years" id="timeline-years">
+              <!-- Years will be generated by JavaScript -->
+            </div>
+            <div class="timeline-projects" id="timeline-projects">
+              <!-- Projects will be positioned by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Chart Visualization -->
+          <div class="chart-visualization" id="chart-view">
+            <div class="chart-header">
+              <h3>Project Analytics</h3>
+              <button class="btn btn-small" onclick="switchView('grid')">
+                <i class="fas fa-th"></i> Back to Grid
+              </button>
+            </div>
+            <div class="chart-container" id="theme-chart">
+              <!-- Chart will be generated by JavaScript -->
+              <canvas id="themeChart"></canvas>
+            </div>
+            <div class="chart-legend" id="chart-legend">
+              <!-- Legend will be generated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Projects Grid -->
+          <div class="projects-grid" id="grid-view">
+
+            <!-- Current Projects - 2026 -->
+            <article class="project-card current reveal" 
+                     data-category="current" 
+                     data-year="2026"
+                     data-themes="art-life-hood youth-development"
+                     data-impact="high"
+                     data-start="2026-01-01"
+                     data-end="2027-12-31"
+                     data-progress="45"
+                     data-beneficiaries="560"
+                     data-locations="4"
+                     data-budget="50000">
+                <div class="project-image">
+                    <span class="project-year">2026</span>
+                    <div class="project-timeline">
+                      <i class="fas fa-calendar-alt"></i> 2-Year Program
+                    </div>
+                    <img src="assets/images/events/posters/1-Art-Life-Hood.png" alt="Art-Life-Hood" loading="lazy">
+                    <span class="project-status" data-status="ongoing">Ongoing</span>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>45% Complete</span>
+                            <span class="progress-days">340 days remaining</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h2>Art-Life-Hood</h2>
+                    <div class="project-meta">
+                        <span class="project-date">
+                          <i class="far fa-calendar"></i> Two-Year Cycle Program
+                        </span>
+                        <span class="project-cycle">
+                          <i class="fas fa-redo"></i> 2026-2027
+                        </span>
+                    </div>
+                    <div class="project-themes">
+                        <span class="theme-tag">Art-Life-Hood</span>
+                        <span class="theme-tag youth">Youth Development</span>
+                    </div>
+                    <div class="project-impact">
+                        <div class="impact-metric">
+                            <div class="impact-value">560</div>
+                            <div class="impact-label">Artists</div>
+                        </div>
+                        <div class="impact-metric">
+                            <div class="impact-value">4</div>
+                            <div class="impact-label">Counties</div>
+                        </div>
+                        <div class="impact-metric">
+                            <div class="impact-value">$50K</div>
+                            <div class="impact-label">Budget</div>
+                        </div>
+                    </div>
+                    <p class="project-description">Integrates arts into Nairobi neighborhoods through concerts, community outreach, and engagement programs, empowering marginalized artists while promoting social dialogue.</p>
+                    <a href="#" class="project-link btn" data-modal-target="modal-artlifehood">
+                      <i class="fas fa-eye"></i> View Project
+                    </a>
+                </div>
+            </article>
+
+            <!-- Add similar enhanced structure for all other projects... -->
+            <!-- (Keeping the rest of your project cards with same structure but adding new data attributes) -->
+
+          </div>
+
+          <!-- CTA Section -->
+          <section class="project-cta content-section reveal">
+            <h2>Get Involved</h2>
+            <p>Want to participate in our projects, propose a collaboration, or support our initiatives? We're always looking for passionate individuals and organizations to join our mission.</p>
+            <div class="cta-buttons">
+                <a href="JoinAProgram.html" class="btn">
+                    <i class="fas fa-hands-helping"></i> Support a Project
+                </a>
+                <a href="Contact.html" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Contact Us
+                </a>
+            </div>
+          </section>
+
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Project Modals (Keep your existing modals, just add enhanced structure) -->
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED PROJECTS SYSTEM WITH VISUALIZATIONS
+    (function() {
+      // Wait for everything to load
+      window.addEventListener('load', function() {
+        setTimeout(initProjectsSystem, 300);
+      });
+      
+      function initProjectsSystem() {
+        console.log('🚀 Enhanced Projects System Initialized');
+        
+        // Get elements
+        const projectCards = Array.from(document.querySelectorAll('.project-card'));
+        const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+        const viewBtns = Array.from(document.querySelectorAll('.view-btn'));
+        const themeFilter = document.getElementById('theme-filter');
+        const yearFilter = document.getElementById('year-filter');
+        const impactFilter = document.getElementById('impact-filter');
+        const themeCards = Array.from(document.querySelectorAll('.theme-card'));
+        const noResultsMsg = document.getElementById('no-results-message');
+        const activeFiltersContainer = document.getElementById('active-filters');
+        
+        // Active filters
+        let activeFilters = {
+          category: 'all',
+          theme: 'all-themes',
+          year: 'all-years',
+          impact: 'all-impacts'
+        };
+        
+        // Current view
+        let currentView = 'grid';
+        
+        // Chart.js instance
+        let themeChart = null;
+        
+        // Update project progress and timelines
+        function updateProjectStatuses() {
+          const now = new Date();
+          projectCards.forEach(card => {
+            const start = new Date(card.dataset.start);
+            const end = new Date(card.dataset.end);
+            const progress = parseInt(card.dataset.progress);
+            
+            // Update progress bars
+            const progressFill = card.querySelector('.progress-fill');
+            if (progressFill && !isNaN(progress)) {
+              progressFill.style.width = `${progress}%`;
+            }
+            
+            // Update timeline indicators for ongoing projects
+            if (card.dataset.category === 'current') {
+              const daysRemaining = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
+              const daysText = card.querySelector('.progress-days');
+              if (daysText && daysRemaining > 0) {
+                daysText.textContent = `${daysRemaining} days remaining`;
+              }
+            }
+          });
+        }
+        
+        // Update statistics
+        function updateStats() {
+          const current = document.querySelectorAll('.project-card.current:not([style*="display: none"])').length;
+          const past = document.querySelectorAll('.project-card.past:not([style*="display: none"])').length;
+          const upcoming = document.querySelectorAll('.project-card.upcoming:not([style*="display: none"])').length;
+          const all = current + past + upcoming;
+          
+          // Update badge counts
+          document.getElementById('all-count').textContent = all;
+          document.getElementById('current-badge').textContent = current;
+          document.getElementById('past-badge').textContent = past;
+          document.getElementById('upcoming-badge').textContent = upcoming;
+          
+          // Update stat cards
+          document.getElementById('current-count').textContent = current;
+          document.getElementById('completed-count').textContent = past;
+          
+          // Calculate beneficiaries and locations
+          let totalBeneficiaries = 0;
+          let uniqueLocations = new Set();
+          
+          projectCards.forEach(card => {
+            if (card.style.display !== 'none' && getComputedStyle(card).display !== 'none') {
+              const beneficiaries = parseInt(card.dataset.beneficiaries) || 0;
+              const locations = card.dataset.locations ? parseInt(card.dataset.locations) : 0;
+              
+              totalBeneficiaries += beneficiaries;
+              if (locations > 0) {
+                for (let i = 0; i < locations; i++) {
+                  uniqueLocations.add(`${card.dataset.year}-${i}`);
+                }
+              }
+            }
+          });
+          
+          document.getElementById('beneficiaries-count').textContent = 
+            totalBeneficiaries > 1000 ? `${Math.round(totalBeneficiaries/1000)}K+` : `${totalBeneficiaries}+`;
+          
+          document.getElementById('locations-count').textContent = `${uniqueLocations.size}+`;
+        }
+        
+        // Update active filters display
+        function updateActiveFiltersDisplay() {
+          activeFiltersContainer.innerHTML = '';
+          
+          // Add filter chips
+          if (activeFilters.category !== 'all') {
+            const chip = createFilterChip('Status', activeFilters.category, 'category', activeFilters.category);
+            activeFiltersContainer.appendChild(chip);
+          }
+          
+          if (activeFilters.theme !== 'all-themes') {
+            const chip = createFilterChip('Theme', activeFilters.theme, 'theme', activeFilters.theme);
+            activeFiltersContainer.appendChild(chip);
+          }
+          
+          if (activeFilters.year !== 'all-years') {
+            const chip = createFilterChip('Year', activeFilters.year, 'year', activeFilters.year);
+            activeFiltersContainer.appendChild(chip);
+          }
+          
+          if (activeFilters.impact !== 'all-impacts') {
+            const chip = createFilterChip('Impact', activeFilters.impact, 'impact', activeFilters.impact);
+            activeFiltersContainer.appendChild(chip);
+          }
+          
+          // Add clear all button if any filters are active
+          if (activeFilters.category !== 'all' || activeFilters.theme !== 'all-themes' || 
+              activeFilters.year !== 'all-years' || activeFilters.impact !== 'all-impacts') {
+            const clearAll = document.createElement('div');
+            clearAll.className = 'clear-all';
+            clearAll.innerHTML = '<i class="fas fa-redo"></i> Clear All';
+            clearAll.addEventListener('click', resetFilters);
+            activeFiltersContainer.appendChild(clearAll);
+          } else {
+            // Show default chip
+            const defaultChip = createFilterChip('All Projects', 'all', 'category', 'all');
+            activeFiltersContainer.appendChild(defaultChip);
+          }
+        }
+        
+        function createFilterChip(label, value, filterType, filterValue) {
+          const chip = document.createElement('div');
+          chip.className = 'filter-chip';
+          chip.innerHTML = `
+            ${label}: ${value}
+            <span class="remove" data-filter="${filterType}" data-value="${filterValue}">×</span>
+          `;
+          
+          chip.querySelector('.remove').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const filterType = this.dataset.filter;
+            const filterValue = this.dataset.value;
+            
+            if (filterType === 'category') {
+              // Update filter button
+              filterBtns.forEach(btn => btn.classList.remove('active'));
+              const allBtn = document.querySelector('[data-filter="all"]');
+              if (allBtn) allBtn.classList.add('active');
+              activeFilters.category = 'all';
+            } else if (filterType === 'theme') {
+              themeFilter.value = 'all-themes';
+              activeFilters.theme = 'all-themes';
+            } else if (filterType === 'year') {
+              yearFilter.value = 'all-years';
+              activeFilters.year = 'all-years';
+            } else if (filterType === 'impact') {
+              impactFilter.value = 'all-impacts';
+              activeFilters.impact = 'all-impacts';
+            }
+            
+            filterProjects();
+            updateActiveFiltersDisplay();
+          });
+          
+          return chip;
+        }
+        
+        // Filter projects
+        function filterProjects() {
+          const { category, theme, year, impact } = activeFilters;
+          let visibleCount = 0;
+          
+          projectCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+            const cardThemes = card.dataset.themes || '';
+            const cardYear = card.dataset.year || '';
+            const cardImpact = card.dataset.impact || '';
+            
+            // Check all filters
+            const categoryMatch = category === 'all' || cardCategory === category;
+            const themeMatch = theme === 'all-themes' || cardThemes.includes(theme);
+            const yearMatch = year === 'all-years' || cardYear === year;
+            const impactMatch = impact === 'all-impacts' || cardImpact === impact;
+            
+            // Show if ALL filters match
+            if (categoryMatch && themeMatch && yearMatch && impactMatch) {
+              card.style.display = 'flex';
+              card.style.visibility = 'visible';
+              card.style.opacity = '1';
+              card.style.position = 'relative';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+              card.style.visibility = 'hidden';
+              card.style.opacity = '0';
+            }
+          });
+          
+          // Handle no results
+          if (visibleCount === 0) {
+            noResultsMsg.classList.add('active');
+          } else {
+            noResultsMsg.classList.remove('active');
+          }
+          
+          // Update stats
+          updateStats();
+          updateActiveFiltersDisplay();
+          
+          // Update visualizations if active
+          if (currentView === 'timeline') {
+            updateTimeline();
+          } else if (currentView === 'charts') {
+            updateCharts();
+          }
+          
+          console.log(`Showing ${visibleCount} of ${projectCards.length} projects`);
+        }
+        
+        // Switch views
+        function switchView(view) {
+          currentView = view;
+          
+          // Update active view button
+          viewBtns.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-view="${view}"]`).classList.add('active');
+          
+          // Show/hide views
+          document.getElementById('grid-view').classList.toggle('hidden', view !== 'grid');
+          document.getElementById('timeline-view').classList.toggle('active', view === 'timeline');
+          document.getElementById('chart-view').classList.toggle('active', view === 'charts');
+          
+          if (view === 'timeline') {
+            updateTimeline();
+          } else if (view === 'charts') {
+            updateCharts();
+          }
+        }
+        
+        // Timeline functions
+        function updateTimeline() {
+          const yearsContainer = document.getElementById('timeline-years');
+          const projectsContainer = document.getElementById('timeline-projects');
+          
+          // Clear containers
+          yearsContainer.innerHTML = '';
+          projectsContainer.innerHTML = '';
+          
+          // Get unique years from visible projects
+          const years = new Set();
+          const visibleProjects = Array.from(projectCards).filter(card => 
+            card.style.display !== 'none' && getComputedStyle(card).display !== 'none'
+          );
+          
+          visibleProjects.forEach(card => {
+            years.add(card.dataset.year);
+          });
+          
+          // Sort years
+          const sortedYears = Array.from(years).sort((a, b) => b - a);
+          
+          // Add year buttons
+          sortedYears.forEach(year => {
+            const yearElement = document.createElement('div');
+            yearElement.className = 'timeline-year';
+            yearElement.textContent = year;
+            yearElement.addEventListener('click', function() {
+              // Filter by this year
+              yearFilter.value = year;
+              activeFilters.year = year;
+              filterProjects();
+              switchView('grid');
+            });
+            yearsContainer.appendChild(yearElement);
+          });
+          
+          // Add projects to timeline
+          const timelineHeight = 200;
+          const yearWidth = 100;
+          
+          visibleProjects.forEach((card, index) => {
+            const start = new Date(card.dataset.start);
+            const end = new Date(card.dataset.end);
+            const year = parseInt(card.dataset.year);
+            const yearIndex = sortedYears.indexOf(year.toString());
+            
+            // Calculate position
+            const left = 50 + (yearIndex * yearWidth);
+            const top = 30 + (index % 5) * 35;
+            
+            const projectElement = document.createElement('div');
+            projectElement.className = 'timeline-project';
+            projectElement.textContent = card.querySelector('h2').textContent;
+            projectElement.style.left = `${left}px`;
+            projectElement.style.top = `${top}px`;
+            projectElement.style.backgroundColor = getThemeColor(card.dataset.themes.split(' ')[0]);
+            projectElement.style.color = '#fff';
+            
+            // Add click event to open modal
+            projectElement.addEventListener('click', function() {
+              const modalTarget = card.querySelector('.project-link').dataset.modalTarget;
+              const modal = document.getElementById(modalTarget);
+              if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+              }
+            });
+            
+            projectsContainer.appendChild(projectElement);
+          });
+        }
+        
+        function getThemeColor(theme) {
+          const colors = {
+            'art-life-hood': '#DAA520',
+            'climate-action': '#4CAF50',
+            'women-empowerment': '#E91E63',
+            'youth-development': '#2196F3',
+            'cultural-diplomacy': '#9C27B0',
+            'institutional': '#607D8B'
+          };
+          return colors[theme] || '#DAA520';
+        }
+        
+        // Chart functions
+        function updateCharts() {
+          const visibleProjects = Array.from(projectCards).filter(card => 
+            card.style.display !== 'none' && getComputedStyle(card).display !== 'none'
+          );
+          
+          // Count projects by theme
+          const themeCounts = {};
+          const themeColors = {
+            'art-life-hood': '#DAA520',
+            'climate-action': '#4CAF50',
+            'women-empowerment': '#E91E63',
+            'youth-development': '#2196F3',
+            'cultural-diplomacy': '#9C27B0',
+            'institutional': '#607D8B'
+          };
+          
+          visibleProjects.forEach(card => {
+            const themes = card.dataset.themes.split(' ');
+            themes.forEach(theme => {
+              themeCounts[theme] = (themeCounts[theme] || 0) + 1;
+            });
+          });
+          
+          // Prepare data for chart
+          const labels = Object.keys(themeCounts);
+          const data = Object.values(themeCounts);
+          const colors = labels.map(label => themeColors[label] || '#DAA520');
+          
+          // Get or create canvas
+          let canvas = document.getElementById('themeChart');
+          if (!canvas) {
+            canvas = document.createElement('canvas');
+            canvas.id = 'themeChart';
+            document.getElementById('theme-chart').appendChild(canvas);
+          }
+          
+          const ctx = canvas.getContext('2d');
+          
+          // Destroy existing chart
+          if (themeChart) {
+            themeChart.destroy();
+          }
+          
+          // Create new chart
+          themeChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: labels.map(label => label.replace('-', ' ').toUpperCase()),
+              datasets: [{
+                data: data,
+                backgroundColor: colors,
+                borderWidth: 2,
+                borderColor: 'rgba(42, 42, 45, 0.8)'
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function(context) {
+                      const label = context.label || '';
+                      const value = context.raw || 0;
+                      const total = data.reduce((a, b) => a + b, 0);
+                      const percentage = Math.round((value / total) * 100);
+                      return `${label}: ${value} projects (${percentage}%)`;
+                    }
+                  }
+                }
+              }
+            }
+          });
+          
+          // Update legend
+          const legendContainer = document.getElementById('chart-legend');
+          legendContainer.innerHTML = '';
+          
+          labels.forEach((label, index) => {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            legendItem.innerHTML = `
+              <div class="legend-color" style="background-color: ${colors[index]}"></div>
+              <span>${label.replace('-', ' ').toUpperCase()} (${data[index]})</span>
+            `;
+            legendContainer.appendChild(legendItem);
+          });
+        }
+        
+        // EVENT LISTENERS
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            activeFilters.category = this.dataset.filter;
+            filterProjects();
+          });
+        });
+        
+        viewBtns.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            switchView(this.dataset.view);
+          });
+        });
+        
+        if (themeFilter) {
+          themeFilter.addEventListener('change', function() {
+            activeFilters.theme = this.value;
+            filterProjects();
+          });
+        }
+        
+        if (yearFilter) {
+          yearFilter.addEventListener('change', function() {
+            activeFilters.year = this.value;
+            filterProjects();
+          });
+        }
+        
+        if (impactFilter) {
+          impactFilter.addEventListener('change', function() {
+            activeFilters.impact = this.value;
+            filterProjects();
+          });
+        }
+        
+        themeCards.forEach(card => {
+          card.addEventListener('click', function() {
+            const theme = this.dataset.theme;
+            if (themeFilter) {
+              themeFilter.value = theme;
+              activeFilters.theme = theme;
+              filterProjects();
+            }
+          });
+        });
+        
+        // GLOBAL RESET FUNCTION
+        window.resetFilters = function() {
+          console.log('Resetting filters...');
+          
+          // Reset UI
+          filterBtns.forEach(b => b.classList.remove('active'));
+          const allBtn = document.querySelector('[data-filter="all"]');
+          if (allBtn) allBtn.classList.add('active');
+          
+          if (themeFilter) themeFilter.value = 'all-themes';
+          if (yearFilter) yearFilter.value = 'all-years';
+          if (impactFilter) impactFilter.value = 'all-impacts';
+          
+          // Reset state
+          activeFilters = {
+            category: 'all',
+            theme: 'all-themes',
+            year: 'all-years',
+            impact: 'all-impacts'
+          };
+          
+          // Apply
+          filterProjects();
+          
+          // Switch back to grid view
+          switchView('grid');
+        };
+        
+        // Initial setup
+        updateProjectStatuses();
+        filterProjects();
+        updateStats();
+        updateActiveFiltersDisplay();
+        
+        // Update progress every day
+        setInterval(updateProjectStatuses, 24 * 60 * 60 * 1000);
+      }
+      
+      // Make switchView globally accessible
+      window.switchView = function(view) {
+        // This will be replaced by the actual function
+        console.log('Switch view to:', view);
+      };
+    })();
+
+    // MODAL FUNCTIONALITY
+    document.addEventListener('DOMContentLoaded', function() {
+      // Modal open
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('.project-link')) {
+          e.preventDefault();
+          const btn = e.target.closest('.project-link');
+          const modalId = btn.getAttribute('data-modal-target');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+        
+        // Modal close
+        if (e.target.classList.contains('project-modal-close') || 
+            e.target.classList.contains('project-modal')) {
+          const modal = e.target.closest('.project-modal');
+          if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const activeModal = document.querySelector('.project-modal.active');
+          if (activeModal) {
+            activeModal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

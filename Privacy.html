@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Privacy Policy | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* ========== ENHANCED PRIVACY POLICY STYLES ========== */
+    .privacy-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .privacy-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .privacy-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Privacy Navigation */
+    .privacy-navigation {
+      position: sticky;
+      top: 20px;
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 100;
+    }
+
+    .privacy-nav-title {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .privacy-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .privacy-nav-link {
+      padding: var(--spacing-sm);
+      color: var(--text-light);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .privacy-nav-link:hover,
+    .privacy-nav-link.active {
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      padding-left: var(--spacing-md);
+    }
+
+    .privacy-nav-link::before {
+      content: '•';
+      color: var(--primary);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .privacy-nav-link.active::before {
+      opacity: 1;
+    }
+
+    /* Privacy Sections */
+    .privacy-section {
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-lg);
+      border-left: 4px solid var(--primary);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .privacy-section:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .privacy-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .privacy-section:hover::before {
+      opacity: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(218, 165, 32, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--light);
+      margin: 0;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: var(--spacing-sm) 0;
+      line-height: 1.6;
+    }
+
+    .section-content {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .section-content ul {
+      padding-left: var(--spacing-lg);
+      margin: var(--spacing-md) 0;
+    }
+
+    .section-content li {
+      margin-bottom: var(--spacing-xs);
+      position: relative;
+    }
+
+    .section-content li::marker {
+      color: var(--primary);
+    }
+
+    /* Data Types Grid */
+    .data-types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .data-type-card {
+      background: rgba(0, 0, 0, 0.2);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all var(--transition-fast);
+    }
+
+    .data-type-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .data-type-title {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-xs);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .data-type-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Rights Grid */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .right-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all var(--transition-fast);
+    }
+
+    .right-card:hover {
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.05);
+    }
+
+    .right-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .right-title {
+      color: var(--light);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .right-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Update Notice */
+    .update-notice {
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      border: 1px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .update-notice::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .update-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .update-icon {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .update-title {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .update-content {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .update-date {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    /* Contact Card */
+    .contact-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-normal);
+    }
+
+    .contact-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-title {
+      color: var(--light);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-info {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .contact-email {
+      display: inline-block;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--primary);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .contact-email:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .privacy-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .privacy-navigation {
+        position: static;
+        margin-bottom: var(--spacing-lg);
+      }
+      
+      .section-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .data-types-grid,
+      .rights-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .privacy-section {
+        padding: var(--spacing-lg);
+      }
+      
+      .update-notice {
+        padding: var(--spacing-lg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .privacy-section {
+        padding: var(--spacing-md);
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .contact-card {
+        padding: var(--spacing-lg);
+      }
+      
+      .contact-icon {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .privacy-section,
+      .data-type-card,
+      .right-card,
+      .contact-card,
+      .privacy-nav-link {
+        transition: none;
+      }
+      
+      .privacy-section:hover,
+      .data-type-card:hover,
+      .right-card:hover,
+      .contact-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link">About</a>
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="privacy-container">
+          <!-- Privacy Intro -->
+          <div class="privacy-intro">
+            <h1 class="main-heading">Privacy Policy</h1>
+            <p>Art-Life respects your privacy and is committed to protecting your personal data. This policy outlines how we collect, use, and safeguard your information when you engage with our website or participate in any of our programs and services.</p>
+          </div>
+
+          <!-- Privacy Navigation -->
+          <div class="privacy-navigation">
+            <div class="privacy-nav-title">
+              <i class="fas fa-bookmark"></i> Quick Navigation
+            </div>
+            <nav class="privacy-nav-links">
+              <a href="#IC" class="privacy-nav-link">
+                <i class="fas fa-collection"></i> Information Collection
+              </a>
+              <a href="#UoI" class="privacy-nav-link">
+                <i class="fas fa-chart-line"></i> Use of Information
+              </a>
+              <a href="#DP" class="privacy-nav-link">
+                <i class="fas fa-shield-alt"></i> Data Protection
+              </a>
+              <a href="#YR" class="privacy-nav-link">
+                <i class="fas fa-user-shield"></i> Your Rights
+              </a>
+              <a href="#CU" class="privacy-nav-link">
+                <i class="fas fa-envelope"></i> Contact Us
+              </a>
+            </nav>
+          </div>
+
+          <!-- Information Collection Section -->
+          <section id="IC" class="privacy-section">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-collection"></i>
+              </div>
+              <div>
+                <h2 class="section-title">1. Information Collection</h2>
+                <p class="section-subtitle">We collect personal information that you voluntarily provide when you engage with Art-Life.</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>We collect information through various interactions:</p>
+              <ul>
+                <li><strong>Direct Interactions:</strong> When you sign up for newsletters, contact us through forms, or register for events</li>
+                <li><strong>Automated Technologies:</strong> Technical data like IP addresses, browser type, and device information through cookies</li>
+                <li><strong>Third Parties:</strong> Information from social media platforms when you interact with our content</li>
+                <li><strong>Public Sources:</strong> Information available publicly about your artistic work or community involvement</li>
+              </ul>
+              
+              <div class="data-types-grid">
+                <div class="data-type-card">
+                  <div class="data-type-title">
+                    <i class="fas fa-user"></i> Personal Data
+                  </div>
+                  <div class="data-type-description">
+                    Name, email address, phone number, and contact preferences
+                  </div>
+                </div>
+                <div class="data-type-card">
+                  <div class="data-type-title">
+                    <i class="fas fa-paint-brush"></i> Professional Data
+                  </div>
+                  <div class="data-type-description">
+                    Artistic background, portfolio information, and career interests
+                  </div>
+                </div>
+                <div class="data-type-card">
+                  <div class="data-type-title">
+                    <i class="fas fa-network-wired"></i> Technical Data
+                  </div>
+                  <div class="data-type-description">
+                    IP address, browser type, device information, and usage patterns
+                  </div>
+                </div>
+                <div class="data-type-card">
+                  <div class="data-type-title">
+                    <i class="fas fa-calendar-check"></i> Engagement Data
+                  </div>
+                  <div class="data-type-description">
+                    Event participation, program involvement, and feedback responses
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Use of Information Section -->
+          <section id="UoI" class="privacy-section">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div>
+                <h2 class="section-title">2. Use of Information</h2>
+                <p class="section-subtitle">How we use your information to serve our community and advance our mission.</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>We use your personal data for the following purposes:</p>
+              <ul>
+                <li><strong>Program Delivery:</strong> To provide access to our events, workshops, and community programs</li>
+                <li><strong>Communication:</strong> To send updates, newsletters, and important announcements about opportunities</li>
+                <li><strong>Community Building:</strong> To connect artists, foster collaborations, and build networks</li>
+                <li><strong>Improvement:</strong> To enhance our website, programs, and services based on user feedback</li>
+                <li><strong>Compliance:</strong> To meet legal obligations and protect the rights of our community</li>
+              </ul>
+              
+              <p><strong>Legal Basis:</strong> We process your data based on your consent, contractual necessity, legitimate interests, or legal obligations. We never use your information for purposes unrelated to Art-Life's mission without your explicit consent.</p>
+            </div>
+          </section>
+
+          <!-- Data Protection Section -->
+          <section id="DP" class="privacy-section">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div>
+                <h2 class="section-title">3. Data Protection</h2>
+                <p class="section-subtitle">Our commitment to keeping your information safe and secure.</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>We implement comprehensive security measures to protect your data:</p>
+              <ul>
+                <li><strong>Technical Safeguards:</strong> Encryption, secure servers, and regular security audits</li>
+                <li><strong>Organizational Measures:</strong> Limited access to authorized personnel only and regular staff training</li>
+                <li><strong>Physical Security:</strong> Secure storage facilities for any physical records</li>
+                <li><strong>Third-Party Oversight:</strong> Careful vetting of service providers who handle data on our behalf</li>
+              </ul>
+              
+              <p><strong>Data Retention:</strong> We retain personal data only as long as necessary for the purposes collected, in accordance with our data retention policy and legal requirements.</p>
+              
+              <p><strong>Data Sharing:</strong> We never sell your personal data. We may share information with trusted partners only when necessary for program delivery or with your explicit consent.</p>
+            </div>
+          </section>
+
+          <!-- Your Rights Section -->
+          <section id="YR" class="privacy-section">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-user-shield"></i>
+              </div>
+              <div>
+                <h2 class="section-title">4. Your Rights</h2>
+                <p class="section-subtitle">You have control over your personal data. Here are your rights.</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <p>Under data protection laws, you have the following rights:</p>
+              
+              <div class="rights-grid">
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-eye"></i>
+                  </div>
+                  <div class="right-title">Right to Access</div>
+                  <div class="right-description">Request copies of your personal data that we hold</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-edit"></i>
+                  </div>
+                  <div class="right-title">Right to Rectification</div>
+                  <div class="right-description">Request correction of inaccurate or incomplete data</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-trash-alt"></i>
+                  </div>
+                  <div class="right-title">Right to Erasure</div>
+                  <div class="right-description">Request deletion of your personal data under certain circumstances</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-pause-circle"></i>
+                  </div>
+                  <div class="right-title">Right to Restrict</div>
+                  <div class="right-description">Request restriction of processing your data</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-file-export"></i>
+                  </div>
+                  <div class="right-title">Right to Portability</div>
+                  <div class="right-description">Request transfer of your data to another organization</div>
+                </div>
+                <div class="right-card">
+                  <div class="right-icon">
+                    <i class="fas fa-times-circle"></i>
+                  </div>
+                  <div class="right-title">Right to Object</div>
+                  <div class="right-description">Object to processing of your personal data</div>
+                </div>
+              </div>
+              
+              <p>To exercise any of these rights, please <a href="Contact.html">contact us</a>. We will respond to your request within 30 days and handle it in accordance with applicable data protection laws.</p>
+            </div>
+          </section>
+
+          <!-- Contact Us Section -->
+          <section id="CU" class="privacy-section">
+            <div class="section-header">
+              <div class="section-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h2 class="section-title">5. Contact Us</h2>
+                <p class="section-subtitle">Get in touch with our Data Protection Officer for privacy-related inquiries.</p>
+              </div>
+            </div>
+            
+            <div class="section-content">
+              <div class="contact-card">
+                <div class="contact-icon">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="contact-title">Data Protection Officer</h3>
+                <div class="contact-info">
+                  <p>Art-Life is committed to protecting your privacy. For any questions, concerns, or requests regarding your personal data, please contact our Data Protection Officer.</p>
+                  <address>
+                    <strong>Art-Life Data Protection Office</strong><br>
+                    P.O. Box 12345<br>
+                    Nairobi, Kenya<br>
+                    Email: <a href="mailto:privacy@artlife.org">privacy@artlife.org</a><br>
+                    Phone: +254 700 000 000
+                  </address>
+                </div>
+                <a href="mailto:privacy@artlife.org" class="contact-email">
+                  <i class="fas fa-paper-plane"></i> Email Our DPO
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Update Notice -->
+          <div class="update-notice">
+            <div class="update-header">
+              <div class="update-icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <div>
+                <h3 class="update-title">Policy Updates</h3>
+                <div class="update-date">Last Updated: January 2024</div>
+              </div>
+            </div>
+            <div class="update-content">
+              <p>We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We encourage you to review this page regularly for the latest information on our privacy practices. Significant changes will be communicated through our website or direct notifications when appropriate.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html" class="active">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED PRIVACY POLICY INTERACTIVITY
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initPrivacySystem();
+      });
+      
+      function initPrivacySystem() {
+        console.log('🔒 Enhanced Privacy System Initialized');
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Navigation highlighting
+        const navLinks = document.querySelectorAll('.privacy-nav-link');
+        const sections = document.querySelectorAll('.privacy-section');
+        
+        // Smooth scroll for navigation links
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+              // Update active navigation link
+              navLinks.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+              
+              // Smooth scroll to section
+              targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Add active class to section
+              sections.forEach(s => s.classList.remove('active'));
+              targetSection.classList.add('active');
+            }
+          });
+        });
+        
+        // Intersection Observer for section highlighting
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              const correspondingLink = document.querySelector(`.privacy-nav-link[href="#${id}"]`);
+              
+              if (correspondingLink) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                correspondingLink.classList.add('active');
+              }
+              
+              // Animate section entry
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '-100px 0px -100px 0px'
+        });
+        
+        // Observe all sections
+        sections.forEach(section => {
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(20px)';
+          section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(section);
+        });
+        
+        // Animate data type cards on scroll
+        const dataCards = document.querySelectorAll('.data-type-card, .right-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }, index * 100);
+              cardObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        dataCards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+          cardObserver.observe(card);
+        });
+        
+        // Contact email animation
+        const contactEmail = document.querySelector('.contact-email');
+        if (contactEmail) {
+          contactEmail.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+          });
+          
+          contactEmail.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+          });
+        }
+        
+        // Update notice date
+        const updateDate = document.querySelector('.update-date');
+        if (updateDate) {
+          const now = new Date();
+          const options = { year: 'numeric', month: 'long' };
+          updateDate.textContent = `Last Updated: ${now.toLocaleDateString('en-US', options)}`;
+        }
+        
+        // Print-friendly version
+        const printButton = document.createElement('button');
+        printButton.innerHTML = '<i class="fas fa-print"></i> Print Policy';
+        printButton.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: var(--primary);
+          color: var(--dark);
+          border: none;
+          padding: 10px 20px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          z-index: 1000;
+          transition: all 0.3s ease;
+        `;
+        
+        printButton.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+          this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
+        });
+        
+        printButton.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+        });
+        
+        printButton.addEventListener('click', function() {
+          window.print();
+        });
+        
+        document.body.appendChild(printButton);
+        
+        // Hide print button when printing
+        const style = document.createElement('style');
+        style.textContent = `
+          @media print {
+            button {
+              display: none !important;
+            }
+            .privacy-navigation {
+              display: none !important;
+            }
+            .site-footer {
+              display: none !important;
+            }
+            .privacy-section {
+              break-inside: avoid;
+              border: 1px solid #ddd;
+              box-shadow: none !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    })();
+  </script>
+
+</body>
+</html>

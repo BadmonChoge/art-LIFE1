@@ -1,0 +1,77 @@
+/* ======================================================
+   FILE: accessibility.css
+   ROLE: Accessibility & user preference overrides
+   OWNS: focus, contrast, reduced motion, ARIA visibility
+   AUTHORITY: Highest (loaded last)
+====================================================== */
+
+:root {
+  --a11y-focus: 3px solid #44B78B;
+}
+
+/* Focus states */
+a:focus, button:focus, input:focus {
+  outline: var(--a11y-focus);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  body {
+    background: #000 !important;
+    color: #FFF !important;
+  }
+  
+  .btn {
+    border: 2px solid currentColor !important;
+  }
+}
+
+/* Add this to your CSS or accessibility.css */
+.search-overlay[aria-hidden="true"] {
+  display: none !important;
+}
+
+.search-overlay[aria-hidden="false"] {
+  display: flex !important;
+}
+
+/* Ensure search input is properly hidden when overlay is hidden */
+.search-overlay[aria-hidden="true"] #search-input {
+  visibility: hidden;
+}
+
+/* Add to your styles.css or accessibility.css */
+@font-face {
+  font-family: 'Inter Fallback';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Oxygen'), local('Ubuntu'), local('Cantarell'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Courier New Fallback';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Courier'), local('Courier New'), local('monospace');
+}
+
+/* Update your body font stack */
+body {
+  font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Update monospace elements */
+code, pre, .monospace {
+  font-family: 'Courier New', 'Courier New Fallback', 'Courier', monospace;
+}

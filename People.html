@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>People | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* Enhanced People Page */
+    .people-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .people-intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .people-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Enhanced Carousel */
+    .leadership-section {
+      margin: var(--spacing-2xl) 0;
+      padding: 0 var(--spacing-md);
+    }
+
+    .carousel-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .carousel-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: var(--spacing-md) auto;
+    }
+
+    /* Enhanced Carousel */
+    .people-carousel-enhanced {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      gap: var(--spacing-lg);
+      padding: var(--spacing-md) 0;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      opacity: 0.5;
+      transform: scale(0.9);
+      transition: all 0.5s ease;
+      position: relative;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    .person-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      height: 100%;
+      border: 1px solid rgba(218, 165, 32, 0.2);
+    }
+
+    .person-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      border-color: var(--primary);
+    }
+
+    .person-image {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .person-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .person-card:hover .person-image img {
+      transform: scale(1.05);
+    }
+
+    .person-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(42, 42, 45, 0.9), transparent);
+    }
+
+    .person-content {
+      padding: var(--spacing-xl);
+      position: relative;
+    }
+
+    .person-role {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      border: 1px solid rgba(218, 165, 32, 0.3);
+    }
+
+    .person-name {
+      font-size: 1.8rem;
+      color: var(--light);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .person-title {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-lg);
+      font-weight: 500;
+    }
+
+    .person-bio {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-lg);
+      font-size: 0.95rem;
+    }
+
+    .person-social {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      transition: all var(--transition-fast);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    /* Carousel Navigation */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+
+    .carousel-arrow {
+      width: 50px;
+      height: 50px;
+      background: rgba(218, 165, 32, 0.1);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      font-size: 1.2rem;
+    }
+
+    .carousel-arrow:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: scale(1.1);
+    }
+
+    .carousel-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .carousel-arrow:disabled:hover {
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      transform: none;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .carousel-dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .carousel-dot:hover:not(.active) {
+      background: rgba(218, 165, 32, 0.5);
+    }
+
+    /* Team Sections */
+    .team-sections {
+      margin: var(--spacing-2xl) 0;
+    }
+
+    .team-section-enhanced {
+      margin-bottom: var(--spacing-2xl);
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-section-enhanced::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0.3;
+    }
+
+    .team-section-enhanced:hover::before {
+      opacity: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Team Grid - Enhanced */
+    .team-grid-enhanced {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+
+    .team-member-enhanced {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member-enhanced:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+
+    .team-member-enhanced::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transition: transform var(--transition-normal);
+    }
+
+    .team-member-enhanced:hover::before {
+      transform: scaleX(1);
+    }
+
+    .member-role {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .member-name {
+      font-size: 1.3rem;
+      color: var(--light);
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+    }
+
+    .member-title {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-md);
+      font-weight: 500;
+    }
+
+    .member-expertise {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .member-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-md);
+    }
+
+    .member-tag {
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Department List - Enhanced */
+    .department-list-enhanced {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-xl);
+    }
+
+    .department-item {
+      background: rgba(42, 42, 45, 0.8);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-lg);
+      border-left: 4px solid var(--primary);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .department-item:hover {
+      transform: translateX(10px);
+      background: rgba(42, 42, 45, 0.9);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .department-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(218, 165, 32, 0.05), transparent);
+      transform: translateX(-100%);
+      transition: transform var(--transition-normal);
+    }
+
+    .department-item:hover::before {
+      transform: translateX(100%);
+    }
+
+    .department-name {
+      font-size: 1.2rem;
+      color: var(--light);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 600;
+    }
+
+    .department-desc {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* People Stats */
+    .people-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .people-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+    }
+
+    .people-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+    }
+
+    .people-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .people-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .people-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* View Toggle */
+    .view-toggle {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      margin: var(--spacing-xl) auto var(--spacing-lg);
+      padding: var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      max-width: 500px;
+    }
+
+    .view-btn {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .view-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .view-btn:hover:not(.active) {
+      color: var(--secondary);
+      border-color: var(--secondary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .people-carousel-enhanced {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .carousel-slide {
+        flex: 0 0 100%;
+      }
+      
+      .team-grid-enhanced {
+        grid-template-columns: 1fr;
+      }
+      
+      .department-list-enhanced {
+        grid-template-columns: 1fr;
+      }
+      
+      .people-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .person-name {
+        font-size: 1.5rem;
+      }
+      
+      .person-content {
+        padding: var(--spacing-lg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .team-section-enhanced {
+        padding: var(--spacing-lg);
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .people-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .carousel-nav {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+      
+      .view-toggle {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .view-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .person-card,
+      .team-member-enhanced,
+      .department-item,
+      .people-stat,
+      .carousel-arrow {
+        transition: none;
+      }
+      
+      .person-card:hover,
+      .team-member-enhanced:hover,
+      .department-item:hover,
+      .people-stat:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link active">About</a>
+        
+        <!-- Vertical Section Menu -->
+        <div class="section-menu">
+          <a href="About.html" class="section-menu-item" data-target="GTKU">
+            <span>Get to know us</span>
+          </a>
+          <a href="OurJourney.html" class="section-menu-item" data-target="history">
+            <span>Our Journey</span>
+          </a>
+          <a href="People.html" class="section-menu-item active" data-target="people">
+            <span>People</span>
+          </a> 
+          <a href="Contact.html" class="section-menu-item" data-target="contact">
+            <span>Contact Us</span>
+          </a> 
+          <a href="FAQ.html" class="section-menu-item" data-target="faq-page">
+            <span>FAQ</span>
+          </a>
+        </div>
+        
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="people-container">
+          <!-- People Intro -->
+          <div class="people-intro">
+            <h1 class="main-heading">People</h1>
+            <p>Meet the passionate individuals and teams behind Art-Life's transformative work. Our diverse collective of artists, administrators, and advisors work together to nurture creativity and build sustainable arts communities.</p>
+          </div>
+
+          <!-- People Stats -->
+          <div class="people-stats">
+            <div class="people-stat">
+              <div class="people-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="people-number">25+</div>
+              <div class="people-desc">Dedicated Team Members</div>
+            </div>
+            
+            <div class="people-stat">
+              <div class="people-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="people-number">15+</div>
+              <div class="people-desc">Expertise Areas</div>
+            </div>
+            
+            <div class="people-stat">
+              <div class="people-icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <div class="people-number">5+</div>
+              <div class="people-desc">Key Departments</div>
+            </div>
+            
+            <div class="people-stat">
+              <div class="people-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="people-number">10+</div>
+              <div class="people-desc">Advisors & Experts</div>
+            </div>
+          </div>
+
+          <!-- Leadership Carousel -->
+          <section class="leadership-section">
+            <div class="carousel-header">
+              <h2 class="section-title">Leadership Team</h2>
+              <p class="carousel-subtitle">Our visionary leaders who guide Art-Life's strategic direction and day-to-day operations.</p>
+            </div>
+
+            <div class="people-carousel-enhanced">
+              <div class="carousel-track" id="carousel-track">
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                  <div class="person-card">
+                    <div class="person-image">
+                      <img src="assets/images/team/staff-photos/Isaac Oprong.jpg" alt="Isaac Oprong" />
+                    </div>
+                    <div class="person-content">
+                      <div class="person-role">Founder & CEO</div>
+                      <h3 class="person-name">Isaac Oprong</h3>
+                      <div class="person-title">Visionary Leader & Social Entrepreneur</div>
+                      <p class="person-bio">A pro-active visionary, team-player, and social entrepreneur driven by a strong conviction for "never say never." Dedicated to growing artistic value, impact, and opportunities for vulnerable community art-makers.</p>
+                      <div class="member-tags">
+                        <span class="member-tag">Leadership</span>
+                        <span class="member-tag">Strategic Vision</span>
+                        <span class="member-tag">Community Development</span>
+                      </div>
+                      <div class="person-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                          <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                  <div class="person-card">
+                    <div class="person-image">
+                      <img src="assets/images/team/staff-photos/Dan Maina.png" alt="Daniel Maina" />
+                    </div>
+                    <div class="person-content">
+                      <div class="person-role">Finance & Logistics</div>
+                      <h3 class="person-name">Daniel Maina</h3>
+                      <div class="person-title">Head of Finance & Logistics</div>
+                      <p class="person-bio">A solutions-oriented professional with exceptional operational foresight and strategic planning abilities. Tech-savvy innovator with an aptitude for calculated risk-taking and implementing new ideas.</p>
+                      <div class="member-tags">
+                        <span class="member-tag">Finance</span>
+                        <span class="member-tag">Operations</span>
+                        <span class="member-tag">Technology</span>
+                      </div>
+                      <div class="person-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                          <i class="fab fa-linkedin-in"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                  <div class="person-card">
+                    <div class="person-image">
+                      <img src="assets/images/team/staff-photos/Derrick Ibalai.jpg" alt="Derrick Ibalai" />
+                    </div>
+                    <div class="person-content">
+                      <div class="person-role">Arts Development</div>
+                      <h3 class="person-name">Derrick Ibalai</h3>
+                      <div class="person-title">Lead for Events & Arts Development</div>
+                      <p class="person-bio">Visual and landscape artist with a passion for innovation, experiential learning, and building impactful networks. A hands-on professional committed to continuous improvement across multiple artistic disciplines.</p>
+                      <div class="member-tags">
+                        <span class="member-tag">Events</span>
+                        <span class="member-tag">Visual Arts</span>
+                        <span class="member-tag">Networking</span>
+                      </div>
+                      <div class="person-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                          <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-slide">
+                  <div class="person-card">
+                    <div class="person-image">
+                      <img src="assets/images/team/staff-photos/Nelson Njogu.jpeg" alt="Nelson Njogu" />
+                    </div>
+                    <div class="person-content">
+                      <div class="person-role">Community Outreach</div>
+                      <h3 class="person-name">Nelson Njogu</h3>
+                      <div class="person-title">Community Outreach Lead</div>
+                      <p class="person-bio">Lyrical artist and poet exploring new meanings and expressions. An artivist advocating for the transformative power of arts in communities, with a focus on civic engagement and social justice.</p>
+                      <div class="member-tags">
+                        <span class="member-tag">Community</span>
+                        <span class="member-tag">Poetry</span>
+                        <span class="member-tag">Activism</span>
+                      </div>
+                      <div class="person-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                          <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="carousel-slide">
+                  <div class="person-card">
+                    <div class="person-image">
+                      <img src="assets/images/team/staff-photos/Tess Wambui.png" alt="Tess Wambui" />
+                    </div>
+                    <div class="person-content">
+                      <div class="person-role">Climate & Gender</div>
+                      <h3 class="person-name">Tess Wambui</h3>
+                      <div class="person-title">Women, Youth & Climate Programs</div>
+                      <p class="person-bio">Cultural anthropologist and artivist promoting arts as a tool for climate action and women's empowerment. Focuses on environmental education and challenging harmful cultural practices through creative expression.</p>
+                      <div class="member-tags">
+                        <span class="member-tag">Climate Action</span>
+                        <span class="member-tag">Gender Equality</span>
+                        <span class="member-tag">Education</span>
+                      </div>
+                      <div class="person-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                          <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                          <i class="fab fa-twitter"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Carousel Navigation -->
+              <div class="carousel-nav">
+                <button class="carousel-arrow" id="prev-slide" aria-label="Previous slide">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="carousel-dots" id="carousel-dots">
+                  <!-- Dots will be generated by JavaScript -->
+                </div>
+                
+                <button class="carousel-arrow" id="next-slide" aria-label="Next slide">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Organizational Structure -->
+          <section class="team-sections">
+            <!-- View Toggle -->
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="board">
+                <i class="fas fa-users"></i> Executive Board
+              </button>
+              <button class="view-btn" data-view="departments">
+                <i class="fas fa-sitemap"></i> Departments
+              </button>
+              <button class="view-btn" data-view="advisory">
+                <i class="fas fa-brain"></i> Advisory Council
+              </button>
+            </div>
+
+            <!-- Executive Board -->
+            <div class="team-section-enhanced active-view" id="board-view">
+              <div class="section-header">
+                <h2 class="section-title">Executive Leadership</h2>
+                <p class="section-subtitle">Our executive board provides strategic direction and oversight with expertise across multiple disciplines.</p>
+              </div>
+              
+              <div class="team-grid-enhanced">
+                <div class="team-member-enhanced">
+                  <div class="member-role">Chairman/President</div>
+                  <h4 class="member-name">Abraham Ekajulo</h4>
+                  <div class="member-title">Governance & International Relations Specialist</div>
+                  <p class="member-expertise">Expert in organizational governance, policy development, and international cultural relations.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Governance</span>
+                    <span class="member-tag">International Relations</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Executive Director</div>
+                  <h4 class="member-name">Isaac C. O Oprong</h4>
+                  <div class="member-title">Founder & Artistic Director</div>
+                  <p class="member-expertise">Strategic visionary leading organizational development and artistic programming.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Strategic Leadership</span>
+                    <span class="member-tag">Artistic Direction</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Board Treasurer</div>
+                  <h4 class="member-name">Dan L. Maina</h4>
+                  <div class="member-title">IT & Project Management Expert</div>
+                  <p class="member-expertise">Oversees financial management, technology infrastructure, and project coordination.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Finance</span>
+                    <span class="member-tag">Technology</span>
+                    <span class="member-tag">Project Management</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Creative Director</div>
+                  <h4 class="member-name">Devaine Wandera</h4>
+                  <div class="member-title">Film Production & Scriptwriting</div>
+                  <p class="member-expertise">Leads creative vision across all artistic programs and multimedia productions.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Film Production</span>
+                    <span class="member-tag">Scriptwriting</span>
+                    <span class="member-tag">Creative Direction</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Environmental Advisor</div>
+                  <h4 class="member-name">Dr. Cynthia Amai</h4>
+                  <div class="member-title">Climate Change Expert</div>
+                  <p class="member-expertise">Integrates environmental sustainability and climate action into arts programming.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Climate Science</span>
+                    <span class="member-tag">Sustainability</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Operations Director</div>
+                  <h4 class="member-name">Geoffrey O. Osiya</h4>
+                  <div class="member-title">Logistics & Supply Chain</div>
+                  <p class="member-expertise">Manages operational efficiency, logistics, and resource allocation.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Operations</span>
+                    <span class="member-tag">Logistics</span>
+                    <span class="member-tag">Supply Chain</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Cultural Advisor</div>
+                  <h4 class="member-name">Prof. Tom Olali</h4>
+                  <div class="member-title">Linguistics & Swahili Culture</div>
+                  <p class="member-expertise">Ensures cultural authenticity and linguistic accuracy in all programs.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Cultural Heritage</span>
+                    <span class="member-tag">Linguistics</span>
+                    <span class="member-tag">Swahili Culture</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Media Advisor</div>
+                  <h4 class="member-name">Fred Kioko Musau</h4>
+                  <div class="member-title">Publishing & Entrepreneurship</div>
+                  <p class="member-expertise">Advises on media strategy, content distribution, and creative entrepreneurship.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Media Strategy</span>
+                    <span class="member-tag">Publishing</span>
+                    <span class="member-tag">Entrepreneurship</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Departments -->
+            <div class="team-section-enhanced" id="departments-view">
+              <div class="section-header">
+                <h2 class="section-title">Key Departments</h2>
+                <p class="section-subtitle">Our organizational structure supports comprehensive arts programming through specialized teams.</p>
+              </div>
+              
+              <div class="department-list-enhanced">
+                <div class="department-item">
+                  <h4 class="department-name">Executive Management</h4>
+                  <p class="department-desc">Administration, Finance, Recruitment, and Support Services ensuring organizational excellence.</p>
+                </div>
+                
+                <div class="department-item">
+                  <h4 class="department-name">Festivals & Events</h4>
+                  <p class="department-desc">Planning, Marketing, and Program Management for unforgettable artistic experiences.</p>
+                </div>
+                
+                <div class="department-item">
+                  <h4 class="department-name">Arts Development</h4>
+                  <p class="department-desc">Creative Programs and Initiatives nurturing artistic talent and innovation.</p>
+                </div>
+                
+                <div class="department-item">
+                  <h4 class="department-name">Development</h4>
+                  <p class="department-desc">Fundraising and Community Relations building sustainable partnerships.</p>
+                </div>
+                
+                <div class="department-item">
+                  <h4 class="department-name">Membership Services</h4>
+                  <p class="department-desc">Government Relations and Protocol ensuring effective stakeholder engagement.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advisory Council -->
+            <div class="team-section-enhanced" id="advisory-view">
+              <div class="section-header">
+                <h2 class="section-title">Advisory Council</h2>
+                <p class="section-subtitle">Our advisors provide specialized guidance to enhance our programs and strategic direction.</p>
+              </div>
+              
+              <div class="team-grid-enhanced">
+                <div class="team-member-enhanced">
+                  <div class="member-role">Chairman</div>
+                  <h4 class="member-name">John A. Orindi</h4>
+                  <div class="member-title">University of Nairobi Corporate Affairs</div>
+                  <p class="member-expertise">Strategic guidance on institutional partnerships and academic collaborations.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Higher Education</span>
+                    <span class="member-tag">Institutional Relations</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Arts Education</div>
+                  <h4 class="member-name">Dr. Fred Atoh</h4>
+                  <div class="member-title">Music Program Director</div>
+                  <p class="member-expertise">Expertise in music education curriculum development and artistic training.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Music Education</span>
+                    <span class="member-tag">Curriculum Development</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Creative Industries</div>
+                  <h4 class="member-name">Janet Amke</h4>
+                  <div class="member-title">Arts Curator & Entrepreneur</div>
+                  <p class="member-expertise">Guidance on creative business models and exhibition curation.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Arts Curation</span>
+                    <span class="member-tag">Creative Entrepreneurship</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Music Industry</div>
+                  <h4 class="member-name">John Katana</h4>
+                  <div class="member-title">Music Copyright Society</div>
+                  <p class="member-expertise">Expert advice on intellectual property rights and music industry practices.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Copyright</span>
+                    <span class="member-tag">Music Industry</span>
+                    <span class="member-tag">Intellectual Property</span>
+                  </div>
+                </div>
+                
+                <div class="team-member-enhanced">
+                  <div class="member-role">Creative Content</div>
+                  <h4 class="member-name">Collins Majale "Collo"</h4>
+                  <div class="member-title">Musician & Writer</div>
+                  <p class="member-expertise">Creative direction and content strategy across artistic disciplines.</p>
+                  <div class="member-tags">
+                    <span class="member-tag">Creative Content</span>
+                    <span class="member-tag">Music Production</span>
+                    <span class="member-tag">Writing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED PEOPLE PAGE SYSTEM
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initPeopleSystem();
+      });
+      
+      function initPeopleSystem() {
+        console.log('👥 Enhanced People System Initialized');
+        
+        // Elements
+        const carouselTrack = document.getElementById('carousel-track');
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        const carouselDots = document.getElementById('carousel-dots');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const teamViews = document.querySelectorAll('.team-section-enhanced');
+        
+        // Carousel State
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let autoPlayInterval;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
+        
+        // Initialize carousel
+        function initCarousel() {
+          // Create dots
+          slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+            dot.addEventListener('click', () => goToSlide(index));
+            carouselDots.appendChild(dot);
+          });
+          
+          // Update buttons
+          updateCarouselButtons();
+          
+          // Start autoplay
+          startAutoPlay();
+          
+          // Touch/swipe support
+          carouselTrack.addEventListener('mousedown', dragStart);
+          carouselTrack.addEventListener('touchstart', dragStart);
+          carouselTrack.addEventListener('mouseup', dragEnd);
+          carouselTrack.addEventListener('touchend', dragEnd);
+          carouselTrack.addEventListener('mouseleave', dragEnd);
+          carouselTrack.addEventListener('mousemove', drag);
+          carouselTrack.addEventListener('touchmove', drag);
+          
+          // Prevent image drag
+          carouselTrack.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', (e) => e.preventDefault());
+          });
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+          // Reset position
+          currentTranslate = -index * 100;
+          carouselTrack.style.transform = `translateX(${currentTranslate}%)`;
+          
+          // Update active states
+          slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+          });
+          
+          // Update dots
+          document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+          });
+          
+          // Update current slide
+          currentSlide = index;
+          
+          // Update buttons
+          updateCarouselButtons();
+          
+          // Reset autoplay
+          resetAutoPlay();
+        }
+        
+        // Next slide
+        function nextSlide() {
+          if (currentSlide < totalSlides - 1) {
+            goToSlide(currentSlide + 1);
+          } else {
+            goToSlide(0); // Loop to first
+          }
+        }
+        
+        // Previous slide
+        function prevSlide() {
+          if (currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+          } else {
+            goToSlide(totalSlides - 1); // Loop to last
+          }
+        }
+        
+        // Update carousel buttons
+        function updateCarouselButtons() {
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
+        }
+        
+        // Auto-play functionality
+        function startAutoPlay() {
+          autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds
+        }
+        
+        function stopAutoPlay() {
+          clearInterval(autoPlayInterval);
+        }
+        
+        function resetAutoPlay() {
+          stopAutoPlay();
+          startAutoPlay();
+        }
+        
+        // Touch/swipe functionality
+        function dragStart(e) {
+          if (e.type === 'touchstart') {
+            startPos = e.touches[0].clientX;
+          } else {
+            startPos = e.clientX;
+            e.preventDefault();
+          }
+          
+          isDragging = true;
+          stopAutoPlay();
+          
+          animationID = requestAnimationFrame(animation);
+        }
+        
+        function drag(e) {
+          if (!isDragging) return;
+          
+          let currentPosition;
+          if (e.type === 'touchmove') {
+            currentPosition = e.touches[0].clientX;
+          } else {
+            currentPosition = e.clientX;
+          }
+          
+          const diff = currentPosition - startPos;
+          const maxDrag = window.innerWidth * 0.3; // Max 30% of screen width
+          
+          // Limit drag distance
+          if (Math.abs(diff) > maxDrag) {
+            currentTranslate = prevTranslate + (diff > 0 ? maxDrag : -maxDrag);
+          } else {
+            currentTranslate = prevTranslate + diff;
+          }
+        }
+        
+        function dragEnd() {
+          if (!isDragging) return;
+          
+          isDragging = false;
+          cancelAnimationFrame(animationID);
+          
+          const movedBy = currentTranslate - prevTranslate;
+          
+          // If drag distance is significant, change slide
+          if (movedBy < -50 && currentSlide < totalSlides - 1) {
+            nextSlide();
+          } else if (movedBy > 50 && currentSlide > 0) {
+            prevSlide();
+          }
+          
+          // Reset position
+          currentTranslate = -currentSlide * 100;
+          setSliderPosition();
+          
+          // Restart autoplay
+          resetAutoPlay();
+        }
+        
+        function setSliderPosition() {
+          carouselTrack.style.transform = `translateX(${currentTranslate}%)`;
+        }
+        
+        function animation() {
+          setSliderPosition();
+          if (isDragging) requestAnimationFrame(animation);
+        }
+        
+        // View toggle functionality
+        function switchView(view) {
+          // Update view buttons
+          viewBtns.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-view="${view}"]`).classList.add('active');
+          
+          // Hide all views
+          teamViews.forEach(view => {
+            view.classList.remove('active-view');
+            view.style.display = 'none';
+          });
+          
+          // Show target view
+          const targetView = document.getElementById(`${view}-view`);
+          targetView.style.display = 'block';
+          setTimeout(() => {
+            targetView.classList.add('active-view');
+          }, 50);
+        }
+        
+        // Intersection Observer for animations
+        function setupAnimations() {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }
+            });
+          }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+          });
+          
+          // Observe team members and departments
+          document.querySelectorAll('.team-member-enhanced, .department-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+          });
+        }
+        
+        // Event Listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') prevSlide();
+          if (e.key === 'ArrowRight') nextSlide;
+        });
+        
+        // View toggle listeners
+        viewBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            switchView(this.dataset.view);
+          });
+        });
+        
+        // Pause autoplay on hover
+        carouselTrack.addEventListener('mouseenter', stopAutoPlay);
+        carouselTrack.addEventListener('mouseleave', startAutoPlay);
+        
+        // Initialize
+        initCarousel();
+        setupAnimations();
+        switchView('board');
+      }
+    })();
+  </script>
+
+</body>
+</html>

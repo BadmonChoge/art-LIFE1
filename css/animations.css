@@ -1,0 +1,158 @@
+/* ======================================================
+   FILE: animation.css
+   ROLE: Motion & temporal behavior
+   OWNS: opacity, transform, transition, keyframes
+   MUST NOT: display, visibility, z-index, layout
+====================================================== */
+
+/* ========== CORE ANIMATIONS ========== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blinkCursor {
+  from, to { border-color: transparent }
+  50% { border-color: currentColor }
+}
+
+/* Initial (inert) state */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Activated by state */
+.is-visible.reveal {
+  animation: slideUp 0.6s ease forwards;
+}
+
+/* ===== ANIMATION DELAY UTILITIES ===== */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+/* ===== SCROLL-TRIGGERED MOTION ===== */
+
+/* Initial inert state */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Activated state */
+[data-animate].animated,
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Special hover effects */
+.exhibition-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Loading animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Mobile-specific animations */
+@media (max-width: 768px) {
+  @keyframes mobileMenuIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  
+ .mobile-nav.is-visible {
+    animation: mobileMenuIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  [data-animate],
+  .is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== EDGE FADE EFFECT ===== */
+.content-wrapper {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Create fade masks at top and bottom */
+.content-wrapper::before,
+.content-wrapper::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 150px;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Top fade mask */
+.content-wrapper::before {
+    top: 0;
+    background: linear-gradient(to bottom, 
+        rgba(26, 26, 26, 1) 0%,
+        rgba(26, 26, 26, 0.8) 20%,
+        rgba(26, 26, 26, 0.4) 50%,
+        rgba(26, 26, 26, 0) 100%);
+}
+
+/* Bottom fade mask */
+.content-wrapper::after {
+    bottom: 0;
+    background: linear-gradient(to top, 
+        rgba(26, 26, 26, 1) 0%,
+        rgba(26, 26, 26, 0.8) 20%,
+        rgba(26, 26, 26, 0.4) 50%,
+        rgba(26, 26, 26, 0) 100%);
+}
+
+/* When edge fade is active */
+.content-wrapper.edge-fade-active::before {
+    opacity: var(--edge-fade-top, 0);
+}
+
+.content-wrapper.edge-fade-active::after {
+    opacity: var(--edge-fade-bottom, 0);
+}

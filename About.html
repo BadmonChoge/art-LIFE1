@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>About | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* Enhanced About Container */
+    .about-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .about-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Value Pillars Section */
+    .value-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) 0;
+      padding: 0 var(--spacing-md);
+    }
+
+    .pillar-card {
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+      transition: all var(--transition-normal);
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-10px);
+      background: rgba(42, 42, 45, 0.8);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .pillar-card:hover::before {
+      opacity: 1;
+    }
+
+    .pillar-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+      transition: transform var(--transition-normal);
+    }
+
+    .pillar-card:hover .pillar-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .pillar-title {
+      font-size: 1.5rem;
+      color: var(--light);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+
+    .pillar-description {
+      color: var(--text-light);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* Enhanced Goals Grid */
+    .goals-section {
+      margin: var(--spacing-2xl) 0;
+      padding: 0 var(--spacing-md);
+    }
+
+    .goals-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .goals-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: var(--spacing-md) auto;
+      line-height: 1.6;
+    }
+
+    /* Goals Filter Controls */
+    .goals-controls {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-wrap: wrap;
+    }
+
+    .goal-filter {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .goal-filter.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .goal-filter:hover:not(.active) {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(218, 165, 32, 0.05);
+    }
+
+    /* Enhanced Goal Cards */
+    .goals-grid-enhanced {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .goal-card-enhanced {
+      background: rgba(42, 42, 45, 0.8);
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-left: 4px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .goal-card-enhanced::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.05) 0%, rgba(42, 42, 45, 0) 100%);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .goal-card-enhanced:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      border-left-color: var(--secondary);
+    }
+
+    .goal-card-enhanced:hover::before {
+      opacity: 1;
+    }
+
+    .goal-card-enhanced.active {
+      transform: scale(1.02);
+      border-left-color: var(--secondary);
+      background: rgba(42, 42, 45, 0.95);
+    }
+
+    .goal-number-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .goal-number-circle {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-right: var(--spacing-md);
+      transition: all var(--transition-normal);
+    }
+
+    .goal-card-enhanced:hover .goal-number-circle {
+      background: var(--secondary);
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .goal-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--light);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .goal-content p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-light);
+    }
+
+    .goal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-md);
+    }
+
+    .goal-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .goal-tag.youth {
+      background: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+      border-color: rgba(33, 150, 243, 0.3);
+    }
+
+    .goal-tag.digital {
+      background: rgba(156, 39, 176, 0.1);
+      color: #9C27B0;
+      border-color: rgba(156, 39, 176, 0.3);
+    }
+
+    .goal-tag.business {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+      border-color: rgba(76, 175, 80, 0.3);
+    }
+
+    .goal-tag.research {
+      background: rgba(255, 152, 0, 0.1);
+      color: #FF9800;
+      border-color: rgba(255, 152, 0, 0.3);
+    }
+
+    .goal-tag.advocacy {
+      background: rgba(233, 30, 99, 0.1);
+      color: #E91E63;
+      border-color: rgba(233, 30, 99, 0.3);
+    }
+
+    .goal-tag.community {
+      background: rgba(0, 188, 212, 0.1);
+      color: #00BCD4;
+      border-color: rgba(0, 188, 212, 0.3);
+    }
+
+    /* Goal Details Modal */
+    .goal-details-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+      padding: var(--spacing-md);
+    }
+
+    .goal-details-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--dark);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-2xl);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(50px);
+      transition: transform var(--transition-normal);
+      border: 1px solid var(--primary);
+    }
+
+    .goal-details-modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: var(--spacing-md);
+      right: var(--spacing-md);
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .modal-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .modal-body {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .modal-body h4 {
+      color: var(--light);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.3rem;
+    }
+
+    .modal-body p {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .modal-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-xl) 0;
+    }
+
+    .modal-stat {
+      text-align: center;
+      padding: var(--spacing-md);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+    }
+
+    .modal-stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .modal-stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Impact Stats */
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .impact-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+    }
+
+    .impact-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+    }
+
+    .impact-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .impact-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .impact-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* About Navigation */
+    .about-navigation {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin: var(--spacing-xl) auto;
+      padding: var(--spacing-md);
+      flex-wrap: wrap;
+      max-width: 600px;
+    }
+
+    .nav-section-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-section-btn.active {
+      background: var(--primary);
+      color: var(--dark);
+      border-color: var(--primary);
+    }
+
+    .nav-section-btn:hover:not(.active) {
+      background: rgba(218, 165, 32, 0.2);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .value-pillars {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .goals-grid-enhanced {
+        grid-template-columns: 1fr;
+      }
+      
+      .goal-card-enhanced {
+        padding: var(--spacing-lg);
+      }
+      
+      .impact-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .about-navigation {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-section-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .goal-card-enhanced {
+        padding: var(--spacing-md);
+      }
+      
+      .goal-number-circle {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+      }
+      
+      .impact-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        padding: var(--spacing-lg);
+      }
+      
+      .modal-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .goal-card-enhanced,
+      .pillar-card,
+      .impact-stat,
+      .nav-section-btn {
+        transition: none;
+      }
+      
+      .goal-card-enhanced:hover,
+      .pillar-card:hover,
+      .impact-stat:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link active">About</a>
+        
+        <!-- Vertical Section Menu -->
+        <div class="section-menu">
+          <a href="About.html" class="section-menu-item active" data-target="GTKU">
+            <span>Get to know us</span>
+          </a>
+          <a href="OurJourney.html" class="section-menu-item" data-target="history">
+            <span>Our Journey</span>
+          </a>
+          <a href="People.html" class="section-menu-item" data-target="people">
+            <span>People</span>
+          </a> 
+          <a href="Contact.html" class="section-menu-item" data-target="contact">
+            <span>Contact Us</span>
+          </a> 
+          <a href="FAQ.html" class="section-menu-item" data-target="faq-page">
+            <span>FAQ</span>
+          </a>
+        </div>
+        
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="about-container">
+          <!-- About Intro -->
+          <div class="about-intro">
+            <h1 class="main-heading">Get To Know Us</h1>
+            <p>Art-Life is more than an organization—it's a movement dedicated to transforming lives through arts and culture. We believe in the power of creativity to build communities, foster innovation, and drive social change.</p>
+          </div>
+
+          <!-- About Navigation -->
+          <div class="about-navigation">
+            <button class="nav-section-btn active" data-target="mission">
+              <i class="fas fa-bullseye"></i> Mission
+            </button>
+            <button class="nav-section-btn" data-target="vision">
+              <i class="fas fa-eye"></i> Vision
+            </button>
+            <button class="nav-section-btn" data-target="mandate">
+              <i class="fas fa-handshake"></i> Mandate
+            </button>
+            <button class="nav-section-btn" data-target="goals">
+              <i class="fas fa-flag-checkered"></i> Our Goals
+            </button>
+          </div>
+
+          <!-- Mission Section -->
+          <section id="mission" class="content-section active-section">
+            <div class="main-subheading">Mission</div>  
+            <div class="sub-main-subheading">    
+              <p>To identify needs, develop talents, create opportunities, promote high impact art-focused programs and festival events for Kenyans and the visiting global audience.</p>
+            </div>
+            
+            <div class="value-pillars">
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="pillar-title">Identify Needs</h3>
+                <p class="pillar-description">We actively research and understand the unique challenges faced by artists and creative communities.</p>
+              </div>
+              
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="pillar-title">Develop Talents</h3>
+                <p class="pillar-description">Providing training, mentorship, and resources to nurture the next generation of creative leaders.</p>
+              </div>
+              
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <i class="fas fa-door-open"></i>
+                </div>
+                <h3 class="pillar-title">Create Opportunities</h3>
+                <p class="pillar-description">Building pathways for artists to showcase their work, connect with audiences, and sustain their practice.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Vision Section -->
+          <section id="vision" class="content-section">
+            <div class="main-subheading">Vision</div>   
+            <div class="sub-main-subheading">      
+              <p>To be the premier and lead promoter of art-cultural programs and events in Kenya and beyond.</p>
+            </div>
+            
+            <div class="impact-stats">
+              <div class="impact-stat">
+                <div class="impact-icon">
+                  <i class="fas fa-trophy"></i>
+                </div>
+                <div class="impact-number">#1</div>
+                <div class="impact-desc">Premier Arts Promoter in Kenya</div>
+              </div>
+              
+              <div class="impact-stat">
+                <div class="impact-icon">
+                  <i class="fas fa-globe-africa"></i>
+                </div>
+                <div class="impact-number">5+</div>
+                <div class="impact-desc">African Countries Impact</div>
+              </div>
+              
+              <div class="impact-stat">
+                <div class="impact-icon">
+                  <i class="fas fa-calendar-star"></i>
+                </div>
+                <div class="impact-number">50+</div>
+                <div class="impact-desc">Annual Events & Programs</div>
+              </div>
+              
+              <div class="impact-stat">
+                <div class="impact-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="impact-number">10K+</div>
+                <div class="impact-desc">Annual Visitors & Participants</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Mandate Section -->
+          <section id="mandate" class="content-section">
+            <div class="main-subheading">Mandate</div> 
+            <div class="sub-main-subheading">      
+              <p>Art-Life is committed to accessibility, equity & accountability. Through our innovative arts programs, inclusive spaces & dedicated staff, we are working to create an environment where all of our community feels inspired, celebrated & value driven.</p>
+            </div>
+            
+            <div class="value-pillars">
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <i class="fas fa-universal-access"></i>
+                </div>
+                <h3 class="pillar-title">Accessibility</h3>
+                <p class="pillar-description">Ensuring arts and culture are accessible to everyone, regardless of background, ability, or circumstance.</p>
+              </div>
+              
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="pillar-title">Equity</h3>
+                <p class="pillar-description">Creating fair opportunities and removing barriers for underrepresented groups in the arts.</p>
+              </div>
+              
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="pillar-title">Accountability</h3>
+                <p class="pillar-description">Maintaining transparency in our work and being accountable to our community and stakeholders.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Goals Section -->
+          <section id="goals" class="content-section goals-section">
+            <div class="goals-header">
+              <div class="main-subheading">Our Goals</div>  
+              <div class="goals-subtitle">       
+                <p>Art-Life has twelve key goals aimed at supporting and growing the creative arts community. These initiatives work together to foster creativity, collaboration, advocacy, and sustainable growth within Kenya's creative arts sector.</p>
+              </div>
+            </div>
+            
+            <!-- Goals Filter Controls -->
+            <div class="goals-controls">
+              <button class="goal-filter active" data-filter="all">All Goals</button>
+              <button class="goal-filter" data-filter="youth">Youth Focus</button>
+              <button class="goal-filter" data-filter="digital">Digital</button>
+              <button class="goal-filter" data-filter="business">Business</button>
+              <button class="goal-filter" data-filter="research">Research</button>
+              <button class="goal-filter" data-filter="advocacy">Advocacy</button>
+              <button class="goal-filter" data-filter="community">Community</button>
+            </div>
+            
+            <!-- Enhanced Goals Grid -->
+            <div class="goals-grid-enhanced" id="goals-grid">
+              <!-- Goal 1 -->
+              <div class="goal-card-enhanced" data-goal="1" data-tags="youth community">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">1</div>
+                  <h3>Creativity & Talent Development</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Mentoring children and at-risk youth to foster creativity, critical thinking, and behavioral skills.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag youth">Youth</span>
+                    <span class="goal-tag community">Community</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 2 -->
+              <div class="goal-card-enhanced" data-goal="2" data-tags="business community">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">2</div>
+                  <h3>Collaboration & Networking</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Helping artists enhance their market positions, audience reach, and livelihoods through partnerships.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag business">Business</span>
+                    <span class="goal-tag community">Community</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 3 -->
+              <div class="goal-card-enhanced" data-goal="3" data-tags="community youth">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">3</div>
+                  <h3>Community Well-Being</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Using arts and culture to empower creative women and at-risk youth to build resilience and wealth.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag community">Community</span>
+                    <span class="goal-tag youth">Youth</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 4 -->
+              <div class="goal-card-enhanced" data-goal="4" data-tags="digital business">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">4</div>
+                  <h3>Digital Advancement</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Increasing competitiveness of local arts in global markets through digital skills training.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag digital">Digital</span>
+                    <span class="goal-tag business">Business</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 5 -->
+              <div class="goal-card-enhanced" data-goal="5" data-tags="business">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">5</div>
+                  <h3>Business Innovation</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Offering training in production, distribution, financial literacy, and market access.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag business">Business</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 6 -->
+              <div class="goal-card-enhanced" data-goal="6" data-tags="research">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">6</div>
+                  <h3>Research & Development</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Conducting sustainable research to understand industry challenges and opportunities.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag research">Research</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 7 -->
+              <div class="goal-card-enhanced" data-goal="7" data-tags="digital community">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">7</div>
+                  <h3>Art-Life Digital Magazine</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Publishing stories and news to foster networking and inspiration in the arts community.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag digital">Digital</span>
+                    <span class="goal-tag community">Community</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 8 -->
+              <div class="goal-card-enhanced" data-goal="8" data-tags="community youth">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">8</div>
+                  <h3>Public Art Spaces</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Creating community spaces with coaching for aspiring artists, especially youth and women.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag community">Community</span>
+                    <span class="goal-tag youth">Youth</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 9 -->
+              <div class="goal-card-enhanced" data-goal="9" data-tags="youth">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">9</div>
+                  <h3>Youth Engagement</h3>
+                </div>
+                <div class="goal-content">
+                  <p>School programs encouraging students to consider art-making careers.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag youth">Youth</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 10 -->
+              <div class="goal-card-enhanced" data-goal="10" data-tags="advocacy community">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">10</div>
+                  <h3>Arts Advocacy</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Promoting women's rights, climate action, and peace-building through artistic expression.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag advocacy">Advocacy</span>
+                    <span class="goal-tag community">Community</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 11 -->
+              <div class="goal-card-enhanced" data-goal="11" data-tags="advocacy research">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">11</div>
+                  <h3>Policy Engagement</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Working with policymakers to develop supportive frameworks for creative communities.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag advocacy">Advocacy</span>
+                    <span class="goal-tag research">Research</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Goal 12 -->
+              <div class="goal-card-enhanced" data-goal="12" data-tags="community">
+                <div class="goal-number-container">
+                  <div class="goal-number-circle">12</div>
+                  <h3>Art-Life Awards</h3>
+                </div>
+                <div class="goal-content">
+                  <p>Celebrating outstanding artistic achievements within our community.</p>
+                  <div class="goal-tags">
+                    <span class="goal-tag community">Community</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="goals-summary">
+              <p>These twelve initiatives form a comprehensive ecosystem that nurtures creativity, builds sustainable careers, advocates for artistic rights, and creates lasting community impact.</p>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Goal Details Modal -->
+  <div class="goal-details-modal" id="goal-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Goal Details</h2>
+        <div class="modal-subtitle" id="modal-subtitle"></div>
+      </div>
+      
+      <div class="modal-body" id="modal-body">
+        <h4>Overview</h4>
+        <p id="modal-overview"></p>
+        
+        <h4>Key Initiatives</h4>
+        <ul id="modal-initiatives"></ul>
+        
+        <h4>Expected Impact</h4>
+        <p id="modal-impact"></p>
+        
+        <div class="modal-stats" id="modal-stats">
+          <!-- Stats will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED ABOUT PAGE SYSTEM
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initAboutSystem();
+      });
+      
+      function initAboutSystem() {
+        console.log('🎨 Enhanced About System Initialized');
+        
+        // Elements
+        const navButtons = document.querySelectorAll('.nav-section-btn');
+        const contentSections = document.querySelectorAll('.content-section');
+        const goalFilters = document.querySelectorAll('.goal-filter');
+        const goalCards = document.querySelectorAll('.goal-card-enhanced');
+        const goalModal = document.getElementById('goal-modal');
+        const modalClose = document.getElementById('modal-close');
+        
+        // Goal Data (for modal details)
+        const goalData = {
+          1: {
+            title: "Creativity & Talent Development",
+            overview: "Our flagship youth mentorship program focuses on nurturing creativity and developing essential life skills through artistic expression.",
+            initiatives: [
+              "Weekly mentorship sessions in Nairobi's vulnerable communities",
+              "Collaboration with schools for after-school art programs",
+              "Annual youth art showcase and talent competition",
+              "Professional artist mentorship for promising youth"
+            ],
+            impact: "Builds confidence, critical thinking, and behavioral skills while providing positive outlets for self-expression.",
+            stats: [
+              { value: "500+", label: "Youth Mentored Annually" },
+              { value: "80%", label: "Improved School Performance" },
+              { value: "12", label: "Partner Schools" }
+            ]
+          },
+          2: {
+            title: "Collaboration & Networking",
+            overview: "Building strategic partnerships to expand opportunities and create sustainable livelihoods for artists.",
+            initiatives: [
+              "Industry networking events and mixers",
+              "Artist-business partnership programs",
+              "Collaborative project funding initiatives",
+              "Market access programs for local artists"
+            ],
+            impact: "Creates sustainable income streams and expands market reach for Kenyan artists.",
+            stats: [
+              { value: "50+", label: "Industry Partnerships" },
+              { value: "300+", label: "Artists Connected" },
+              { value: "25%", label: "Income Increase" }
+            ]
+          },
+          3: {
+            title: "Community Well-Being",
+            overview: "Using arts as a tool for empowerment, resilience building, and wealth creation in vulnerable communities.",
+            initiatives: [
+              "Women's art entrepreneurship programs",
+              "Youth resilience through arts workshops",
+              "Community art therapy sessions",
+              "Wealth creation through creative skills"
+            ],
+            impact: "Transforms lives through artistic empowerment and economic opportunity.",
+            stats: [
+              { value: "200+", label: "Women Empowered" },
+              { value: "1000+", label: "At-risk Youth Served" },
+              { value: "15", label: "Community Centers" }
+            ]
+          },
+          4: {
+            title: "Digital Advancement",
+            overview: "Bridging the digital divide to position Kenyan artists competitively in global markets.",
+            initiatives: [
+              "Digital skills workshops for artists",
+              "Online portfolio development",
+              "E-commerce training for art sales",
+              "Social media marketing for creatives"
+            ],
+            impact: "Increases global visibility and market competitiveness for local artists.",
+            stats: [
+              { value: "85%", label: "Digital Skills Improvement" },
+              { value: "40%", label: "Online Sales Growth" },
+              { value: "10", label: "Digital Platforms Covered" }
+            ]
+          },
+          5: {
+            title: "Business Innovation",
+            overview: "Equipping artists with essential business skills to turn creativity into sustainable careers.",
+            initiatives: [
+              "Financial literacy workshops",
+              "Business plan development for artists",
+              "Market analysis and positioning",
+              "Production and distribution optimization"
+            ],
+            impact: "Creates sustainable art businesses and professional careers.",
+            stats: [
+              { value: "200+", label: "Art Businesses Launched" },
+              { value: "60%", label: "Revenue Growth" },
+              { value: "12", label: "Business Modules" }
+            ]
+          },
+          6: {
+            title: "Research & Development",
+            overview: "Conducting evidence-based research to understand and address challenges in Kenya's creative sector.",
+            initiatives: [
+              "Annual arts industry survey",
+              "Policy impact research",
+              "Market trend analysis",
+              "Innovation in creative practices"
+            ],
+            impact: "Informs policy, guides investment, and drives innovation in the arts sector.",
+            stats: [
+              { value: "5", label: "Annual Research Reports" },
+              { value: "1000+", label: "Survey Respondents" },
+              { value: "3", label: "Policy Papers" }
+            ]
+          },
+          7: {
+            title: "Art-Life Digital Magazine",
+            overview: "A digital platform celebrating stories, achievements, and opportunities in Kenya's creative community.",
+            initiatives: [
+              "Monthly digital publication",
+              "Artist spotlight features",
+              "Industry news and updates",
+              "Opportunity and grant listings"
+            ],
+            impact: "Builds community, shares knowledge, and connects opportunities across the sector.",
+            stats: [
+              { value: "10K+", label: "Monthly Readers" },
+              { value: "200+", label: "Featured Artists" },
+              { value: "50+", label: "Community Stories" }
+            ]
+          },
+          8: {
+            title: "Public Art Spaces",
+            overview: "Creating accessible community spaces for artistic expression, learning, and connection.",
+            initiatives: [
+              "Community art center development",
+              "Public mural projects",
+              "Open studio programs",
+              "Artist-in-residence opportunities"
+            ],
+            impact: "Transforms public spaces, fosters community pride, and provides creative outlets.",
+            stats: [
+              { value: "8", label: "Public Art Spaces" },
+              { value: "50+", label: "Murals Created" },
+              { value: "1000+", label: "Monthly Visitors" }
+            ]
+          },
+          9: {
+            title: "Youth Engagement",
+            overview: "Inspiring the next generation to consider careers in the arts through school-based programs.",
+            initiatives: [
+              "School art career talks",
+              "Creative career path guidance",
+              "Artist school visits",
+              "Youth art competitions"
+            ],
+            impact: "Expands career horizons and nurtures future creative professionals.",
+            stats: [
+              { value: "30+", label: "Partner Schools" },
+              { value: "5000+", label: "Students Reached" },
+              { value: "15%", label: "Arts Career Interest" }
+            ]
+          },
+          10: {
+            title: "Arts Advocacy",
+            overview: "Using artistic expression to champion social causes and drive positive change.",
+            initiatives: [
+              "Women's rights through art campaigns",
+              "Climate action art projects",
+              "Peace-building through creative expression",
+              "Social justice art exhibitions"
+            ],
+            impact: "Amplifies important social messages through powerful artistic expression.",
+            stats: [
+              { value: "20+", label: "Advocacy Campaigns" },
+              { value: "50K+", label: "Campaign Reach" },
+              { value: "5", label: "Social Causes" }
+            ]
+          },
+          11: {
+            title: "Policy Engagement",
+            overview: "Working with policymakers to create supportive frameworks for creative communities.",
+            initiatives: [
+              "Policy dialogue forums",
+              "Artist rights advocacy",
+              "Creative sector policy recommendations",
+              "Government-artist collaboration platforms"
+            ],
+            impact: "Creates enabling environments and protects artists' rights and interests.",
+            stats: [
+              { value: "10+", label: "Policy Engagements" },
+              { value: "3", label: "Policy Papers Developed" },
+              { value: "2", label: "Policy Changes Influenced" }
+            ]
+          },
+          12: {
+            title: "Art-Life Awards",
+            overview: "Celebrating excellence and achievement within Kenya's creative community.",
+            initiatives: [
+              "Annual awards ceremony",
+              "Multiple award categories",
+              "Industry recognition",
+              "Career advancement opportunities"
+            ],
+            impact: "Recognizes talent, inspires excellence, and builds professional prestige.",
+            stats: [
+              { value: "5", label: "Award Categories" },
+              { value: "50+", label: "Annual Nominees" },
+              { value: "1000+", label: "Ceremony Attendees" }
+            ]
+          }
+        };
+        
+        // Navigation between sections
+        function navigateToSection(sectionId) {
+          // Update navigation buttons
+          navButtons.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-target="${sectionId}"]`).classList.add('active');
+          
+          // Hide all sections
+          contentSections.forEach(section => {
+            section.classList.remove('active-section');
+            section.style.display = 'none';
+          });
+          
+          // Show target section
+          const targetSection = document.getElementById(sectionId);
+          targetSection.style.display = 'block';
+          setTimeout(() => {
+            targetSection.classList.add('active-section');
+            // Scroll to section smoothly
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+        }
+        
+        // Filter goals by tag
+        function filterGoals(filter) {
+          // Update active filter button
+          goalFilters.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+          
+          // Filter goal cards
+          goalCards.forEach(card => {
+            if (filter === 'all' || card.dataset.tags.includes(filter)) {
+              card.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 100);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+        }
+        
+        // Show goal details in modal
+        function showGoalDetails(goalNumber) {
+          const data = goalData[goalNumber];
+          if (!data) return;
+          
+          document.getElementById('modal-title').textContent = data.title;
+          document.getElementById('modal-subtitle').textContent = `Goal ${goalNumber}`;
+          document.getElementById('modal-overview').textContent = data.overview;
+          document.getElementById('modal-impact').textContent = data.impact;
+          
+          // Set initiatives list
+          const initiativesList = document.getElementById('modal-initiatives');
+          initiativesList.innerHTML = data.initiatives.map(item => 
+            `<li>${item}</li>`
+          ).join('');
+          
+          // Set stats
+          const statsContainer = document.getElementById('modal-stats');
+          statsContainer.innerHTML = data.stats.map(stat => `
+            <div class="modal-stat">
+              <div class="modal-stat-value">${stat.value}</div>
+              <div class="modal-stat-label">${stat.label}</div>
+            </div>
+          `).join('');
+          
+          // Show modal
+          goalModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+        
+        // Close modal
+        function closeModal() {
+          goalModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+        
+        // Event Listeners
+        navButtons.forEach(btn => {
+          btn.addEventListener('click', function() {
+            navigateToSection(this.dataset.target);
+          });
+        });
+        
+        goalFilters.forEach(filter => {
+          filter.addEventListener('click', function() {
+            filterGoals(this.dataset.filter);
+          });
+        });
+        
+        goalCards.forEach(card => {
+          card.addEventListener('click', function() {
+            const goalNumber = this.dataset.goal;
+            showGoalDetails(goalNumber);
+          });
+        });
+        
+        modalClose.addEventListener('click', closeModal);
+        goalModal.addEventListener('click', function(e) {
+          if (e.target === goalModal) closeModal();
+        });
+        
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && goalModal.classList.contains('active')) {
+            closeModal();
+          }
+        });
+        
+        // Initialize
+        navigateToSection('mission');
+        filterGoals('all');
+        
+        // Add scroll animations for goal cards
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px'
+        });
+        
+        goalCards.forEach(card => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(card);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

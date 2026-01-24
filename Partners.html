@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Partners | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* ========== ENHANCED PARTNERS STYLES ========== */
+    .partners-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .partners-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .partners-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Partners Stats */
+    .partners-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .partner-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .partner-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .partner-stat-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .partner-stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .partner-stat-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Partner Categories Filter */
+    .partners-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-2xl);
+      padding: var(--spacing-lg);
+      background: rgba(42, 42, 45, 0.7);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .partner-filter-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .partner-filter-btn:hover {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(44, 183, 139, 0.1);
+    }
+
+    .partner-filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    /* Enhanced Partner Cards */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .partner-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid transparent;
+      position: relative;
+      height: 100%;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+
+    .partner-header {
+      padding: var(--spacing-lg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .partner-logo-container {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+    }
+
+    .partner-logo {
+      max-height: 80px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: brightness(0.9);
+      transition: filter var(--transition-fast);
+    }
+
+    .partner-card:hover .partner-logo {
+      filter: brightness(1.1);
+    }
+
+    .partner-type {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--primary);
+      color: var(--dark);
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .partner-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-xs);
+      color: var(--light);
+      line-height: 1.3;
+    }
+
+    .partner-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-accent);
+    }
+
+    .partner-content {
+      padding: var(--spacing-lg);
+    }
+
+    .partner-description {
+      color: var(--text-light);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .partner-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .partner-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .partner-meta-item i {
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    .partner-initiatives {
+      background: rgba(0, 0, 0, 0.2);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .partner-initiatives h4 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+    }
+
+    .partner-initiatives ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .partner-initiatives li {
+      padding: var(--spacing-xs) 0;
+      color: var(--text-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .partner-initiatives li::before {
+      content: '•';
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .partner-contact {
+      background: rgba(218, 165, 32, 0.1);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      border-left: 3px solid var(--primary);
+    }
+
+    .partner-contact h4 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-xs);
+      font-size: 0.95rem;
+    }
+
+    .partner-contact p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .partner-contact a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .partner-contact a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    /* Partnership Type Tags */
+    .partner-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .partner-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .partner-tag.strategic {
+      background: rgba(218, 165, 32, 0.2);
+      color: var(--primary);
+      border-color: rgba(218, 165, 32, 0.3);
+    }
+
+    .partner-tag.community {
+      background: rgba(44, 183, 139, 0.2);
+      color: var(--secondary);
+      border-color: rgba(44, 183, 139, 0.3);
+    }
+
+    .partner-tag.academic {
+      background: rgba(33, 150, 243, 0.2);
+      color: #2196F3;
+      border-color: rgba(33, 150, 243, 0.3);
+    }
+
+    .partner-tag.government {
+      background: rgba(156, 39, 176, 0.2);
+      color: #9C27B0;
+      border-color: rgba(156, 39, 176, 0.3);
+    }
+
+    /* Partners CTA Section */
+    .partners-cta-section {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: var(--spacing-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partners-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .partners-cta-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+    
+    .partners-cta-description {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .partners-cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(218, 165, 32, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* All Partners Section */
+    .all-partners-section {
+      margin-top: var(--spacing-2xl);
+    }
+
+    .all-partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+
+    .all-partner-item {
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+    }
+
+    .all-partner-item:hover {
+      background: rgba(42, 42, 45, 0.8);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .all-partner-item img {
+      max-height: 60px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0.8);
+      transition: filter var(--transition-fast);
+    }
+
+    .all-partner-item:hover img {
+      filter: grayscale(0%) brightness(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .partners-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .partners-filters {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .partner-filter-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .partners-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .partners-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .all-partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .partners-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .partners-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .partner-stat {
+        padding: var(--spacing-lg);
+      }
+      
+      .partner-stat-number {
+        font-size: 2rem;
+      }
+      
+      .partners-cta-title {
+        font-size: 1.5rem;
+      }
+      
+      .partners-cta-section {
+        padding: var(--spacing-xl);
+      }
+      
+      .all-partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .partner-card,
+      .partner-stat,
+      .all-partner-item,
+      .btn-primary,
+      .btn-secondary {
+        transition: none;
+      }
+      
+      .partner-card:hover,
+      .partner-stat:hover,
+      .all-partner-item:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link">About</a>
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="partners-container">
+          <!-- Partners Intro -->
+          <div class="partners-intro">
+            <h1 class="main-heading">Strategic Partners</h1>
+            <p>Collaboration is at the heart of Art-Life's impact. Our diverse network of partners enables us to create transformative programs, reach wider communities, and drive sustainable change through the arts.</p>
+          </div>
+
+          <!-- Partners Stats -->
+          <div class="partners-stats">
+            <div class="partner-stat">
+              <div class="partner-stat-icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <div class="partner-stat-number">20+</div>
+              <div class="partner-stat-desc">Strategic Partners</div>
+            </div>
+            
+            <div class="partner-stat">
+              <div class="partner-stat-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <div class="partner-stat-number">5</div>
+              <div class="partner-stat-desc">Academic Partners</div>
+            </div>
+            
+            <div class="partner-stat">
+              <div class="partner-stat-icon">
+                <i class="fas fa-globe-africa"></i>
+              </div>
+              <div class="partner-stat-number">15+</div>
+              <div class="partner-stat-desc">Communities Reached</div>
+            </div>
+            
+            <div class="partner-stat">
+              <div class="partner-stat-icon">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <div class="partner-stat-number">50+</div>
+              <div class="partner-stat-desc">Joint Initiatives</div>
+            </div>
+          </div>
+
+          <!-- Partners Filters -->
+          <div class="partners-filters">
+            <button class="partner-filter-btn active" data-filter="all">
+              <i class="fas fa-th-large"></i> All Partners
+            </button>
+            <button class="partner-filter-btn" data-filter="academic">
+              <i class="fas fa-university"></i> Academic
+            </button>
+            <button class="partner-filter-btn" data-filter="government">
+              <i class="fas fa-landmark"></i> Government
+            </button>
+            <button class="partner-filter-btn" data-filter="community">
+              <i class="fas fa-hands-helping"></i> Community
+            </button>
+            <button class="partner-filter-btn" data-filter="corporate">
+              <i class="fas fa-building"></i> Corporate
+            </button>
+          </div>
+
+          <!-- Featured Partners Grid -->
+          <div class="partners-grid" id="partners-grid">
+            <!-- University of Nairobi -->
+            <div class="partner-card" data-category="academic">
+              <div class="partner-header">
+                <div class="partner-logo-container">
+                  <img src="assets/images/logos/partners/University of Nairobi Logo.jpg" alt="University of Nairobi" class="partner-logo">
+                </div>
+                <div class="partner-type">Academic Partner</div>
+                <h2 class="partner-title">University of Nairobi</h2>
+                <div class="partner-subtitle">Kenya's Premier University</div>
+                <div class="partner-tags">
+                  <span class="partner-tag academic">Academic</span>
+                  <span class="partner-tag strategic">Strategic</span>
+                </div>
+              </div>
+              <div class="partner-content">
+                <p class="partner-description">Art-Life Group has partnered with the University of Nairobi under six transformative pillars designed to elevate Kenya's creative and cultural ecosystem.</p>
+                
+                <div class="partner-initiatives">
+                  <h4>Key Initiatives:</h4>
+                  <ul>
+                    <li>Art-Life-Hood community outreach programs</li>
+                    <li>Youth artistic excellence development</li>
+                    <li>Community events and festivals</li>
+                    <li>Creative city identity programs</li>
+                    <li>Academic research collaborations</li>
+                  </ul>
+                </div>
+                
+                <div class="partner-contact">
+                  <h4>Contact:</h4>
+                  <p>John A. Orindi, Director of Corporate Affairs<br>
+                  <a href="mailto:johnorindi@gmail.com">johnorindi@gmail.com</a> / 
+                  <a href="mailto:johnorindi@uonbi.ac.ke">johnorindi@uonbi.ac.ke</a><br>
+                  <a href="mailto:pr@uonbi.ac.ke">pr@uonbi.ac.ke</a></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kenya Cultural Centre -->
+            <div class="partner-card" data-category="government">
+              <div class="partner-header">
+                <div class="partner-logo-container">
+                  <img src="assets/images/logos/partners/Kenya Cultural Centre Logo.jpg" alt="Kenya Cultural Centre" class="partner-logo">
+                </div>
+                <div class="partner-type">Cultural Partner</div>
+                <h2 class="partner-title">Kenya Cultural Centre</h2>
+                <div class="partner-subtitle">Ministry of Youth Affairs, Creative Economy & Sports</div>
+                <div class="partner-tags">
+                  <span class="partner-tag government">Government</span>
+                  <span class="partner-tag strategic">Strategic</span>
+                </div>
+              </div>
+              <div class="partner-content">
+                <p class="partner-description">Co-hosting Nairobi's flagship international arts festival and supporting ongoing training and performance programs that showcase talent from both local and international artists.</p>
+                
+                <div class="partner-initiatives">
+                  <h4>Collaboration Focus:</h4>
+                  <ul>
+                    <li>Nairobi International Arts Festival</li>
+                    <li>Artist training and mentorship</li>
+                    <li>Cultural exchange programs</li>
+                    <li>Performance venue partnerships</li>
+                    <li>National cultural policy engagement</li>
+                  </ul>
+                </div>
+                
+                <div class="partner-meta">
+                  <div class="partner-meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Kenya National Theatre, Nairobi</span>
+                  </div>
+                  <div class="partner-meta-item">
+                    <i class="fas fa-history"></i>
+                    <span>Since 1952</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nairobi City County -->
+            <div class="partner-card" data-category="government">
+              <div class="partner-header">
+                <div class="partner-logo-container">
+                  <img src="assets/images/logos/partners/Nairobi City County Logo.jpg" alt="Nairobi City County" class="partner-logo">
+                </div>
+                <div class="partner-type">Government Partner</div>
+                <h2 class="partner-title">Nairobi City County</h2>
+                <div class="partner-subtitle">Local Government Partnership</div>
+                <div class="partner-tags">
+                  <span class="partner-tag government">Government</span>
+                  <span class="partner-tag community">Community</span>
+                </div>
+              </div>
+              <div class="partner-content">
+                <p class="partner-description">A cornerstone partnership in redefining Nairobi's creative identity through youth empowerment, cultural programming, and neighborhood arts integration.</p>
+                
+                <div class="partner-initiatives">
+                  <h4>Primary Objectives:</h4>
+                  <ul>
+                    <li>Post-COVID creative recovery</li>
+                    <li>Neighborhood arts programming</li>
+                    <li>Youth economic empowerment</li>
+                    <li>Public art installations</li>
+                    <li>Community cultural integration</li>
+                  </ul>
+                </div>
+                
+                <div class="partner-meta">
+                  <div class="partner-meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>4.3M Residents</span>
+                  </div>
+                  <div class="partner-meta-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>47 Wards</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- KIUESA -->
+            <div class="partner-card" data-category="academic">
+              <div class="partner-header">
+                <div class="partner-logo-container">
+                  <img src="assets/images/logos/partners/KIUESA LOGO.png" alt="KIUESA" class="partner-logo">
+                </div>
+                <div class="partner-type">Environmental Partner</div>
+                <h2 class="partner-title">KIUESA</h2>
+                <div class="partner-subtitle">Kenya Inter-University Environmental Students' Association</div>
+                <div class="partner-tags">
+                  <span class="partner-tag academic">Academic</span>
+                  <span class="partner-tag community">Community</span>
+                </div>
+              </div>
+              <div class="partner-content">
+                <p class="partner-description">Merging arts with youth-driven climate action through NATURE-FEST, Kenya's first multi-arts event centered on sustainability and environmental activism.</p>
+                
+                <div class="partner-initiatives">
+                  <h4>Key Programs:</h4>
+                  <ul>
+                    <li>NATURE-FEST sustainability festival</li>
+                    <li>Climate-smart agriculture initiatives</li>
+                    <li>Waste upcycling workshops</li>
+                    <li>Biodiversity conservation projects</li>
+                    <li>Creative environmental protests</li>
+                  </ul>
+                </div>
+                
+                <div class="partner-contact">
+                  <h4>Thematic Focus:</h4>
+                  <p>"Youth Productivity through Green Growth & Climate Action" - A mass movement uniting artists and environmental advocates.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partners CTA -->
+          <div class="partners-cta-section">
+            <h2 class="partners-cta-title">Become a Partner</h2>
+            <p class="partners-cta-description">Join our network of forward-thinking organizations committed to transforming lives through arts and culture. Together, we can create lasting impact.</p>
+            <div class="partners-cta-buttons">
+              <a href="Contact.html" class="btn-primary">
+                <i class="fas fa-handshake"></i> Partner With Us
+              </a>
+              <a href="JoinAProgram.html" class="btn-secondary">
+                <i class="fas fa-download"></i> Download Partnership Kit
+              </a>
+            </div>
+          </div>
+
+          <!-- All Partners Grid -->
+          <div class="all-partners-section">
+            <h2 class="main-heading">Our Network</h2>
+            <p class="partners-intro">Explore our complete network of partners supporting arts, culture, and community development across Kenya.</p>
+            
+            <div class="all-partners-grid">
+              <!-- Partner logos from your ticker -->
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/A imagery Visuals logo copy-1.png" alt="A imagery Visuals">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/AKIWACU Gold PNG (1).png" alt="AKIWACU">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/inkingi logo. (3).jpg" alt="Inkingi">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/KCCAA LOGO.jpg" alt="KCCAA">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/Logo for Banza Sema DRC.jpg" alt="Banza Sema">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/Logo for Ekulusu Studio by Paulvi DRC.jpg" alt="Ekulusu Studio">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/Logo for Ministry of Youth Affairs, Sports & The Arts.jpg" alt="Ministry of Youth">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF AKOGO FESTIVAL UGANDA.jpg" alt="Akogo Festival">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF AWJAMA CULTURAL CENTRE.jpg" alt="Awjama Cultural Centre">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF BANZA SEMA DRC.png" alt="Banza Sema DRC">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF HOPE SOCIETY SOUTH SUDAN.jpg" alt="Hope Society">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF KAREN VILLAGE.jpg" alt="Karen Village">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF KENYA INSTITUTE OF PUPPET THEATRE.jpg" alt="Kenya Institute of Puppet Theatre">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF KENYA NATIONAL VISUAL ARTISTS ASSOCIATION.jpg" alt="Kenya National Visual Artists">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF REFUGEE TALENT GROUP.jpg" alt="Refugee Talent Group">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/LOGO OF WAJUKUU ARTS COLLECTIVE.jpg" alt="Wajukuu Arts Collective">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/Sanaa-Fusion-Logo.jpg" alt="Sanaa Fusion">
+              </div>
+              <div class="all-partner-item">
+                <img src="assets/images/logos/partners/ubuntu-ai-logo.png" alt="Ubuntu AI">
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED PARTNERS SYSTEM
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        initPartnersSystem();
+      });
+      
+      function initPartnersSystem() {
+        console.log('🤝 Enhanced Partners System Initialized');
+        
+        // Elements
+        const partnerCards = document.querySelectorAll('.partner-card');
+        const filterButtons = document.querySelectorAll('.partner-filter-btn');
+        const allPartnerItems = document.querySelectorAll('.all-partner-item');
+        
+        // Filter partners by category
+        function filterPartners(category) {
+          // Update active filter button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+          
+          // Show/hide partner cards
+          let visibleCount = 0;
+          partnerCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+            
+            if (category === 'all' || cardCategory === category) {
+              card.style.display = 'block';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+              visibleCount++;
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+          
+          // Also filter all partner items if needed
+          if (category !== 'all') {
+            allPartnerItems.forEach(item => {
+              // This would need data-category attributes on all-partner-item elements
+              // For now, just show all
+            });
+          }
+        }
+        
+        // Add hover effects to all partner items
+        allPartnerItems.forEach(item => {
+          item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.05)';
+          });
+          
+          item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+          });
+          
+          // Click to enlarge logo
+          item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const logoName = img.alt;
+            alert(`Viewing: ${logoName}\n\nThis partner is part of our collaborative network supporting arts and community development.`);
+          });
+        });
+        
+        // Event Listeners
+        filterButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            filterPartners(this.dataset.filter);
+          });
+        });
+        
+        // Initialize scroll animations
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe partner cards
+        partnerCards.forEach(card => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(card);
+        });
+        
+        // Observe all partner items
+        allPartnerItems.forEach(item => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(10px)';
+          item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          observer.observe(item);
+        });
+        
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+
+</body>
+</html>

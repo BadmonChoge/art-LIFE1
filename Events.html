@@ -1,0 +1,2505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Events | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts - Silent Production Version -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts that work immediately */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* Events Container */
+    .events-container {
+      padding: var(--spacing-lg) 0;
+    }
+
+    .events-subheading {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto var(--spacing-xl);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 1.6;
+    }
+
+    /* View Toggle */
+    .view-toggle {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-sm);
+      background: rgba(42, 42, 45, 0.5);
+      border-radius: var(--border-radius);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .view-btn {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .view-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .view-btn:hover:not(.active) {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(218, 165, 32, 0.05);
+    }
+
+    /* Events Overview Section */
+    .events-overview {
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      backdrop-filter: blur(5px);
+    }
+
+    .events-overview h3 {
+      text-align: center;
+      color: var(--primary-light);
+      margin-bottom: var(--spacing-lg);
+      font-size: 1.5rem;
+    }
+
+    .event-types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .event-type-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+      transition: all var(--transition-normal);
+      border-left: 4px solid var(--primary);
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-type-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-type-card.exhibition {
+      border-left-color: #4CAF50;
+    }
+
+    .event-type-card.workshop {
+      border-left-color: #2196F3;
+    }
+
+    .event-type-card.performance {
+      border-left-color: #E91E63;
+    }
+
+    .event-type-card.community {
+      border-left-color: #9C27B0;
+    }
+
+    .event-type-card h4 {
+      color: var(--light);
+      margin-bottom: var(--spacing-xs);
+      font-size: 1.1rem;
+    }
+
+    .event-type-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .event-count {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Filter Section */
+    .events-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-md);
+      background: rgba(42, 42, 45, 0.7);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      align-items: center;
+    }
+
+    .filter-btn {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+      position: relative;
+    }
+
+    .filter-btn:hover {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    /* Type, Month & Audience Filter Styles */
+    .type-filter-container,
+    .month-filter-container,
+    .audience-filter-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .type-select,
+    .month-select,
+    .audience-select {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: rgba(42, 42, 45, 0.9);
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      min-width: 150px;
+      appearance: none;
+      padding-right: 30px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23DAA520' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 16px;
+    }
+
+    .type-select:hover,
+    .month-select:hover,
+    .audience-select:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    .type-select:focus,
+    .month-select:focus,
+    .audience-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Events Grid (Default View) */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .events-grid.hidden {
+      display: none;
+    }
+
+    .event-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .event-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .event-card:hover .event-image img {
+      transform: scale(1.05);
+    }
+
+    .event-placeholder {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+    }
+
+    .event-placeholder span {
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-family: var(--font-accent);
+    }
+
+    /* Event Card Indicators */
+    .event-date-indicator {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      padding: 4px 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .event-countdown {
+      position: absolute;
+      top: 50px;
+      left: var(--spacing-sm);
+      padding: 6px 12px;
+      background: rgba(218, 165, 32, 0.2);
+      color: var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(218, 165, 32, 0.3);
+    }
+
+    .event-countdown.urgent {
+      background: rgba(255, 87, 34, 0.2);
+      color: #ff5722;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    .event-status {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    .event-status[data-status="upcoming"] {
+      background-color: var(--primary);
+      color: var(--dark);
+    }
+
+    .event-status[data-status="ongoing"] {
+      background-color: var(--secondary);
+      color: var(--dark);
+    }
+
+    .event-status[data-status="past"] {
+      background-color: var(--dark);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    /* Event Capacity Indicator */
+    .event-capacity {
+      position: absolute;
+      bottom: var(--spacing-sm);
+      left: var(--spacing-sm);
+      right: var(--spacing-sm);
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: var(--border-radius);
+      padding: 6px 10px;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+    }
+
+    .capacity-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .capacity-fill {
+      height: 100%;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .capacity-text {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .capacity-low {
+      color: #ff5722;
+      font-weight: bold;
+    }
+
+    .capacity-full {
+      color: #f44336;
+      font-weight: bold;
+    }
+
+    .event-content {
+      padding: var(--spacing-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-xs);
+      color: var(--light);
+    }
+
+    .event-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+      font-size: 0.9rem;
+    }
+
+    .event-time {
+      color: var(--primary);
+      font-family: var(--font-accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .event-location {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Event Type Tags */
+    .event-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .type-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(218, 165, 32, 0.1);
+      color: var(--primary-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(218, 165, 32, 0.3);
+    }
+
+    .type-tag.exhibition {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+      border-color: rgba(76, 175, 80, 0.3);
+    }
+
+    .type-tag.workshop {
+      background: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+      border-color: rgba(33, 150, 243, 0.3);
+    }
+
+    .type-tag.performance {
+      background: rgba(233, 30, 99, 0.1);
+      color: #E91E63;
+      border-color: rgba(233, 30, 99, 0.3);
+    }
+
+    .type-tag.community {
+      background: rgba(156, 39, 176, 0.1);
+      color: #9C27B0;
+      border-color: rgba(156, 39, 176, 0.3);
+    }
+
+    .event-description {
+      margin-bottom: var(--spacing-md);
+      flex: 1;
+      color: var(--text-light);
+    }
+
+    .event-link {
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    /* Calendar View */
+    .calendar-view {
+      display: none;
+      margin-bottom: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      padding: var(--spacing-md);
+    }
+
+    .calendar-view.active {
+      display: block;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .calendar-nav-btn {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .calendar-nav-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .calendar-month {
+      font-size: 1.3rem;
+      color: var(--light);
+      font-weight: 600;
+    }
+
+    .calendar-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 1px;
+    }
+
+    .weekday {
+      text-align: center;
+      padding: var(--spacing-sm);
+      background: rgba(42, 42, 45, 0.9);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .calendar-day {
+      min-height: 120px;
+      padding: var(--spacing-xs);
+      background: rgba(42, 42, 45, 0.9);
+      position: relative;
+      transition: all var(--transition-fast);
+    }
+
+    .calendar-day:hover {
+      background: rgba(42, 42, 45, 0.95);
+    }
+
+    .calendar-day.empty {
+      background: rgba(42, 42, 45, 0.5);
+    }
+
+    .day-number {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .calendar-day.today .day-number {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .calendar-day.has-events .day-number {
+      color: var(--secondary);
+      font-weight: bold;
+    }
+
+    .calendar-events {
+      margin-top: 30px;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+
+    .calendar-event {
+      font-size: 0.75rem;
+      padding: 4px 6px;
+      margin-bottom: 4px;
+      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .calendar-event.exhibition {
+      background: rgba(76, 175, 80, 0.2);
+      color: #4CAF50;
+      border-left: 3px solid #4CAF50;
+    }
+
+    .calendar-event.workshop {
+      background: rgba(33, 150, 243, 0.2);
+      color: #2196F3;
+      border-left: 3px solid #2196F3;
+    }
+
+    .calendar-event.performance {
+      background: rgba(233, 30, 99, 0.2);
+      color: #E91E63;
+      border-left: 3px solid #E91E63;
+    }
+
+    .calendar-event.community {
+      background: rgba(156, 39, 176, 0.2);
+      color: #9C27B0;
+      border-left: 3px solid #9C27B0;
+    }
+
+    .calendar-event:hover {
+      transform: translateX(3px);
+    }
+
+    /* List View */
+    .list-view {
+      display: none;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .list-view.active {
+      display: block;
+    }
+
+    .list-view-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+    }
+
+    .list-view-table th {
+      padding: var(--spacing-md);
+      text-align: left;
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--primary-light);
+      font-weight: 600;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .list-view-table td {
+      padding: var(--spacing-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+    }
+
+    .list-view-table tr:hover td {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .list-event-date {
+      font-family: var(--font-accent);
+      color: var(--primary);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .list-event-title {
+      font-weight: 600;
+      color: var(--light);
+    }
+
+    .list-event-actions {
+      white-space: nowrap;
+    }
+
+    /* Stats Bar */
+    .events-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .stat-count {
+      background: var(--primary);
+      color: var(--dark);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-small {
+      padding: 4px 12px;
+      font-size: 0.85rem;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+    }
+
+    .btn-outline:hover {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    .btn-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-disabled:hover {
+      transform: none;
+      background: var(--primary);
+    }
+
+    /* CTA Section */
+    .events-cta {
+      text-align: center;
+      padding: var(--spacing-xl) var(--spacing-md);
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      margin-top: var(--spacing-xl);
+    }
+
+    .events-cta h2 {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--primary-light);
+    }
+
+    .events-cta p {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Event Modal */
+    .event-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .event-modal.active { display: flex; }
+
+    .event-modal-content {
+      background: rgba(42,42,45,0.95);
+      border-radius: var(--border-radius-lg);
+      max-width: 900px;
+      width: 100%;
+      max-height: 90%;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      color: #fff;
+    }
+
+    .event-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Modal Type Tags */
+    .modal-types {
+      display: flex;
+      gap: 8px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* No Results Message */
+    .no-results {
+      text-align: center;
+      padding: var(--spacing-xl) var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+
+    .no-results.active {
+      display: block;
+    }
+
+    .no-results h3 {
+      color: var(--primary-light);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .no-results p {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Registration Closed */
+    .registration-closed {
+      position: relative;
+    }
+
+    .registration-closed::after {
+      content: "REGISTRATION CLOSED";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--dark);
+      color: var(--text-muted);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      opacity: 0.8;
+    }
+
+    /* Recurring Event Badge */
+    .recurring-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: rgba(156, 39, 176, 0.2);
+      color: #9C27B0;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 1200px) {
+      .events-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .event-image {
+        height: 280px;
+      }
+      
+      .event-types-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1199px) {
+      .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .event-image {
+        height: 260px;
+      }
+      
+      .event-types-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .calendar-day {
+        min-height: 100px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+      }
+      
+      .event-image {
+        height: 220px;
+      }
+      
+      .event-content {
+        padding: var(--spacing-sm);
+      }
+      
+      .event-content h3 {
+        font-size: 1.3rem;
+      }
+      
+      .events-filter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .type-filter-container,
+      .month-filter-container,
+      .audience-filter-container {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .type-select,
+      .month-select,
+      .audience-select {
+        width: 100%;
+      }
+      
+      .calendar-day {
+        min-height: 90px;
+      }
+      
+      .list-view-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    @media (min-width: 480px) and (max-width: 767px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .events-filter {
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--spacing-sm);
+      }
+      
+      .filter-btn {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .type-filter-container,
+      .month-filter-container,
+      .audience-filter-container {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .type-select,
+      .month-select,
+      .audience-select {
+        width: 100%;
+      }
+      
+      .event-image {
+        height: 220px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .event-types-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .calendar-view,
+      .list-view {
+        overflow-x: auto;
+      }
+      
+      .calendar-day {
+        min-height: 80px;
+        font-size: 0.8rem;
+      }
+      
+      .calendar-event {
+        font-size: 0.7rem;
+        padding: 2px 4px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .events-container {
+        padding: var(--spacing-md) 0;
+      }
+      
+      .main-heading {
+        margin-bottom: var(--spacing-lg);
+        font-size: 2rem;
+      }
+      
+      .main-heading::after {
+        width: 80px;
+      }
+      
+      .events-filter {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm);
+      }
+      
+      .filter-btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .type-select,
+      .month-select,
+      .audience-select {
+        width: 100%;
+        min-width: 100%;
+      }
+      
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .event-image {
+        height: 200px;
+      }
+      
+      .event-content {
+        padding: var(--spacing-sm);
+      }
+      
+      .event-content h3 {
+        font-size: 1.3rem;
+      }
+      
+      .event-description {
+        font-size: 0.9rem;
+      }
+      
+      .events-cta {
+        padding: var(--spacing-lg) var(--spacing-sm);
+        margin: var(--spacing-lg) var(--spacing-xs) 0;
+      }
+      
+      .events-cta h2 {
+        font-size: 1.5rem;
+      }
+      
+      .events-cta p {
+        font-size: 0.9rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .events-overview {
+        padding: var(--spacing-md);
+      }
+      
+      .event-types-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .view-toggle {
+        flex-direction: column;
+      }
+      
+      .view-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .calendar-day {
+        min-height: 70px;
+        padding: 4px;
+      }
+      
+      .day-number {
+        font-size: 0.8rem;
+      }
+      
+      .calendar-event {
+        display: none;
+      }
+      
+      .events-stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .event-card,
+      .event-image img,
+      .btn,
+      .reveal,
+      .event-type-card,
+      .calendar-event {
+        transition: none;
+      }
+      
+      .event-card:hover,
+      .event-type-card:hover,
+      .calendar-event:hover {
+        transform: none;
+      }
+      
+      .event-countdown.urgent {
+        animation: none;
+      }
+    }
+
+    /* NUCLEAR OPTION - Disable interfering animations */
+    .event-card {
+      animation: none !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    
+    .event-card[style*="display: flex"] {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    
+    .event-card[style*="display: none"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+    
+    .scroll-content .event-card {
+      will-change: auto !important;
+    }
+
+  </style>
+  
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+        <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+      <a href="About.html" class="nav-link">About</a>        
+      <a href="WhatWeDo.html" class="nav-link">What we do</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="events-container">
+          <h1 class="main-heading">Events Calendar</h1>
+          <p class="events-subheading">Discover upcoming exhibitions, workshops, and gatherings hosted by Art-Life</p>
+          
+          <!-- Events Stats Bar -->
+          <div class="events-stats reveal">
+            <div class="stat-item">
+              <i class="fas fa-calendar-day" style="color: var(--primary);"></i>
+              <span>Upcoming:</span>
+              <span class="stat-count" id="upcoming-count">4</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-spinner" style="color: var(--secondary);"></i>
+              <span>Ongoing:</span>
+              <span class="stat-count" id="ongoing-count">1</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-history" style="color: var(--text-muted);"></i>
+              <span>Past:</span>
+              <span class="stat-count" id="past-count">2</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-users" style="color: #4CAF50;"></i>
+              <span>Total Events:</span>
+              <span class="stat-count" id="total-count">7</span>
+            </div>
+          </div>
+          
+          <!-- Events Overview -->
+          <div class="events-overview reveal">
+            <h3>Our Event Categories</h3>
+            <div class="event-types-grid">
+              <div class="event-type-card exhibition" data-type="exhibition">
+                <h4>Exhibitions</h4>
+                <p>Showcasing visual arts, photography, and mixed media installations from emerging and established artists</p>
+                <span class="event-count">Monthly</span>
+              </div>
+              <div class="event-type-card workshop" data-type="workshop">
+                <h4>Workshops</h4>
+                <p>Hands-on learning sessions covering various artistic techniques, digital tools, and creative skills</p>
+                <span class="event-count">Bi-Weekly</span>
+              </div>
+              <div class="event-type-card performance" data-type="performance">
+                <h4>Performances</h4>
+                <p>Live music, theatre, dance, and spoken word performances celebrating diverse artistic expressions</p>
+                <span class="event-count">Quarterly</span>
+              </div>
+              <div class="event-type-card community" data-type="community">
+                <h4>Community Events</h4>
+                <p>Public art projects, neighborhood gatherings, and collaborative community-building activities</p>
+                <span class="event-count">Monthly</span>
+              </div>
+            </div>
+          </div>
+            
+          <!-- View Toggle -->
+          <div class="view-toggle reveal">
+            <button class="view-btn active" data-view="grid">
+              <i class="fas fa-th"></i> Grid View
+            </button>
+            <button class="view-btn" data-view="list">
+              <i class="fas fa-list"></i> List View
+            </button>
+            <button class="view-btn" data-view="calendar">
+              <i class="fas fa-calendar"></i> Calendar View
+            </button>
+          </div>
+            
+          <!-- Events Filter -->
+          <div class="events-filter reveal">
+            <button class="filter-btn active" data-filter="all">
+              <i class="fas fa-layer-group"></i> All Events
+            </button>
+            <button class="filter-btn" data-filter="upcoming">
+              <i class="fas fa-calendar-day"></i> Upcoming
+            </button>
+            <button class="filter-btn" data-filter="ongoing">
+              <i class="fas fa-spinner"></i> Ongoing
+            </button>
+            <button class="filter-btn" data-filter="past">
+              <i class="fas fa-history"></i> Past
+            </button>
+            
+            <!-- Type Filter Dropdown -->
+            <div class="type-filter-container">
+              <select id="type-filter" class="type-select">
+                <option value="all-types">All Types</option>
+                <option value="exhibition">Exhibitions</option>
+                <option value="workshop">Workshops</option>
+                <option value="performance">Performances</option>
+                <option value="community">Community Events</option>
+              </select>
+            </div>
+            
+            <!-- Month Selector -->
+            <div class="month-filter-container">
+              <select id="month-filter" class="month-select">
+                <option value="all-months">All Months</option>
+                <option value="october">October 2023</option>
+                <option value="november">November 2023</option>
+                <option value="september">September 2023</option>
+                <option value="august">August 2023</option>
+              </select>
+            </div>
+            
+            <!-- Audience Filter -->
+            <div class="audience-filter-container">
+              <select id="audience-filter" class="audience-select">
+                <option value="all-audiences">All Audiences</option>
+                <option value="beginner">Beginner Friendly</option>
+                <option value="family">Family Friendly</option>
+                <option value="professional">Professionals</option>
+                <option value="all-ages">All Ages</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- No Results Message -->
+          <div class="no-results" id="no-results-message">
+            <h3>No Events Found</h3>
+            <p>Try adjusting your filters or view all events.</p>
+            <button onclick="resetFilters()" class="btn">
+              <i class="fas fa-redo"></i> Reset All Filters
+            </button>
+          </div>
+
+          <!-- Events Grid (Default View) -->
+          <div class="events-grid" id="grid-view">
+            <!-- Upcoming Events -->
+            <article class="event-card upcoming reveal" 
+                     data-category="upcoming" 
+                     data-month="october"
+                     data-types="exhibition"
+                     data-audience="all-ages"
+                     data-start="2023-10-15T10:00:00"
+                     data-end="2023-10-30T18:00:00"
+                     data-capacity="100"
+                     data-registered="45">
+                <div class="event-image">
+                    <span class="event-date-indicator">Oct 15-30</span>
+                    <div class="event-countdown">
+                      <i class="fas fa-clock"></i> Starts in 2 days
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Urban Expressions Exhibition" loading="lazy">
+                    <span class="event-status" data-status="upcoming">Upcoming</span>
+                    <div class="event-capacity">
+                        <div class="capacity-bar">
+                            <div class="capacity-fill" style="width: 45%"></div>
+                        </div>
+                        <div class="capacity-text">
+                            <span>45/100 spots</span>
+                            <span class="capacity-low">Limited availability</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h3>Urban Expressions Exhibition</h3>
+                    <div class="event-meta">
+                        <span class="event-time">
+                          <i class="far fa-clock"></i> 10AM - 6PM Daily
+                        </span>
+                        <span class="event-location">
+                          <i class="fas fa-map-marker-alt"></i> Art-Life Gallery
+                        </span>
+                    </div>
+                    <div class="event-types">
+                        <span class="type-tag exhibition">Exhibition</span>
+                        <span class="recurring-badge">
+                          <i class="fas fa-redo"></i> Monthly Series
+                        </span>
+                    </div>
+                    <p class="event-description">A showcase of street art and urban photography from Nairobi's vibrant neighborhoods, featuring works by local artists exploring city life and urban culture.</p>
+                    <a href="#" class="event-link btn" data-modal-target="modal-urbanexhibition">
+                      <i class="fas fa-calendar-plus"></i> Register Now
+                    </a>
+                </div>
+            </article>
+
+            <article class="event-card upcoming reveal" 
+                     data-category="upcoming" 
+                     data-month="october"
+                     data-types="workshop"
+                     data-audience="beginner"
+                     data-start="2023-10-21T14:00:00"
+                     data-end="2023-10-21T17:00:00"
+                     data-capacity="20"
+                     data-registered="18">
+                <div class="event-image">
+                    <span class="event-date-indicator">Oct 21</span>
+                    <div class="event-countdown urgent">
+                      <i class="fas fa-exclamation-circle"></i> Starts tomorrow
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1549056572-75914d6d7e1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Digital Art Workshop" loading="lazy">
+                    <span class="event-status" data-status="upcoming">Upcoming</span>
+                    <div class="event-capacity">
+                        <div class="capacity-bar">
+                            <div class="capacity-fill" style="width: 90%"></div>
+                        </div>
+                        <div class="capacity-text">
+                            <span>18/20 spots</span>
+                            <span class="capacity-low">Almost full!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h3>Digital Art Workshop</h3>
+                    <div class="event-meta">
+                        <span class="event-time">
+                          <i class="far fa-clock"></i> 2PM - 5PM
+                        </span>
+                        <span class="event-location">
+                          <i class="fas fa-map-marker-alt"></i> Creative Studio
+                        </span>
+                    </div>
+                    <div class="event-types">
+                        <span class="type-tag workshop">Workshop</span>
+                    </div>
+                    <p class="event-description">Learn digital painting techniques with professional artists. All skill levels welcome. Materials provided. Limited to 20 participants.</p>
+                    <a href="#" class="event-link btn" data-modal-target="modal-digitalworkshop">
+                      <i class="fas fa-calendar-plus"></i> Register Now
+                    </a>
+                </div>
+            </article>
+
+            <article class="event-card upcoming reveal" 
+                     data-category="upcoming" 
+                     data-month="november"
+                     data-types="performance"
+                     data-audience="all-ages"
+                     data-start="2023-11-05T19:00:00"
+                     data-end="2023-11-05T21:00:00"
+                     data-capacity="150"
+                     data-registered="120">
+                <div class="event-image">
+                    <span class="event-date-indicator">Nov 5</span>
+                    <div class="event-countdown">
+                      <i class="fas fa-clock"></i> Starts in 18 days
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1501281667305-0d4ebdb4f5c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Live Art Performance" loading="lazy">
+                    <span class="event-status" data-status="upcoming">Upcoming</span>
+                    <div class="event-capacity">
+                        <div class="capacity-bar">
+                            <div class="capacity-fill" style="width: 80%"></div>
+                        </div>
+                        <div class="capacity-text">
+                            <span>120/150 spots</span>
+                            <span class="capacity-low">Limited spots left</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h3>Live Art Performance</h3>
+                    <div class="event-meta">
+                        <span class="event-time">
+                          <i class="far fa-clock"></i> 7PM - 9PM
+                        </span>
+                        <span class="event-location">
+                          <i class="fas fa-map-marker-alt"></i> Main Auditorium
+                        </span>
+                    </div>
+                    <div class="event-types">
+                        <span class="type-tag performance">Performance</span>
+                    </div>
+                    <p class="event-description">Experience the creative process as artists create works live accompanied by musical performances. Interactive session with Q&A.</p>
+                    <a href="#" class="event-link btn" data-modal-target="modal-liveperformance">
+                      <i class="fas fa-calendar-plus"></i> Register Now
+                    </a>
+                </div>
+            </article>
+
+            <!-- Ongoing Event -->
+            <article class="event-card ongoing reveal" 
+                     data-category="ongoing" 
+                     data-month="october"
+                     data-types="community workshop"
+                     data-audience="family"
+                     data-start="2023-10-01T10:00:00"
+                     data-end="2023-10-31T16:00:00"
+                     data-capacity="unlimited"
+                     data-registered="daily">
+                <div class="event-image">
+                    <span class="event-date-indicator">Oct 1-31</span>
+                    <div class="event-countdown urgent">
+                      <i class="fas fa-play-circle"></i> Happening now
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Community Mural Project" loading="lazy">
+                    <span class="event-status" data-status="ongoing">Ongoing</span>
+                    <div class="event-capacity">
+                        <div class="capacity-bar">
+                            <div class="capacity-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="capacity-text">
+                            <span>Open participation</span>
+                            <span>Drop-in anytime</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h3>Community Mural Project</h3>
+                    <div class="event-meta">
+                        <span class="event-time">
+                          <i class="far fa-clock"></i> Weekends 10AM-4PM
+                        </span>
+                        <span class="event-location">
+                          <i class="fas fa-map-marker-alt"></i> Public Park
+                        </span>
+                    </div>
+                    <div class="event-types">
+                        <span class="type-tag community">Community</span>
+                        <span class="type-tag workshop">Workshop</span>
+                    </div>
+                    <p class="event-description">Collaborative mural painting open to all community members. No experience needed. Help create a lasting public artwork for our neighborhood.</p>
+                    <a href="#" class="event-link btn" data-modal-target="modal-muralproject">
+                      <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+            </article>
+
+            <!-- Past Events -->
+            <article class="event-card past reveal registration-closed" 
+                     data-category="past" 
+                     data-month="september"
+                     data-types="exhibition"
+                     data-audience="professional"
+                     data-start="2023-09-10T10:00:00"
+                     data-end="2023-09-25T18:00:00"
+                     data-capacity="200"
+                     data-registered="180">
+                <div class="event-image">
+                    <span class="event-date-indicator">Sep 10-25</span>
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Women in Arts Showcase" loading="lazy">
+                    <span class="event-status" data-status="past">Past</span>
+                </div>
+                <div class="event-content">
+                    <h3>Women in Arts Showcase</h3>
+                    <div class="event-meta">
+                        <span class="event-time">
+                          <i class="far fa-clock"></i> September 2023
+                        </span>
+                        <span class="event-location">
+                          <i class="fas fa-map-marker-alt"></i> Main Gallery
+                        </span>
+                    </div>
+                    <div class="event-types">
+                        <span class="type-tag exhibition">Exhibition</span>
+                    </div>
+                    <p class="event-description">Celebrating female artists from East Africa with a month-long exhibition showcasing diverse mediums and perspectives in contemporary art.</p>
+                    <a href="#" class="event-link btn btn-disabled" data-modal-target="modal-womenarts">
+                      <i class="fas fa-archive"></i> View Archive
+                    </a>
+                </div>
+            </article>
+
+            <article class="event-card past reveal registration-closed" 
+                     data-category="past" 
+                     data-month="august"
+                     data-types="workshop"
+                     data-audience="beginner"
+                     data-start="2023-08-15T14:00:00"
+                     data-end="2023-08-15T17:00:00"
+                     data-capacity="25"
+                     data-registered="25">
+                <div class="event-image">
+                    <span class="event-date-indicator">Aug 15</span>
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Pottery Workshop" loading="lazy">
+                    <span class="event-status" data-status="past">Past</span>
+                    <div class="event-capacity">
+                        <div class="capacity-bar">
+                            <div class="capacity-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="capacity-text">
+                            <span>25/25 spots</span>
+                            <span class="capacity-full">Sold out</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-content">
+                    <h3>Traditional Pottery Workshop</h3>
+                    <div class="event-meta">
+                        <span class="event-time">
+                          <i class="far fa-clock"></i> August 2023
+                        </span>
+                        <span class="event-location">
+                          <i class="fas fa-map-marker-alt"></i> Craft Studio
+                        </span>
+                    </div>
+                    <div class="event-types">
+                        <span class="type-tag workshop">Workshop</span>
+                        <span class="recurring-badge">
+                          <i class="fas fa-redo"></i> Returns monthly
+                        </span>
+                    </div>
+                    <p class="event-description">Learn traditional pottery techniques from master artisans. Participants created their own functional pottery pieces to take home.</p>
+                    <a href="#" class="event-link btn btn-disabled" data-modal-target="modal-potteryworkshop">
+                      <i class="fas fa-archive"></i> View Archive
+                    </a>
+                </div>
+            </article>
+
+          </div>
+
+          <!-- Calendar View -->
+          <div class="calendar-view" id="calendar-view">
+            <div class="calendar-header">
+              <div class="calendar-nav">
+                <button class="calendar-nav-btn" id="prev-month">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="calendar-nav-btn" id="today-btn">Today</button>
+                <button class="calendar-nav-btn" id="next-month">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div class="calendar-month" id="current-month">October 2023</div>
+              <div class="calendar-nav">
+                <button class="calendar-nav-btn" id="grid-view-btn">
+                  <i class="fas fa-th"></i> Back to Grid
+                </button>
+              </div>
+            </div>
+            
+            <div class="calendar-weekdays">
+              <div class="weekday">Sun</div>
+              <div class="weekday">Mon</div>
+              <div class="weekday">Tue</div>
+              <div class="weekday">Wed</div>
+              <div class="weekday">Thu</div>
+              <div class="weekday">Fri</div>
+              <div class="weekday">Sat</div>
+            </div>
+            
+            <div class="calendar-days" id="calendar-days">
+              <!-- Calendar days will be generated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- List View -->
+          <div class="list-view" id="list-view">
+            <table class="list-view-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Event</th>
+                  <th>Type</th>
+                  <th>Time</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="list-view-body">
+                <!-- List items will be generated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- CTA Section -->
+          <section class="events-cta content-section reveal">
+            <h2>Host Your Event With Us</h2>
+            <p>Have an idea for an exhibition, workshop, or artistic gathering? We provide space and support for community-driven art events. Let's collaborate to bring your creative vision to life.</p>
+            <div class="cta-buttons">
+                <a href="Contact.html" class="btn">
+                    <i class="fas fa-calendar-check"></i> Propose an Event
+                </a>
+                <a href="Community.html" class="btn btn-outline">
+                    <i class="fas fa-users"></i> Join Our Community
+                </a>
+            </div>
+          </section>
+
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Event Modals -->
+  <div class="event-modal" id="modal-urbanexhibition">
+    <div class="event-modal-content">
+      <button class="event-modal-close" aria-label="Close">✕</button>
+      <h2>Urban Expressions Exhibition</h2>
+      <div class="modal-types">
+        <span class="type-tag exhibition">Exhibition</span>
+        <span class="recurring-badge">
+          <i class="fas fa-redo"></i> Monthly Series
+        </span>
+      </div>
+      
+      <div class="event-stats-modal">
+        <div class="stat-item">
+          <i class="far fa-calendar"></i>
+          <strong>Dates:</strong> October 15-30, 2023
+        </div>
+        <div class="stat-item">
+          <i class="far fa-clock"></i>
+          <strong>Hours:</strong> 10AM - 6PM Daily
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-users"></i>
+          <strong>Capacity:</strong> 45/100 spots filled
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-tag"></i>
+          <strong>Cost:</strong> Free admission
+        </div>
+      </div>
+      
+      <h3>Overview</h3>
+      <p>Explore the dynamic relationship between art and urban environments through this immersive exhibition featuring street art, photography, and mixed media installations from Nairobi's most creative neighborhoods.</p>
+      
+      <h3>Featured Artists</h3>
+      <ul>
+        <li>Jamal Mwangi - Street photography documenting Nairobi's evolving cityscape</li>
+        <li>Sarah Omondi - Large-scale graffiti art exploring social commentary</li>
+        <li>David Kimani - Mixed media installations using found urban materials</li>
+        <li>Fatma Hassan - Urban landscape painting series "City in Transition"</li>
+      </ul>
+      
+      <h3>Special Events During Exhibition</h3>
+      <ul>
+        <li><strong>Opening Reception:</strong> October 15, 6PM-9PM (RSVP required)</li>
+        <li><strong>Artist Talk:</strong> October 22, 3PM - Meet the creators</li>
+        <li><strong>Guided Tour:</strong> October 28, 11AM - Curator-led walkthrough</li>
+        <li><strong>Community Dialogue:</strong> October 29, 2PM - "Art in Public Spaces"</li>
+      </ul>
+      
+      <h3>Location</h3>
+      <p>Art-Life Gallery, 123 Creative Street, Nairobi</p>
+      <p><em>Accessible venue with wheelchair ramps and accessible facilities</em></p>
+      
+      <h3>Who Should Attend</h3>
+      <p>Art enthusiasts, urban planners, photographers, students, and anyone interested in contemporary African art and urban culture. Family-friendly.</p>
+      
+      <h3>Registration</h3>
+      <p>Free admission. Registration recommended for opening night and special events to ensure seating.</p>
+      
+      <div class="modal-actions">
+        <a href="#" class="btn">
+          <i class="fas fa-calendar-plus"></i> Register Now
+        </a>
+        <a href="#" class="btn btn-outline">
+          <i class="far fa-calendar-alt"></i> Add to Calendar
+        </a>
+        <a href="#" class="btn btn-outline">
+          <i class="fas fa-share-alt"></i> Share Event
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // COMPREHENSIVE EVENTS SYSTEM WITH ALL UPGRADES
+    (function() {
+      // Wait for everything to load
+      window.addEventListener('load', function() {
+        setTimeout(initEventsSystem, 300);
+      });
+      
+      function initEventsSystem() {
+        console.log('🚀 Events System Initialized');
+        
+        // Get elements
+        const eventCards = Array.from(document.querySelectorAll('.event-card'));
+        const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+        const viewBtns = Array.from(document.querySelectorAll('.view-btn'));
+        const typeFilter = document.getElementById('type-filter');
+        const monthFilter = document.getElementById('month-filter');
+        const audienceFilter = document.getElementById('audience-filter');
+        const eventTypeCards = Array.from(document.querySelectorAll('.event-type-card'));
+        const noResultsMsg = document.getElementById('no-results-message');
+        
+        // Active filters
+        let activeFilters = {
+          category: 'all',
+          type: 'all-types',
+          month: 'all-months',
+          audience: 'all-audiences'
+        };
+        
+        // Current view
+        let currentView = 'grid';
+        
+        // Calendar state
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+        
+        // Update event statuses and countdowns
+        function updateEventStatuses() {
+          const now = new Date();
+          eventCards.forEach(card => {
+            const start = new Date(card.dataset.start);
+            const end = new Date(card.dataset.end);
+            const hoursUntil = (start - now) / (1000 * 60 * 60);
+            
+            // Update countdown display
+            const countdownEl = card.querySelector('.event-countdown');
+            if (countdownEl) {
+              countdownEl.remove();
+            }
+            
+            if (hoursUntil > 0 && hoursUntil < 48) {
+              const countdown = document.createElement('div');
+              countdown.className = hoursUntil < 4 ? 
+                'event-countdown urgent' : 'event-countdown';
+              
+              let text = '';
+              if (hoursUntil < 1) {
+                const minutes = Math.floor(hoursUntil * 60);
+                text = `Starts in ${minutes} minutes`;
+              } else if (hoursUntil < 24) {
+                text = `Starts in ${Math.floor(hoursUntil)} hours`;
+              } else {
+                const days = Math.floor(hoursUntil / 24);
+                text = `Starts in ${days} day${days > 1 ? 's' : ''}`;
+              }
+              
+              countdown.innerHTML = `<i class="fas fa-clock"></i> ${text}`;
+              card.querySelector('.event-image').appendChild(countdown);
+            }
+            
+            // Update capacity display
+            const capacity = parseInt(card.dataset.capacity);
+            const registered = parseInt(card.dataset.registered);
+            const capacityEl = card.querySelector('.capacity-fill');
+            const capacityText = card.querySelector('.capacity-text');
+            
+            if (capacityEl && !isNaN(capacity) && !isNaN(registered)) {
+              const percentage = Math.min(100, (registered / capacity) * 100);
+              capacityEl.style.width = `${percentage}%`;
+              
+              if (capacityText) {
+                const spotsLeft = capacity - registered;
+                let statusText = '';
+                
+                if (capacity === 0 || card.dataset.capacity === 'unlimited') {
+                  statusText = 'Open participation';
+                } else if (spotsLeft <= 0) {
+                  statusText = 'Sold out';
+                  capacityText.querySelector('.capacity-text span:last-child').className = 'capacity-full';
+                } else if (spotsLeft <= 5) {
+                  statusText = 'Almost full!';
+                  capacityText.querySelector('.capacity-text span:last-child').className = 'capacity-low';
+                } else if (spotsLeft <= 10) {
+                  statusText = 'Limited spots';
+                  capacityText.querySelector('.capacity-text span:last-child').className = 'capacity-low';
+                } else {
+                  statusText = 'Available';
+                }
+                
+                capacityText.querySelector('.capacity-text span:last-child').textContent = statusText;
+              }
+            }
+          });
+        }
+        
+        // Update stats
+        function updateStats() {
+          const upcoming = document.querySelectorAll('.event-card.upcoming:not([style*="display: none"])').length;
+          const ongoing = document.querySelectorAll('.event-card.ongoing:not([style*="display: none"])').length;
+          const past = document.querySelectorAll('.event-card.past:not([style*="display: none"])').length;
+          const total = upcoming + ongoing + past;
+          
+          document.getElementById('upcoming-count').textContent = upcoming;
+          document.getElementById('ongoing-count').textContent = ongoing;
+          document.getElementById('past-count').textContent = past;
+          document.getElementById('total-count').textContent = total;
+        }
+        
+        // Filter events
+        function filterEvents() {
+          const { category, type, month, audience } = activeFilters;
+          let visibleCount = 0;
+          
+          eventCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+            const cardTypes = card.dataset.types || '';
+            const cardMonth = card.dataset.month || '';
+            const cardAudience = card.dataset.audience || '';
+            
+            // Check all filters
+            const categoryMatch = category === 'all' || cardCategory === category;
+            const typeMatch = type === 'all-types' || cardTypes.includes(type);
+            const monthMatch = month === 'all-months' || cardMonth === month;
+            const audienceMatch = audience === 'all-audiences' || cardAudience.includes(audience);
+            
+            // Show if ALL filters match
+            if (categoryMatch && typeMatch && monthMatch && audienceMatch) {
+              card.style.display = 'flex';
+              card.style.visibility = 'visible';
+              card.style.opacity = '1';
+              card.style.position = 'relative';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+              card.style.visibility = 'hidden';
+              card.style.opacity = '0';
+            }
+          });
+          
+          // Handle no results
+          if (visibleCount === 0) {
+            noResultsMsg.classList.add('active');
+          } else {
+            noResultsMsg.classList.remove('active');
+          }
+          
+          // Update stats
+          updateStats();
+          
+          // Update list and calendar views
+          if (currentView === 'list') {
+            updateListView();
+          } else if (currentView === 'calendar') {
+            updateCalendar();
+          }
+          
+          console.log(`Showing ${visibleCount} of ${eventCards.length} events`);
+        }
+        
+        // Switch views
+        function switchView(view) {
+          currentView = view;
+          
+          // Update active view button
+          viewBtns.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-view="${view}"]`).classList.add('active');
+          
+          // Show/hide views
+          document.getElementById('grid-view').classList.toggle('hidden', view !== 'grid');
+          document.getElementById('calendar-view').classList.toggle('active', view === 'calendar');
+          document.getElementById('list-view').classList.toggle('active', view === 'list');
+          
+          if (view === 'list') {
+            updateListView();
+          } else if (view === 'calendar') {
+            updateCalendar();
+          }
+        }
+        
+        // List view functions
+        function updateListView() {
+          const listBody = document.getElementById('list-view-body');
+          listBody.innerHTML = '';
+          
+          const visibleEvents = Array.from(eventCards).filter(card => 
+            card.style.display !== 'none' && getComputedStyle(card).display !== 'none'
+          );
+          
+          visibleEvents.forEach(card => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td class="list-event-date">${card.querySelector('.event-date-indicator').textContent}</td>
+              <td class="list-event-title">${card.querySelector('h3').textContent}</td>
+              <td>${card.dataset.types.split(' ').map(type => 
+                `<span class="type-tag ${type}">${type}</span>`
+              ).join(' ')}</td>
+              <td>${card.querySelector('.event-time').textContent.replace(/<[^>]*>/g, '')}</td>
+              <td>${card.querySelector('.event-location').textContent.replace(/<[^>]*>/g, '')}</td>
+              <td><span class="event-status" data-status="${card.dataset.category}">${card.dataset.category}</span></td>
+              <td class="list-event-actions">
+                <a href="#" class="btn btn-small" data-modal-target="${card.querySelector('.event-link').dataset.modalTarget}">
+                  ${card.dataset.category === 'past' ? 'View Archive' : 'Register'}
+                </a>
+              </td>
+            `;
+            listBody.appendChild(row);
+          });
+        }
+        
+        // Calendar functions
+        function updateCalendar() {
+          const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+          ];
+          
+          document.getElementById('current-month').textContent = 
+            `${monthNames[currentMonth]} ${currentYear}`;
+          
+          const firstDay = new Date(currentYear, currentMonth, 1);
+          const lastDay = new Date(currentYear, currentMonth + 1, 0);
+          const daysInMonth = lastDay.getDate();
+          const startingDay = firstDay.getDay();
+          
+          const calendarDays = document.getElementById('calendar-days');
+          calendarDays.innerHTML = '';
+          
+          // Empty days for start of month
+          for (let i = 0; i < startingDay; i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'calendar-day empty';
+            calendarDays.appendChild(emptyDay);
+          }
+          
+          // Days of the month
+          const today = new Date();
+          const isCurrentMonth = today.getMonth() === currentMonth && today.getFullYear() === currentYear;
+          
+          for (let day = 1; day <= daysInMonth; day++) {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'calendar-day';
+            
+            if (isCurrentMonth && day === today.getDate()) {
+              dayElement.classList.add('today');
+            }
+            
+            const dayNumber = document.createElement('div');
+            dayNumber.className = 'day-number';
+            dayNumber.textContent = day;
+            dayElement.appendChild(dayNumber);
+            
+            // Add events for this day
+            const eventsForDay = getEventsForDay(day);
+            if (eventsForDay.length > 0) {
+              dayElement.classList.add('has-events');
+              
+              const eventsContainer = document.createElement('div');
+              eventsContainer.className = 'calendar-events';
+              
+              eventsForDay.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.className = `calendar-event ${event.type}`;
+                eventElement.textContent = event.title;
+                eventElement.title = `${event.title} - ${event.time}`;
+                eventElement.addEventListener('click', () => {
+                  const modal = document.getElementById(event.modalTarget);
+                  if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                  }
+                });
+                eventsContainer.appendChild(eventElement);
+              });
+              
+              dayElement.appendChild(eventsContainer);
+            }
+            
+            calendarDays.appendChild(dayElement);
+          }
+        }
+        
+        function getEventsForDay(day) {
+          const events = [];
+          const visibleEvents = Array.from(eventCards).filter(card => 
+            card.style.display !== 'none' && getComputedStyle(card).display !== 'none'
+          );
+          
+          visibleEvents.forEach(card => {
+            const startDate = new Date(card.dataset.start);
+            const endDate = new Date(card.dataset.end);
+            const eventDay = startDate.getDate();
+            
+            // Check if event occurs on this day
+            if (startDate.getMonth() === currentMonth && 
+                startDate.getFullYear() === currentYear &&
+                eventDay === day) {
+              
+              // Check if it's a multi-day event that starts on this day
+              const isStartOfMultiDay = endDate.getTime() > startDate.getTime() + 86400000;
+              
+              events.push({
+                title: card.querySelector('h3').textContent,
+                type: card.dataset.types.split(' ')[0],
+                time: card.querySelector('.event-time').textContent.replace(/<[^>]*>/g, ''),
+                modalTarget: card.querySelector('.event-link').dataset.modalTarget,
+                isMultiDay: isStartOfMultiDay
+              });
+            }
+          });
+          
+          return events;
+        }
+        
+        // EVENT LISTENERS
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            activeFilters.category = this.dataset.filter;
+            filterEvents();
+          });
+        });
+        
+        viewBtns.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            switchView(this.dataset.view);
+          });
+        });
+        
+        if (typeFilter) {
+          typeFilter.addEventListener('change', function() {
+            activeFilters.type = this.value;
+            filterEvents();
+          });
+        }
+        
+        if (monthFilter) {
+          monthFilter.addEventListener('change', function() {
+            activeFilters.month = this.value;
+            filterEvents();
+          });
+        }
+        
+        if (audienceFilter) {
+          audienceFilter.addEventListener('change', function() {
+            activeFilters.audience = this.value;
+            filterEvents();
+          });
+        }
+        
+        eventTypeCards.forEach(card => {
+          card.addEventListener('click', function() {
+            const type = this.dataset.type;
+            if (typeFilter) {
+              typeFilter.value = type;
+              activeFilters.type = type;
+              filterEvents();
+            }
+          });
+        });
+        
+        // Calendar navigation
+        document.getElementById('prev-month')?.addEventListener('click', function() {
+          currentMonth--;
+          if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+          }
+          updateCalendar();
+        });
+        
+        document.getElementById('next-month')?.addEventListener('click', function() {
+          currentMonth++;
+          if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+          }
+          updateCalendar();
+        });
+        
+        document.getElementById('today-btn')?.addEventListener('click', function() {
+          currentDate = new Date();
+          currentMonth = currentDate.getMonth();
+          currentYear = currentDate.getFullYear();
+          updateCalendar();
+        });
+        
+        document.getElementById('grid-view-btn')?.addEventListener('click', function() {
+          switchView('grid');
+        });
+        
+        // GLOBAL RESET FUNCTION
+        window.resetFilters = function() {
+          console.log('Resetting filters...');
+          
+          // Reset UI
+          filterBtns.forEach(b => b.classList.remove('active'));
+          const allBtn = document.querySelector('[data-filter="all"]');
+          if (allBtn) allBtn.classList.add('active');
+          
+          if (typeFilter) typeFilter.value = 'all-types';
+          if (monthFilter) monthFilter.value = 'all-months';
+          if (audienceFilter) audienceFilter.value = 'all-audiences';
+          
+          // Reset state
+          activeFilters = {
+            category: 'all',
+            type: 'all-types',
+            month: 'all-months',
+            audience: 'all-audiences'
+          };
+          
+          // Apply
+          filterEvents();
+          
+          // Switch back to grid view
+          switchView('grid');
+        };
+        
+        // Initial setup
+        updateEventStatuses();
+        filterEvents();
+        updateStats();
+        
+        // Update countdowns every minute
+        setInterval(updateEventStatuses, 60000);
+        
+        // Update event statuses every hour
+        setInterval(() => {
+          updateEventStatuses();
+          filterEvents(); // Re-filter in case status changed
+        }, 3600000);
+      }
+    })();
+
+    // MODAL FUNCTIONALITY
+    document.addEventListener('DOMContentLoaded', function() {
+      // Modal open
+      document.addEventListener('click', function(e) {
+        const eventLink = e.target.closest('.event-link');
+        const listAction = e.target.closest('.list-event-actions .btn');
+        const calendarEvent = e.target.closest('.calendar-event');
+        
+        if (eventLink && !eventLink.classList.contains('btn-disabled')) {
+          e.preventDefault();
+          const modalId = eventLink.getAttribute('data-modal-target');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+        
+        if (listAction) {
+          e.preventDefault();
+          const modalId = listAction.getAttribute('data-modal-target');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+        
+        if (calendarEvent) {
+          e.preventDefault();
+          // Calendar events are handled in the main script
+        }
+        
+        // Modal close
+        if (e.target.classList.contains('event-modal-close') || 
+            e.target.classList.contains('event-modal')) {
+          const modal = e.target.closest('.event-modal');
+          if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const activeModal = document.querySelector('.event-modal.active');
+          if (activeModal) {
+            activeModal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

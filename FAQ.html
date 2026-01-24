@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>FAQ | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* ========== ENHANCED FAQ STYLES ========== */
+    .faq-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .faq-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* FAQ Stats */
+    .faq-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .faq-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .faq-stat-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .faq-stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .faq-stat-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* FAQ Search */
+    .faq-search {
+      max-width: 600px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: var(--spacing-lg);
+      background: rgba(42, 42, 45, 0.7);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-wrapper i {
+      position: absolute;
+      left: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    .faq-search-input {
+      width: 100%;
+      padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) calc(var(--spacing-md) * 2.5);
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      color: var(--light);
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .faq-search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .faq-search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* FAQ Category Filters */
+    .faq-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-2xl);
+      padding: var(--spacing-lg);
+      background: rgba(42, 42, 45, 0.7);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .faq-filter-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .faq-filter-btn:hover {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(44, 183, 139, 0.1);
+    }
+
+    .faq-filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    /* Enhanced FAQ Grid */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .faq-category {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      transition: all var(--transition-normal);
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-category:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+
+    .faq-category::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .faq-category-title {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .faq-category-icon {
+      font-size: 1.3rem;
+      color: var(--secondary);
+    }
+
+    .faq-item {
+      margin-bottom: var(--spacing-md);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all var(--transition-fast);
+    }
+
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 1.1rem;
+      padding: var(--spacing-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      min-height: 60px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+      background: rgba(218, 165, 32, 0.05);
+    }
+
+    .faq-question[aria-expanded="true"] {
+      color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .faq-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: var(--dark);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-right: var(--spacing-sm);
+      flex-shrink: 0;
+    }
+
+    .faq-question-text {
+      flex: 1;
+      text-align: left;
+      margin-right: var(--spacing-sm);
+    }
+
+    .faq-icon {
+      color: var(--primary);
+      font-size: 1.2rem;
+      transition: transform var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .faq-question[aria-expanded="true"] .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-answer[aria-hidden="false"] {
+      padding: var(--spacing-md);
+      max-height: 1000px;
+    }
+
+    .faq-answer p {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+    }
+
+    .faq-answer ul {
+      padding-left: var(--spacing-lg);
+      margin: var(--spacing-sm) 0;
+    }
+
+    .faq-answer li {
+      color: var(--text-light);
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .faq-answer li::before {
+      content: '•';
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: -15px;
+    }
+
+    /* FAQ CTA Section */
+    .faq-cta-section {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: var(--spacing-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .faq-cta-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+    
+    .faq-cta-description {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .faq-cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(218, 165, 32, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* No Results Message */
+    .no-results {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      margin: var(--spacing-xl) 0;
+      display: none;
+    }
+
+    .no-results.active {
+      display: block;
+    }
+
+    .no-results h3 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .no-results p {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .faq-filters {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .faq-filter-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .faq-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .faq-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .faq-question {
+        font-size: 1rem;
+        padding: var(--spacing-sm);
+      }
+      
+      .faq-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .faq-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .faq-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .faq-stat {
+        padding: var(--spacing-lg);
+      }
+      
+      .faq-stat-number {
+        font-size: 2rem;
+      }
+      
+      .faq-category-title {
+        font-size: 1.3rem;
+      }
+      
+      .faq-cta-title {
+        font-size: 1.5rem;
+      }
+      
+      .faq-cta-section {
+        padding: var(--spacing-xl);
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .faq-item,
+      .faq-stat,
+      .faq-category,
+      .btn-primary,
+      .btn-secondary {
+        transition: none;
+      }
+      
+      .faq-item:hover,
+      .faq-stat:hover,
+      .faq-category:hover {
+        transform: none;
+      }
+      
+      .faq-answer {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link active">About</a>
+        
+        <!-- Vertical Section Menu -->
+        <div class="section-menu">
+          <a href="About.html" class="section-menu-item" data-target="GTKU">
+            <span>Get to know us</span>
+          </a>
+          <a href="OurJourney.html" class="section-menu-item" data-target="history">
+            <span>Our Journey</span>
+          </a>
+          <a href="People.html" class="section-menu-item" data-target="people">
+            <span>People</span>
+          </a> 
+          <a href="Contact.html" class="section-menu-item" data-target="contact">
+            <span>Contact Us</span>
+          </a> 
+          <a href="FAQ.html" class="section-menu-item active" data-target="faq-page">
+            <span>FAQ</span>
+          </a>
+        </div>
+        
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="faq-container">
+          <!-- FAQ Intro -->
+          <div class="faq-intro">
+            <h1 class="main-heading">Frequently Asked Questions</h1>
+            <p>Find answers to common questions about Art-Life programs, participation, events, and support. Can't find what you're looking for? Contact our team directly.</p>
+          </div>
+
+          <!-- FAQ Stats -->
+          <div class="faq-stats">
+            <div class="faq-stat">
+              <div class="faq-stat-icon">
+                <i class="fas fa-question-circle"></i>
+              </div>
+              <div class="faq-stat-number">25+</div>
+              <div class="faq-stat-desc">Answered Questions</div>
+            </div>
+            
+            <div class="faq-stat">
+              <div class="faq-stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="faq-stat-number">95%</div>
+              <div class="faq-stat-desc">Satisfaction Rate</div>
+            </div>
+            
+            <div class="faq-stat">
+              <div class="faq-stat-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="faq-stat-number">24h</div>
+              <div class="faq-stat-desc">Response Time</div>
+            </div>
+            
+            <div class="faq-stat">
+              <div class="faq-stat-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="faq-stat-number">4</div>
+              <div class="faq-stat-desc">Help Categories</div>
+            </div>
+          </div>
+
+          <!-- FAQ Search -->
+          <div class="faq-search">
+            <div class="search-wrapper">
+              <i class="fas fa-search"></i>
+              <input type="text" class="faq-search-input" placeholder="Search questions and answers..." id="faq-search-input">
+            </div>
+          </div>
+
+          <!-- FAQ Filters -->
+          <div class="faq-filters">
+            <button class="faq-filter-btn active" data-filter="all">
+              <i class="fas fa-th-large"></i> All Questions
+            </button>
+            <button class="faq-filter-btn" data-filter="general">
+              <i class="fas fa-info-circle"></i> General
+            </button>
+            <button class="faq-filter-btn" data-filter="participation">
+              <i class="fas fa-handshake"></i> Participation
+            </button>
+            <button class="faq-filter-btn" data-filter="events">
+              <i class="fas fa-calendar-alt"></i> Events
+            </button>
+            <button class="faq-filter-btn" data-filter="support">
+              <i class="fas fa-heart"></i> Support
+            </button>
+          </div>
+
+          <!-- No Results Message -->
+          <div class="no-results" id="no-results-message">
+            <h3>No Questions Found</h3>
+            <p>Try searching different keywords or browse all categories.</p>
+            <button onclick="resetFAQFilters()" class="btn-secondary">
+              <i class="fas fa-redo"></i> Reset Filters
+            </button>
+          </div>
+
+          <!-- FAQ Grid -->
+          <div class="faq-grid" id="faq-grid">
+            <!-- Category 1: General -->
+            <div class="faq-category" data-category="general">
+              <h2 class="faq-category-title">
+                <i class="fas fa-info-circle faq-category-icon"></i>
+                General Information
+              </h2>
+              
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq1">
+                  <span class="faq-number">01</span>
+                  <span class="faq-question-text">What is Art-Life's mission?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq1" aria-hidden="true">
+                  <p>Art-Life is dedicated to fostering creativity, supporting emerging artists, and making art accessible to all. We bridge the gap between artists and communities through exhibitions, workshops, and public programs that transform lives through creative expression.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq2">
+                  <span class="faq-number">02</span>
+                  <span class="faq-question-text">When was Art-Life founded?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq2" aria-hidden="true">
+                  <p>Art-Life was established in 2015 by a collective of Nairobi-based artists and has since grown into one of Kenya's most vibrant arts organizations, reaching over 5,000 artists and 15+ communities across the country.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 2: Participation -->
+            <div class="faq-category" data-category="participation">
+              <h2 class="faq-category-title">
+                <i class="fas fa-handshake faq-category-icon"></i>
+                Participation
+              </h2>
+              
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq3">
+                  <span class="faq-number">03</span>
+                  <span class="faq-question-text">How can I participate in Art-Life programs?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq3" aria-hidden="true">
+                  <p>There are several ways to get involved:</p>
+                  <ul>
+                    <li>Attend our open calls for artists and exhibitions</li>
+                    <li>Join our volunteer program for community projects</li>
+                    <li>Participate in community workshops and skill-building sessions</li>
+                    <li>Subscribe to our newsletter for updates on opportunities</li>
+                    <li>Become a member for exclusive access and benefits</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq4">
+                  <span class="faq-number">04</span>
+                  <span class="faq-question-text">Do I need to be a professional artist to participate?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq4" aria-hidden="true">
+                  <p>No! We welcome everyone from professional artists to complete beginners. Many of our programs are specifically designed for those just starting their creative journey. Our community includes:</p>
+                  <ul>
+                    <li>Professional artists seeking exhibition opportunities</li>
+                    <li>Emerging artists looking for mentorship</li>
+                    <li>Community members interested in creative workshops</li>
+                    <li>Students exploring arts education</li>
+                    <li>Art enthusiasts wanting to support the creative ecosystem</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 3: Events -->
+            <div class="faq-category" data-category="events">
+              <h2 class="faq-category-title">
+                <i class="fas fa-calendar-alt faq-category-icon"></i>
+                Events & Exhibitions
+              </h2>
+              
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq5">
+                  <span class="faq-number">05</span>
+                  <span class="faq-question-text">Are Art-Life events free to attend?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq5" aria-hidden="true">
+                  <p>Approximately 80% of our events are completely free to ensure accessibility for all. For special ticketed exhibitions or workshops, we offer:</p>
+                  <ul>
+                    <li>Discounted rates for students, seniors, and artists</li>
+                    <li>Free community tickets (available through our outreach program)</li>
+                    <li>Early-bird pricing for members</li>
+                    <li>Group discounts for schools and community organizations</li>
+                    <li>Pay-what-you-can options for financial accessibility</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq6">
+                  <span class="faq-number">06</span>
+                  <span class="faq-question-text">How often do you hold exhibitions?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq6" aria-hidden="true">
+                  <p>We maintain a vibrant exhibition calendar throughout the year:</p>
+                  <ul>
+                    <li>Major thematic exhibitions quarterly (approx. 3 months each)</li>
+                    <li>Pop-up shows and community exhibitions monthly</li>
+                    <li>Ongoing digital exhibitions on our website and social media</li>
+                    <li>Special annual events like our Art-Life Festival in October</li>
+                    <li>Traveling exhibitions in partnership with community centers</li>
+                    <li>Emerging artist showcases every 6 months</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 4: Support -->
+            <div class="faq-category" data-category="support">
+              <h2 class="faq-category-title">
+                <i class="fas fa-heart faq-category-icon"></i>
+                Support & Funding
+              </h2>
+              
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq7">
+                  <span class="faq-number">07</span>
+                  <span class="faq-question-text">How is Art-Life funded?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq7" aria-hidden="true">
+                  <p>We operate through a diversified funding model to ensure sustainability and independence:</p>
+                  <ul>
+                    <li>Corporate sponsorships and partnerships (40%)</li>
+                    <li>Government arts grants and cultural funding (25%)</li>
+                    <li>Individual donations and membership contributions (20%)</li>
+                    <li>Revenue from select ticketed events and workshops (10%)</li>
+                    <li>Foundation grants and philanthropic support (5%)</li>
+                  </ul>
+                  <p>All funds are transparently allocated to programs, artist support, and community initiatives.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq8">
+                  <span class="faq-number">08</span>
+                  <span class="faq-question-text">Can I donate artwork instead of money?</span>
+                  <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer" id="faq8" aria-hidden="true">
+                  <p>Yes! We enthusiastically accept artwork donations for several purposes:</p>
+                  <ul>
+                    <li>Our annual fundraising auction (proceeds support programs)</li>
+                    <li>Community art lending library (accessible to all members)</li>
+                    <li>Public art installations in underserved communities</li>
+                    <li>Artist mentorship program (used as teaching examples)</li>
+                    <li>Collaborative community projects and workshops</li>
+                  </ul>
+                  <p>Contact our donations coordinator to discuss potential contributions and receive a donation receipt for tax purposes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ CTA -->
+          <div class="faq-cta-section">
+            <h2 class="faq-cta-title">Still Have Questions?</h2>
+            <p class="faq-cta-description">Our team is here to help you with any additional questions or concerns. Reach out to us directly for personalized assistance.</p>
+            <div class="faq-cta-buttons">
+              <a href="Contact.html" class="btn-primary">
+                <i class="fas fa-envelope"></i> Contact Our Team
+              </a>
+              <a href="Community.html" class="btn-secondary">
+                <i class="fas fa-comments"></i> Join Community Forum
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED FAQ SYSTEM
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        initFAQSystem();
+      });
+      
+      function initFAQSystem() {
+        console.log('❓ Enhanced FAQ System Initialized');
+        
+        // Elements
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const faqCategories = document.querySelectorAll('.faq-category');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const filterButtons = document.querySelectorAll('.faq-filter-btn');
+        const searchInput = document.getElementById('faq-search-input');
+        const noResultsMsg = document.getElementById('no-results-message');
+        
+        // Current filter state
+        let currentFilter = 'all';
+        let currentSearch = '';
+        
+        // FAQ Data for search functionality
+        const faqData = Array.from(faqItems).map(item => {
+          const question = item.querySelector('.faq-question-text').textContent.trim();
+          const answer = item.querySelector('.faq-answer').textContent.trim();
+          const category = item.closest('.faq-category').dataset.category;
+          const number = item.querySelector('.faq-number').textContent;
+          return { question, answer, category, number, element: item };
+        });
+        
+        // Toggle FAQ answer
+        function toggleFAQ(questionButton) {
+          const isExpanded = questionButton.getAttribute('aria-expanded') === 'true';
+          const answerId = questionButton.getAttribute('aria-controls');
+          const answer = document.getElementById(answerId);
+          
+          // Close all other FAQs in same category
+          const category = questionButton.closest('.faq-category');
+          category.querySelectorAll('.faq-question').forEach(q => {
+            if (q !== questionButton && q.getAttribute('aria-expanded') === 'true') {
+              q.setAttribute('aria-expanded', 'false');
+              const otherAnswer = document.getElementById(q.getAttribute('aria-controls'));
+              otherAnswer.setAttribute('aria-hidden', 'true');
+            }
+          });
+          
+          // Toggle current FAQ
+          questionButton.setAttribute('aria-expanded', !isExpanded);
+          answer.setAttribute('aria-hidden', isExpanded);
+          
+          // Scroll to question if opening
+          if (!isExpanded) {
+            setTimeout(() => {
+              questionButton.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+          }
+        }
+        
+        // Filter FAQs by category
+        function filterFAQs(category) {
+          currentFilter = category;
+          
+          // Update active filter button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+          
+          // Apply filter
+          applyFilters();
+        }
+        
+        // Search FAQs
+        function searchFAQs(query) {
+          currentSearch = query.toLowerCase().trim();
+          applyFilters();
+        }
+        
+        // Apply both filters and search
+        function applyFilters() {
+          let visibleCount = 0;
+          
+          faqData.forEach(data => {
+            const { element, question, answer, category } = data;
+            const categoryElement = element.closest('.faq-category');
+            
+            // Check category filter
+            const categoryMatch = currentFilter === 'all' || category === currentFilter;
+            
+            // Check search filter
+            const searchMatch = !currentSearch || 
+                              question.toLowerCase().includes(currentSearch) || 
+                              answer.toLowerCase().includes(currentSearch);
+            
+            // Show/hide FAQ item
+            if (categoryMatch && searchMatch) {
+              element.style.display = 'block';
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+              visibleCount++;
+              
+              // Ensure parent category is visible
+              categoryElement.style.display = 'block';
+              categoryElement.style.opacity = '1';
+              categoryElement.style.transform = 'translateY(0)';
+            } else {
+              element.style.display = 'none';
+              element.style.opacity = '0';
+              element.style.transform = 'translateY(10px)';
+            }
+          });
+          
+          // Hide empty categories
+          faqCategories.forEach(category => {
+            const visibleItems = category.querySelectorAll('.faq-item[style*="display: block"]').length;
+            if (visibleItems === 0) {
+              category.style.display = 'none';
+              category.style.opacity = '0';
+              category.style.transform = 'translateY(20px)';
+            }
+          });
+          
+          // Show/hide no results message
+          if (visibleCount === 0) {
+            noResultsMsg.classList.add('active');
+          } else {
+            noResultsMsg.classList.remove('active');
+          }
+          
+          // Highlight search terms
+          if (currentSearch) {
+            highlightSearchTerms(currentSearch);
+          } else {
+            removeHighlights();
+          }
+        }
+        
+        // Highlight search terms in visible FAQs
+        function highlightSearchTerms(term) {
+          const visibleFAQs = document.querySelectorAll('.faq-item[style*="display: block"]');
+          
+          visibleFAQs.forEach(faq => {
+            const questionText = faq.querySelector('.faq-question-text');
+            const answer = faq.querySelector('.faq-answer');
+            
+            // Create highlighted versions
+            const highlightedQuestion = highlightText(questionText.textContent, term);
+            const highlightedAnswer = highlightText(answer.textContent, term);
+            
+            // Update with highlights (preserving HTML structure)
+            if (term.length > 2) {
+              questionText.innerHTML = highlightedQuestion;
+              answer.querySelector('p').innerHTML = highlightedAnswer;
+            }
+          });
+        }
+        
+        function highlightText(text, term) {
+          if (!term) return text;
+          const regex = new RegExp(`(${term})`, 'gi');
+          return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+        }
+        
+        function removeHighlights() {
+          document.querySelectorAll('.search-highlight').forEach(highlight => {
+            const parent = highlight.parentNode;
+            parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+            parent.normalize();
+          });
+        }
+        
+        // Reset all filters
+        window.resetFAQFilters = function() {
+          currentFilter = 'all';
+          currentSearch = '';
+          searchInput.value = '';
+          
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          document.querySelector('[data-filter="all"]').classList.add('active');
+          
+          applyFilters();
+          removeHighlights();
+        };
+        
+        // Event Listeners
+        faqQuestions.forEach(question => {
+          question.addEventListener('click', function() {
+            toggleFAQ(this);
+          });
+          
+          // Keyboard support
+          question.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleFAQ(this);
+            }
+          });
+        });
+        
+        filterButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            filterFAQs(this.dataset.filter);
+          });
+        });
+        
+        // Search input with debounce
+        let searchTimeout;
+        searchInput.addEventListener('input', function() {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(() => {
+            searchFAQs(this.value);
+          }, 300);
+        });
+        
+        // Clear search on escape
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            this.value = '';
+            searchFAQs('');
+          }
+        });
+        
+        // Initialize
+        applyFilters();
+        
+        // Add CSS for search highlights
+        const style = document.createElement('style');
+        style.textContent = `
+          .search-highlight {
+            background-color: rgba(218, 165, 32, 0.3);
+            color: var(--primary);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Research & Advocacy | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* ========== ENHANCED RESEARCH & ADVOCACY STYLES ========== */
+    .research-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .research-intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .research-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Partnership Banner */
+    .partnership-banner {
+      background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-2xl);
+      margin: var(--spacing-2xl) 0;
+      border: 2px solid #2196F3;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .partnership-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, #2196F3, #64B5F6);
+    }
+
+    .partnership-icon {
+      font-size: 3rem;
+      color: #2196F3;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .partnership-title {
+      color: #2196F3;
+      font-size: 1.8rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .partnership-text {
+      color: var(--text-light);
+      line-height: 1.7;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Research Stats */
+    .research-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .research-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .research-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+      border-color: #2196F3;
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: #2196F3;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Research & Advocacy Grid */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) 0;
+    }
+
+    .research-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid transparent;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .research-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+
+    .research-card.research {
+      border-left: 4px solid #2196F3;
+    }
+
+    .research-card.advocacy {
+      border-left: 4px solid #E91E63;
+    }
+
+    .research-card:hover.research {
+      border-color: #2196F3;
+    }
+
+    .research-card:hover.advocacy {
+      border-color: #E91E63;
+    }
+
+    .card-header {
+      padding: var(--spacing-xl);
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      opacity: 0.7;
+    }
+
+    .research-card.research .card-header::before {
+      background: linear-gradient(to right, #2196F3, #64B5F6);
+    }
+
+    .research-card.advocacy .card-header::before {
+      background: linear-gradient(to right, #E91E63, #F48FB1);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-md);
+      height: 80px;
+      width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      transition: transform var(--transition-normal);
+    }
+
+    .research-card.research .card-icon {
+      color: #2196F3;
+      background: rgba(33, 150, 243, 0.1);
+    }
+
+    .research-card.advocacy .card-icon {
+      color: #E91E63;
+      background: rgba(233, 30, 99, 0.1);
+    }
+
+    .research-card:hover .card-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--light);
+      line-height: 1.3;
+    }
+
+    .card-content {
+      padding: var(--spacing-lg);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-description {
+      color: var(--text-light);
+      margin-bottom: var(--spacing-md);
+      font-size: 1rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .initiatives-list {
+      background: rgba(0, 0, 0, 0.2);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .initiatives-list h4 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .initiatives-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .initiatives-list li {
+      padding: var(--spacing-xs) 0;
+      color: var(--text-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .initiatives-list li::before {
+      content: '•';
+      color: var(--secondary);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .research-card.research .initiatives-list li::before {
+      color: #2196F3;
+    }
+
+    .research-card.advocacy .initiatives-list li::before {
+      color: #E91E63;
+    }
+
+    .impact-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+
+    .impact-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .research-card.research .impact-tag {
+      background: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+      border-color: rgba(33, 150, 243, 0.3);
+    }
+
+    .research-card.advocacy .impact-tag {
+      background: rgba(233, 30, 99, 0.1);
+      color: #E91E63;
+      border-color: rgba(233, 30, 99, 0.3);
+    }
+
+    /* Data Visualization Preview */
+    .data-preview {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .data-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .data-title {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .data-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .data-chart {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .chart-item {
+      text-align: center;
+      padding: var(--spacing-lg);
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--border-radius);
+      transition: all var(--transition-fast);
+    }
+
+    .chart-item:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .chart-bar {
+      height: 150px;
+      width: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      margin: 0 auto var(--spacing-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 10px;
+      transition: height 1s ease;
+    }
+
+    .chart-label {
+      color: var(--light);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .chart-value {
+      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    /* CTA Section */
+    .research-cta {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: linear-gradient(135deg, rgba(42, 42, 45, 0.8), rgba(33, 150, 243, 0.1));
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: var(--spacing-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, #2196F3, #E91E63);
+    }
+    
+    .research-cta-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+    
+    .research-cta-description {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .research-cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(218, 165, 32, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .research-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .research-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .research-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .partnership-banner {
+        padding: var(--spacing-xl);
+      }
+      
+      .data-chart {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .research-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .research-card {
+        padding: var(--spacing-md);
+      }
+      
+      .research-cta-title {
+        font-size: 1.5rem;
+      }
+      
+      .research-cta {
+        padding: var(--spacing-xl);
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .partnership-icon {
+        font-size: 2.5rem;
+      }
+      
+      .partnership-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .research-card,
+      .research-stat,
+      .chart-item,
+      .btn-primary,
+      .btn-secondary {
+        transition: none;
+      }
+      
+      .research-card:hover,
+      .research-stat:hover,
+      .chart-item:hover,
+      .btn-primary:hover,
+      .btn-secondary:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link">About</a>        
+        <a href="WhatWeDo.html" class="nav-link active">What we do</a>
+
+        <!-- Vertical Section Menu -->
+        <div class="section-menu">
+          <a href="WhatWeDo.html" class="section-menu-item" data-target="OurWork">
+            <span>Defining Us</span>
+          </a>
+          <a href="ResearchAdvocacy.html" class="section-menu-item active" data-target="research">
+            <span>Research & Advocacy</span>
+          </a>
+        </div>
+
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="research-container">
+          <!-- Research & Advocacy Intro -->
+          <div class="research-intro">
+            <h1 class="main-heading">Research & Advocacy</h1>
+            <p>The Art-Life Research & Advocacy Program conducts regular studies to evaluate the role and impact of the arts across Nairobi and beyond. We gather insightful data to drive evidence-based industry reforms and strengthen the creative economy.</p>
+          </div>
+
+          <!-- Partnership Banner -->
+          <div class="partnership-banner">
+            <div class="partnership-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h2 class="partnership-title">Academic Partnership</h2>
+            <p class="partnership-text">In partnership with the University of Nairobi (Faculty of Arts & Social Sciences), we conduct rigorous research that informs policy, supports artists, and strengthens Kenya's creative industries through evidence-based insights.</p>
+          </div>
+
+          <!-- Research Stats -->
+          <div class="research-stats">
+            <div class="research-stat">
+              <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="stat-number">365+</div>
+              <div class="stat-label">Daily Data Points</div>
+            </div>
+            
+            <div class="research-stat">
+              <div class="stat-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <div class="stat-number">1</div>
+              <div class="stat-label">University Partner</div>
+            </div>
+            
+            <div class="research-stat">
+              <div class="stat-icon">
+                <i class="fas fa-microphone"></i>
+              </div>
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Policy Engagements</div>
+            </div>
+            
+            <div class="research-stat">
+              <div class="stat-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="stat-number">1000+</div>
+              <div class="stat-label">Public Surveys</div>
+            </div>
+          </div>
+
+          <!-- Research & Advocacy Grid -->
+          <div class="research-grid">
+            <!-- Research Card -->
+            <div class="research-card research">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h3 class="card-title">Research</h3>
+              </div>
+              <div class="card-content">
+                <p class="card-description">
+                  Our research initiatives provide critical insights into the role and impact of arts in society, helping artists align their work with public expectations and supporting evidence-based policy making.
+                </p>
+                
+                <div class="initiatives-list">
+                  <h4><i class="fas fa-poll"></i> Key Research Initiatives:</h4>
+                  <ul>
+                    <li><strong>365 Art-Life Statistics:</strong> National opinion poll asking "Why do the arts matter?"</li>
+                    <li><strong>Art-Life Facts:</strong> Demographic and media-sourced community data</li>
+                    <li>Real-time public insight collection</li>
+                    <li>Baseline intelligence on arts impact</li>
+                    <li>Skills gap and opportunity analysis</li>
+                  </ul>
+                </div>
+                
+                <div class="initiatives-list">
+                  <h4><i class="fas fa-bullseye"></i> Research Impact:</h4>
+                  <ul>
+                    <li>Helps artists align work with public expectations</li>
+                    <li>Supports cultural advocates with data for policy engagement</li>
+                    <li>Informs government and institutions on arts value</li>
+                    <li>Guides dialogue, advocacy, and funding strategies</li>
+                    <li>Highlights skills gaps for capacity-building</li>
+                  </ul>
+                </div>
+                
+                <div class="impact-highlights">
+                  <span class="impact-tag">Data-Driven</span>
+                  <span class="impact-tag">Evidence-Based</span>
+                  <span class="impact-tag">Public Insight</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advocacy Card -->
+            <div class="research-card advocacy">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="card-title">Advocacy</h3>
+              </div>
+              <div class="card-content">
+                <p class="card-description">
+                  At Art-Life, we believe anyone can be a voice for the arts. Through training, data, and public programs, we equip creatives and community members to become bold advocates for a vibrant and inclusive cultural future.
+                </p>
+                
+                <div class="initiatives-list">
+                  <h4><i class="fas fa-users"></i> Advocacy Focus:</h4>
+                  <ul>
+                    <li>Regular engagement with policymakers and arts leaders</li>
+                    <li>Training programs for community advocates</li>
+                    <li>Public awareness campaigns</li>
+                    <li>Policy reform initiatives</li>
+                    <li>Arts industry representation</li>
+                  </ul>
+                </div>
+                
+                <div class="initiatives-list">
+                  <h4><i class="fas fa-check-circle"></i> Advocacy Impact:</h4>
+                  <ul>
+                    <li>Arts foster civic pride, dialogue, healing, and innovation</li>
+                    <li>Creative industries contribute to employment and local economies</li>
+                    <li>Investing in arts strengthens tourism and education</li>
+                    <li>Promotes social cohesion and community building</li>
+                    <li>Ensures artists' voices are heard and valued</li>
+                  </ul>
+                </div>
+                
+                <div class="impact-highlights">
+                  <span class="impact-tag">Policy Change</span>
+                  <span class="impact-tag">Community Voice</span>
+                  <span class="impact-tag">Arts Rights</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Visualization Preview -->
+          <div class="data-preview">
+            <div class="data-header">
+              <h3 class="data-title">Public Perception of Arts Impact</h3>
+              <p class="data-subtitle">Based on our 365 Art-Life Statistics national opinion poll</p>
+            </div>
+            
+            <div class="data-chart">
+              <div class="chart-item">
+                <div class="chart-label">Economic Impact</div>
+                <div class="chart-bar">
+                  <div class="chart-fill" style="background: #2196F3; height: 85%;"></div>
+                </div>
+                <div class="chart-value">85%</div>
+                <div class="stat-label">See economic value</div>
+              </div>
+              
+              <div class="chart-item">
+                <div class="chart-label">Community Building</div>
+                <div class="chart-bar">
+                  <div class="chart-fill" style="background: #4CAF50; height: 92%;"></div>
+                </div>
+                <div class="chart-value">92%</div>
+                <div class="stat-label">Value community role</div>
+              </div>
+              
+              <div class="chart-item">
+                <div class="chart-label">Education Value</div>
+                <div class="chart-bar">
+                  <div class="chart-fill" style="background: #FF9800; height: 78%;"></div>
+                </div>
+                <div class="chart-value">78%</div>
+                <div class="stat-label">See educational benefit</div>
+              </div>
+              
+              <div class="chart-item">
+                <div class="chart-label">Mental Health</div>
+                <div class="chart-bar">
+                  <div class="chart-fill" style="background: #E91E63; height: 88%;"></div>
+                </div>
+                <div class="chart-value">88%</div>
+                <div class="stat-label">Recognize therapeutic value</div>
+              </div>
+            </div>
+            
+            <p style="text-align: center; color: var(--text-light); font-size: 0.9rem; margin-top: var(--spacing-lg);">
+              *Data collected from 1,000+ public surveys across Nairobi and surrounding regions
+            </p>
+          </div>
+
+          <!-- CTA Section -->
+          <div class="research-cta">
+            <h2 class="research-cta-title">Be Part of the Change</h2>
+            <p class="research-cta-description">Whether you want to participate in our research, join our advocacy efforts, or use our data to inform your work, there are multiple ways to engage with Art-Life's Research & Advocacy Program.</p>
+            <div class="research-cta-buttons">
+              <a href="Contact.html" class="btn-primary">
+                <i class="fas fa-envelope"></i> Join Our Research
+              </a>
+              <a href="Community.html" class="btn-secondary">
+                <i class="fas fa-user-plus"></i> Become an Advocate
+              </a>
+              <a href="WhatWeDo.html" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Programs
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED RESEARCH & ADVOCACY INTERACTIVITY
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initResearchSystem();
+      });
+      
+      function initResearchSystem() {
+        console.log('📊 Enhanced Research & Advocacy System Initialized');
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Animate research cards on scroll
+        const researchCards = document.querySelectorAll('.research-card');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }, index * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px'
+        });
+        
+        researchCards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+          observer.observe(card);
+        });
+        
+        // Animate stats counting
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const stat = entry.target;
+              let targetNumber;
+              
+              if (stat.textContent.includes('+')) {
+                targetNumber = parseInt(stat.textContent.replace('+', ''));
+                animateCounter(stat, targetNumber, true);
+              } else {
+                targetNumber = parseInt(stat.textContent);
+                animateCounter(stat, targetNumber, false);
+              }
+              
+              statObserver.unobserve(stat);
+            }
+          });
+        }, {
+          threshold: 0.5
+        });
+        
+        statNumbers.forEach(stat => statObserver.observe(stat));
+        
+        function animateCounter(element, target, hasPlus = false) {
+          const duration = 2000;
+          const frameRate = 1000 / 60;
+          const totalFrames = Math.round(duration / frameRate);
+          let frame = 0;
+          
+          const counter = setInterval(() => {
+            frame++;
+            const progress = frame / totalFrames;
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentNumber = Math.round(target * easeProgress);
+            
+            element.textContent = currentNumber.toLocaleString() + (hasPlus ? '+' : '');
+            
+            if (frame === totalFrames) {
+              clearInterval(counter);
+            }
+          }, frameRate);
+        }
+        
+        // Animate chart bars
+        const chartBars = document.querySelectorAll('.chart-fill');
+        const chartObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const currentHeight = entry.target.style.height;
+              entry.target.style.height = '0%';
+              
+              setTimeout(() => {
+                entry.target.style.height = currentHeight;
+              }, 300);
+              
+              chartObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.5
+        });
+        
+        chartBars.forEach(bar => chartObserver.observe(bar));
+        
+        // Research card click expansion
+        researchCards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            if (e.target.closest('a') || e.target.closest('button')) return;
+            
+            const description = this.querySelector('.card-description');
+            const initiatives = this.querySelectorAll('.initiatives-list');
+            
+            if (description && initiatives.length > 0) {
+              const isExpanded = description.style.maxHeight;
+              
+              if (!isExpanded) {
+                description.style.maxHeight = description.scrollHeight + 'px';
+                initiatives.forEach(list => {
+                  list.style.maxHeight = list.scrollHeight + 'px';
+                });
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+              } else {
+                description.style.maxHeight = null;
+                initiatives.forEach(list => {
+                  list.style.maxHeight = null;
+                });
+                this.style.transform = '';
+              }
+              
+              description.style.transition = 'max-height 0.3s ease';
+              initiatives.forEach(list => {
+                list.style.transition = 'max-height 0.3s ease';
+              });
+            }
+          });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+        
+        // Add hover effect to impact tags
+        const impactTags = document.querySelectorAll('.impact-tag');
+        impactTags.forEach(tag => {
+          tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+          });
+          
+          tag.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+          });
+        });
+        
+        // Research participation form simulation
+        const joinResearchBtn = document.querySelector('a[href="Contact.html"]');
+        if (joinResearchBtn && joinResearchBtn.textContent.includes('Join Our Research')) {
+          joinResearchBtn.addEventListener('click', function(e) {
+            // Store research interest in localStorage
+            localStorage.setItem('artlife-research-interest', 'true');
+            console.log('Research interest recorded');
+          });
+        }
+        
+        // Check for previous research interest
+        if (localStorage.getItem('artlife-research-interest') === 'true') {
+          console.log('User previously expressed research interest');
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>

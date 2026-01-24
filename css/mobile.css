@@ -1,0 +1,591 @@
+/* ======================================================
+   FILE: mobile.css
+   ROLE: Mobile overrides & interaction logic
+   OWNS: display, position, z-index (mobile only)
+   MUST NOT: redefine tokens, base typography
+====================================================== */
+
+/* ======================================================
+   MOBILE-FIRST VISIBILITY RULE
+   Desktop never hides mobile things — mobile does.
+====================================================== */
+
+
+.subpage-logo-container {
+  display: none; /* Hide desktop logo on mobile */
+}
+
+/* ========== MOBILE HEADER ========== */
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none; /* Hidden by default, shown in media query */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  background: rgba(28, 28, 30, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 2200;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 60px;
+  gap: 0.5rem;
+}
+
+.mobile-header-placeholder {
+  display: none;
+}
+
+/* ========== SEARCH ICON - LEFT SIDE ========== */
+.mobile-search-icon {
+  flex: 0 0 44px; /* Fixed width */
+  position: inherit;
+  order: 1;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  margin: 0;
+}
+
+.mobile-search-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--light);
+  transition: fill var(--transition-fast);
+}
+
+.mobile-search-icon:hover svg {
+  fill: var(--primary);
+}
+
+.mobile-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+/* ========== HAMBURGER CONTRAST CONTROL ========== */
+.hamburger {
+  flex: 0 0 44px;
+  position: fixed;
+  top: 5px;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2501;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  order: 3;
+}
+
+/* Hamburger lines - default light color */
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  width: 30px;
+  height: 3px;
+  background-color: var(--light); /* Default white */
+  border-radius: 4px;
+  position: absolute;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
+}
+
+.hamburger-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: "";
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-inner::before {
+  top: -10px;
+}
+
+.hamburger-inner::after {
+  bottom: -10px;
+}
+
+.hamburger.active {
+  transform: scale(1.1); /* Slightly enlarge when active */
+}
+
+/* Active state - X shape with contrasting colors */
+.hamburger.active .hamburger-inner {
+  transform: rotate(135deg); /* Rotate the middle line */
+  background-color: transparent; /* Make it invisible */
+}
+
+.hamburger.active .hamburger-inner::before,
+.hamburger.active .hamburger-inner::after {
+  /* Use contrasting colors based on background */
+  background-color: var(--hamburger-contrast, var(--light));
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.9); /* Stronger shadow when active */
+}
+
+.hamburger.active .hamburger-inner::before {
+  transform: translateY(0) rotate(90deg); /* Position and rotate the first line */
+  top: 0;
+}
+
+.hamburger.active .hamburger-inner::after {
+  transform: translateY(0) rotate(0); /* Position the second line */
+  bottom: 0;
+  opacity: 0; /* Hide the third line */
+}
+
+/* ========== OVERLAY "X" COLOR CHANGES ========== */
+/* Specific contrast rules for each background */
+.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
+  background-color: var(--life-gold); /* Gold contrast on green background */
+}
+
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
+  background-color: var(--life-gold); /* Gold contrast on black background */
+}
+
+.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
+  background-color: var(--art-green); /* Green contrast on gold background */
+}
+
+.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
+  background-color: var(--art-green); /* Green contrast on white background */
+}
+
+/* Regular hamburger state contrast */
+.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--light); /* White on green */
+}
+
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--light); /* White on black */
+}
+
+.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--dark); /* Dark on gold */
+}
+
+.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--dark); /* Dark on white */
+}
+
+/* Hover effects */
+.hamburger:hover .hamburger-inner,
+.hamburger:hover .hamburger-inner::before,
+.hamburger:hover .hamburger-inner::after {
+  background-color: var(--primary);
+}
+
+.hamburger.active:hover .hamburger-inner::before,
+.hamburger.active:hover .hamburger-inner::after {
+  background-color: var(--light);
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  transition: transform 0.3s ease;
+}
+
+.hamburger-overlay {
+  display: none;
+}
+
+/* ========== SMOOTHER DROPDOWN TRANSITIONS ========== */
+.nav-toggle {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-submenu {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  max-height: 0;
+  overflow: hidden;
+}
+
+.nav-submenu.active {
+  max-height: 500px; /* Adjust based on your content */
+}
+
+/* ========== PLUS TO MINUS TRANSFORMATION ========== */
+.nav-toggle {
+  position: relative;
+  padding-right: 40px; /* Space for the icon */
+}
+
+.nav-toggle::after {
+  content: "+";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-main-item.active .nav-toggle::after {
+  content: "-";
+  transform: translateY(-50%) rotate(0deg);
+}
+
+/* Adjust overlay content to accommodate social icons */
+.overlay-content {
+  padding-bottom: 80px; /* Space for social icons */
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========== ENHANCED OVERLAY STYLES ========== */
+.fullscreen-overlay {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fullscreen-nav {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Ensure text colors work with new backgrounds */
+.fullscreen-overlay[data-bg-color="community"] .nav-toggle,
+.fullscreen-overlay[data-bg-color="projects"] .nav-toggle {
+  color: #000000; /* Black text on light backgrounds */
+}
+
+.fullscreen-overlay[data-bg-color="community"] .nav-submenu a,
+.fullscreen-overlay[data-bg-color="projects"] .nav-submenu a {
+  color: #000000; /* Black text on light backgrounds */
+  border-left-color: #000000; /* Black border on light backgrounds */
+}
+
+.fullscreen-overlay[data-bg-color="community"] .nav-submenu a:hover,
+.fullscreen-overlay[data-bg-color="projects"] .nav-submenu a:hover {
+  color: var(--art-green); /* Green on hover for light backgrounds */
+}
+
+/* ===== MOBILE NAV ===== */
+
+.mobile-nav {
+  position: fixed;
+  top: 60px;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: calc(100vh - 60px);
+
+  background: var(--darker);
+  z-index: 2199;
+
+  padding: 5rem 1.5rem 2rem;
+  overflow-y: auto;
+
+  display: none; /* mobile enables this */
+  transition: right 0.3s ease-in-out;
+}
+
+.mobile-nav.active {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+   .mobile-header {
+    display: flex; /* Show on mobile */
+  }
+
+  .hamburger {
+    display: flex;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .mobile-nav {
+    top: 60px; /* Start below mobile header */
+    height: calc(100vh - 60px);
+    display: block;
+    }
+  
+  .mobile-nav.active {
+    right: 0;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--light);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobile-nav a {
+  display: block;
+  color: var(--light);
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.2s ease;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus {
+  color: var(--primary);
+}
+
+.mobile-nav a.active {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ========== MOBILE NAV LOGO STYLES ========== */
+.mobile-nav-logo {
+  position: relative !important;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+.mobile-nav-logo .subpage-logo-link {
+  display: flex;
+  gap: 0.2rem;
+  text-decoration: none;
+}
+
+.mobile-nav-logo .word {
+  transform: none !important;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: 'Playfair Display', serif;
+}
+
+.mobile-nav-logo .word.art {
+  background-image: linear-gradient(120deg, var(--secondary-dark), var(--secondary));
+}
+
+.mobile-nav-logo .word.life {
+  background-image: linear-gradient(120deg, var(--primary), var(--primary-light));
+}
+
+/* Override subpage logo styles for mobile header */
+.mobile-header .subpage-logo-container {
+  order: 2;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0 auto;
+  position: static !important; /* Remove any positioning */
+  transform: none !important;
+}
+
+.mobile-header .word {
+  font-size: clamp(1.7rem, 5vw, 2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-header .word.art {
+  background-image: linear-gradient(120deg, var(--secondary-dark), var(--secondary));
+}
+
+.mobile-header .word.life {
+  background-image: linear-gradient(120deg, var(--primary), var(--primary-light));
+}
+
+/* Ensure mobile logo stays on one line */
+.mobile-header .subpage-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-decoration: none;
+  gap: 0.1em;
+}
+
+@media (max-width: 480px) {
+  .mobile-header .word {
+    font-size: 1.8rem; /* Slightly smaller on very small phones */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mobile-header .word {
+    font-size: 2.5rem; /* Larger on tablets */
+  }
+}
+
+/* ========== ALTERNATIVE: VIEWPORT-BASED SCALING ========== */
+.mobile-header .word {
+  font-size: clamp(1.8rem, 6vw, 2.5rem); /* Fluid scaling */
+}
+
+/* ========== ENSURE PROPER MOBILE HEADER HEIGHT ========== */
+.mobile-header {
+  height: 60px; /* Ensure fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+/* ========== OVERLAY ========== */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2199;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 768px) {
+  /* Show mobile header and hide desktop elements */
+  .mobile-header {
+    display: flex;
+  }
+  
+  .menu-bar,
+  .subpage-search-container,
+  .subpage-logo-container:not(.mobile-nav-logo) {
+    display: none;
+  }
+  
+  /* Prevent scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  /* Enhanced touch targets */
+  a, button, .btn, [role="button"] {
+    min-width: 48px;
+    min-height: 48px;
+  }
+  
+  /* Optimized typography */
+  body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-header,
+  .hamburger,
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* Hide desktop search on mobile */
+@media (max-width: 768px) {
+  .subpage-search-container {
+    display: none;
+  }
+}
+
+/* ========== FULLSCREEN OVERLAY Z-INDEX ========== */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2400;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-overlay.active ~ .mobile-header {
+  display: none;
+}
+
+/* Overlay close button (X) positioned exactly where hamburger was */
+.fullscreen-overlay-close {
+  position: absolute;
+  top: 8px;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2401;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-overlay.active .overlay-close {
+  display: flex;
+}
+
+

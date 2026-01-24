@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Gallery | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* Enhanced Gallery Page - Focused on Art-Life's Work */
+    .gallery-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .gallery-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Gallery Filters */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-2xl);
+      padding: var(--spacing-lg);
+      background: rgba(42, 42, 45, 0.7);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .filter-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .filter-btn:hover {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(44, 183, 139, 0.1);
+    }
+
+    .filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+    
+    /* Impact Stats */
+    .gallery-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .gallery-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+    }
+
+    .gallery-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .stat-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+    }
+    
+    .gallery-item {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid transparent;
+      position: relative;
+      height: 100%;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+    
+    .gallery-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .gallery-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    
+    .gallery-item:hover .gallery-image img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-category {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .gallery-content {
+      padding: var(--spacing-lg);
+    }
+    
+    .gallery-date {
+      color: var(--primary);
+      font-family: var(--font-accent);
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-xs);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .gallery-title {
+      font-size: 1.3rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--light);
+      line-height: 1.4;
+    }
+    
+    .gallery-description {
+      color: var(--text-light);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .gallery-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .gallery-location {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .gallery-participants {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    /* Call to Action Section */
+    .gallery-cta-section {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: var(--spacing-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .cta-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+    
+    .cta-description {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(218, 165, 32, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    /* Lightbox Modal - Enhanced */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+      overflow-y: auto;
+    }
+    
+    .lightbox-modal.active {
+      display: block;
+      opacity: 1;
+    }
+    
+    .lightbox-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-xl);
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .lightbox-close {
+      position: fixed;
+      top: var(--spacing-lg);
+      right: var(--spacing-lg);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      transition: background var(--transition-fast);
+    }
+    
+    .lightbox-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .lightbox-image-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .lightbox-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: var(--border-radius-lg);
+    }
+    
+    .lightbox-info {
+      max-width: 800px;
+      margin: var(--spacing-xl) auto 0;
+      background: rgba(42, 42, 45, 0.9);
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .lightbox-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+    
+    .lightbox-meta {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    
+    .lightbox-description {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+      font-size: 1.1rem;
+    }
+    
+    .lightbox-details {
+      background: rgba(0, 0, 0, 0.3);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .lightbox-details h4 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.1rem;
+    }
+    
+    .lightbox-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .lightbox-details li {
+      padding: var(--spacing-xs) 0;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .lightbox-details li i {
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+    
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 var(--spacing-lg);
+      transform: translateY(-50%);
+      z-index: 1001;
+    }
+    
+    .lightbox-nav button {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .lightbox-nav button:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-filters {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .gallery-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .lightbox-content {
+        padding: var(--spacing-md);
+      }
+      
+      .lightbox-nav button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+      
+      .lightbox-info {
+        padding: var(--spacing-lg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .gallery-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-item {
+        margin-bottom: var(--spacing-lg);
+      }
+      
+      .cta-title {
+        font-size: 1.5rem;
+      }
+      
+      .gallery-cta-section {
+        padding: var(--spacing-xl);
+      }
+      
+      .lightbox-title {
+        font-size: 1.5rem;
+      }
+      
+      .lightbox-meta {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .gallery-item,
+      .gallery-stat,
+      .btn-primary,
+      .btn-secondary {
+        transition: none;
+      }
+      
+      .gallery-item:hover,
+      .gallery-stat:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link">About</a>
+        <a href="WhatWeDo.html" class="nav-link">What we do</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="gallery-container">
+          <!-- Gallery Intro -->
+          <div class="gallery-intro">
+            <h1 class="main-heading">Art-Life Gallery</h1>
+            <p>A visual journey through our community's creative impact. Explore moments from workshops, community projects, and artistic expressions that showcase the transformative power of arts in our communities.</p>
+          </div>
+
+          <!-- Gallery Stats -->
+          <div class="gallery-stats">
+            <div class="gallery-stat">
+              <div class="stat-icon">
+                <i class="fas fa-images"></i>
+              </div>
+              <div class="stat-number">500+</div>
+              <div class="stat-desc">Community Moments Captured</div>
+            </div>
+            
+            <div class="gallery-stat">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-number">2000+</div>
+              <div class="stat-desc">Artists & Participants Featured</div>
+            </div>
+            
+            <div class="gallery-stat">
+              <div class="stat-icon">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div class="stat-number">50+</div>
+              <div class="stat-desc">Events & Workshops Documented</div>
+            </div>
+            
+            <div class="gallery-stat">
+              <div class="stat-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="stat-number">15+</div>
+              <div class="stat-desc">Communities Reached</div>
+            </div>
+          </div>
+
+          <!-- Gallery Filters -->
+          <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">
+              <i class="fas fa-th-large"></i> All Moments
+            </button>
+            <button class="filter-btn" data-filter="workshops">
+              <i class="fas fa-chalkboard-teacher"></i> Workshops
+            </button>
+            <button class="filter-btn" data-filter="community">
+              <i class="fas fa-hands-helping"></i> Community Projects
+            </button>
+            <button class="filter-btn" data-filter="events">
+              <i class="fas fa-calendar-star"></i> Major Events
+            </button>
+            <button class="filter-btn" data-filter="youth">
+              <i class="fas fa-child"></i> Youth Programs
+            </button>
+          </div>
+
+          <!-- Gallery Grid -->
+          <div class="gallery-grid" id="gallery-grid">
+            <!-- Workshop 1 -->
+            <div class="gallery-item" data-category="workshops">
+              <div class="gallery-image">
+                <img src="assets/images/gallery/workshop-painting.jpg" alt="Community Painting Workshop">
+                <div class="gallery-category">Workshop</div>
+              </div>
+              <div class="gallery-content">
+                <div class="gallery-date">
+                  <i class="far fa-calendar"></i> March 2023
+                </div>
+                <h3 class="gallery-title">Community Painting Workshop</h3>
+                <p class="gallery-description">Local artists teaching painting techniques to youth in Nairobi's informal settlements.</p>
+                <div class="gallery-meta">
+                  <div class="gallery-location">
+                    <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
+                  </div>
+                  <div class="gallery-participants">
+                    <i class="fas fa-users"></i> 35 participants
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Community Project 1 -->
+            <div class="gallery-item" data-category="community">
+              <div class="gallery-image">
+                <img src="assets/images/gallery/mural-project.jpg" alt="Community Mural Project">
+                <div class="gallery-category">Community Project</div>
+              </div>
+              <div class="gallery-content">
+                <div class="gallery-date">
+                  <i class="far fa-calendar"></i> June 2023
+                </div>
+                <h3 class="gallery-title">Community Mural Project</h3>
+                <p class="gallery-description">Transforming public spaces through collaborative mural painting in urban areas.</p>
+                <div class="gallery-meta">
+                  <div class="gallery-location">
+                    <i class="fas fa-map-marker-alt"></i> Kibera, Nairobi
+                  </div>
+                  <div class="gallery-participants">
+                    <i class="fas fa-users"></i> 50+ community members
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Major Event 1 -->
+            <div class="gallery-item" data-category="events">
+              <div class="gallery-image">
+                <img src="assets/images/gallery/art-festival.jpg" alt="Annual Art-Life Festival">
+                <div class="gallery-category">Major Event</div>
+              </div>
+              <div class="gallery-content">
+                <div class="gallery-date">
+                  <i class="far fa-calendar"></i> October 2023
+                </div>
+                <h3 class="gallery-title">Annual Art-Life Festival</h3>
+                <p class="gallery-description">Celebrating Kenyan arts and culture with performances, exhibitions, and workshops.</p>
+                <div class="gallery-meta">
+                  <div class="gallery-location">
+                    <i class="fas fa-map-marker-alt"></i> University of Nairobi
+                  </div>
+                  <div class="gallery-participants">
+                    <i class="fas fa-users"></i> 1000+ attendees
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Youth Program 1 -->
+            <div class="gallery-item" data-category="youth">
+              <div class="gallery-image">
+                <img src="assets/images/gallery/youth-art.jpg" alt="Youth Art Mentorship">
+                <div class="gallery-category">Youth Program</div>
+              </div>
+              <div class="gallery-content">
+                <div class="gallery-date">
+                  <i class="far fa-calendar"></i> August 2023
+                </div>
+                <h3 class="gallery-title">Youth Art Mentorship Program</h3>
+                <p class="gallery-description">Pairing emerging young artists with established mentors for skill development.</p>
+                <div class="gallery-meta">
+                  <div class="gallery-location">
+                    <i class="fas fa-map-marker-alt"></i> Various Schools
+                  </div>
+                  <div class="gallery-participants">
+                    <i class="fas fa-users"></i> 120 students
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Workshop 2 -->
+            <div class="gallery-item" data-category="workshops">
+              <div class="gallery-image">
+                <img src="assets/images/gallery/digital-art.jpg" alt="Digital Art Workshop">
+                <div class="gallery-category">Workshop</div>
+              </div>
+              <div class="gallery-content">
+                <div class="gallery-date">
+                  <i class="far fa-calendar"></i> February 2024
+                </div>
+                <h3 class="gallery-title">Digital Art Skills Workshop</h3>
+                <p class="gallery-description">Teaching digital illustration and graphic design to young creatives.</p>
+                <div class="gallery-meta">
+                  <div class="gallery-location">
+                    <i class="fas fa-map-marker-alt"></i> Art-Life Hub
+                  </div>
+                  <div class="gallery-participants">
+                    <i class="fas fa-users"></i> 25 participants
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Community Project 2 -->
+            <div class="gallery-item" data-category="community">
+              <div class="gallery-image">
+                <img src="assets/images/gallery/climate-art.jpg" alt="Climate Action Art Project">
+                <div class="gallery-category">Community Project</div>
+              </div>
+              <div class="gallery-content">
+                <div class="gallery-date">
+                  <i class="far fa-calendar"></i> November 2023
+                </div>
+                <h3 class="gallery-title">Climate Action Through Art</h3>
+                <p class="gallery-description">Community art project raising awareness about environmental conservation.</p>
+                <div class="gallery-meta">
+                  <div class="gallery-location">
+                    <i class="fas fa-map-marker-alt"></i> Karura Forest
+                  </div>
+                  <div class="gallery-participants">
+                    <i class="fas fa-users"></i> 100+ volunteers
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="gallery-cta-section">
+            <h2 class="cta-title">Document Your Community's Creative Journey</h2>
+            <p class="cta-description">Are you part of a community art project or creative initiative? Share your stories and images with us to be featured in our gallery.</p>
+            <div class="cta-buttons">
+              <a href="Contact.html" class="btn-primary">
+                <i class="fas fa-share-alt"></i> Share Your Story
+              </a>
+              <a href="Community.html" class="btn-secondary">
+                <i class="fas fa-hands-helping"></i> Get Involved
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close" id="lightbox-close">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="lightbox-content">
+      <div class="lightbox-image-container">
+        <img id="lightbox-image" src="" alt="">
+      </div>
+      <div class="lightbox-info">
+        <h3 id="lightbox-title"></h3>
+        <div class="lightbox-meta">
+          <span id="lightbox-date"></span>
+          <span id="lightbox-category"></span>
+          <span id="lightbox-location"></span>
+        </div>
+        <p id="lightbox-description"></p>
+        <div class="lightbox-details">
+          <h4>Project Impact</h4>
+          <ul id="lightbox-impact"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="lightbox-nav">
+      <button id="lightbox-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="lightbox-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED GALLERY SYSTEM
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initGallerySystem();
+      });
+      
+      function initGallerySystem() {
+        console.log('🖼️ Enhanced Gallery System Initialized');
+        
+        // Elements
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxDate = document.getElementById('lightbox-date');
+        const lightboxCategory = document.getElementById('lightbox-category');
+        const lightboxLocation = document.getElementById('lightbox-location');
+        const lightboxDescription = document.getElementById('lightbox-description');
+        const lightboxImpact = document.getElementById('lightbox-impact');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        
+        // Gallery data with more details for lightbox
+        const galleryData = [
+          {
+            id: 1,
+            category: 'workshops',
+            image: 'assets/images/gallery/workshop-painting.jpg',
+            title: 'Community Painting Workshop',
+            date: 'March 2023',
+            location: 'Nairobi, Kenya',
+            description: 'Local artists teaching painting techniques to youth in Nairobi\'s informal settlements. This workshop focused on empowering young people through creative expression and skill development.',
+            impact: [
+              '35 youth participants trained in painting techniques',
+              '15 local artists volunteered as mentors',
+              'Collaboration with 3 community organizations',
+              'Public exhibition of completed artworks'
+            ]
+          },
+          {
+            id: 2,
+            category: 'community',
+            image: 'assets/images/gallery/mural-project.jpg',
+            title: 'Community Mural Project',
+            date: 'June 2023',
+            location: 'Kibera, Nairobi',
+            description: 'Transforming public spaces through collaborative mural painting in urban areas. This project brought together artists and community members to revitalize neighborhood walls.',
+            impact: [
+              '50+ community members participated in painting',
+              '500 sq. ft. of public space transformed',
+              'Community-designed mural theme selection',
+              'Ongoing maintenance by local residents'
+            ]
+          },
+          {
+            id: 3,
+            category: 'events',
+            image: 'assets/images/gallery/art-festival.jpg',
+            title: 'Annual Art-Life Festival',
+            date: 'October 2023',
+            location: 'University of Nairobi',
+            description: 'Celebrating Kenyan arts and culture with performances, exhibitions, and workshops. The festival showcased diverse artistic talents and fostered community engagement.',
+            impact: [
+              '1000+ attendees over 3 days',
+              '50+ artists and performers featured',
+              '15 workshops and masterclasses',
+              'Partnership with University of Nairobi'
+            ]
+          },
+          {
+            id: 4,
+            category: 'youth',
+            image: 'assets/images/gallery/youth-art.jpg',
+            title: 'Youth Art Mentorship Program',
+            date: 'August 2023',
+            location: 'Various Schools',
+            description: 'Pairing emerging young artists with established mentors for skill development. This program provided guidance and resources for aspiring creatives.',
+            impact: [
+              '120 students across 8 schools',
+              '30 mentor-mentee pairs formed',
+              '6-month structured program',
+              'Final showcase exhibition organized'
+            ]
+          },
+          {
+            id: 5,
+            category: 'workshops',
+            image: 'assets/images/gallery/digital-art.jpg',
+            title: 'Digital Art Skills Workshop',
+            date: 'February 2024',
+            location: 'Art-Life Hub',
+            description: 'Teaching digital illustration and graphic design to young creatives. This workshop introduced participants to digital tools and creative software.',
+            impact: [
+              '25 participants completed the workshop',
+              'Access to digital tablets and software',
+              'Certificates of completion awarded',
+              'Portfolio development guidance'
+            ]
+          },
+          {
+            id: 6,
+            category: 'community',
+            image: 'assets/images/gallery/climate-art.jpg',
+            title: 'Climate Action Through Art',
+            date: 'November 2023',
+            location: 'Karura Forest',
+            description: 'Community art project raising awareness about environmental conservation. This initiative combined artistic expression with environmental education.',
+            impact: [
+              '100+ volunteers participated',
+              'Art installation using recycled materials',
+              'Collaboration with environmental organizations',
+              'Media coverage reaching 50,000+ people'
+            ]
+          }
+        ];
+        
+        // Filter functionality
+        function filterGallery(category) {
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+          
+          // Show/hide items
+          galleryItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+              }, 100);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        }
+        
+        // Open lightbox
+        function openLightbox(itemId) {
+          const data = galleryData.find(item => item.id === itemId);
+          if (!data) return;
+          
+          // Set lightbox content
+          lightboxImage.src = data.image;
+          lightboxImage.alt = data.title;
+          lightboxTitle.textContent = data.title;
+          lightboxDate.textContent = data.date;
+          lightboxCategory.textContent = data.category.charAt(0).toUpperCase() + data.category.slice(1);
+          lightboxLocation.textContent = data.location;
+          lightboxDescription.textContent = data.description;
+          
+          // Set impact list
+          lightboxImpact.innerHTML = data.impact.map(item => 
+            `<li><i class="fas fa-check"></i> ${item}</li>`
+          ).join('');
+          
+          // Show lightbox
+          lightboxModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          
+          // Update current item
+          currentLightboxItem = itemId;
+        }
+        
+        // Close lightbox
+        function closeLightbox() {
+          lightboxModal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+        
+        // Navigate lightbox
+        function navigateLightbox(direction) {
+          const filteredItems = Array.from(galleryItems).filter(item => 
+            item.style.display !== 'none' && getComputedStyle(item).display !== 'none'
+          );
+          
+          const currentIndex = filteredItems.findIndex(item => 
+            parseInt(item.querySelector('.gallery-title').textContent) === currentLightboxItem
+          );
+          
+          let nextIndex;
+          if (direction === 'next') {
+            nextIndex = (currentIndex + 1) % filteredItems.length;
+          } else {
+            nextIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+          }
+          
+          const nextItem = filteredItems[nextIndex];
+          const nextTitle = nextItem.querySelector('.gallery-title').textContent;
+          const nextData = galleryData.find(item => item.title === nextTitle);
+          
+          if (nextData) {
+            openLightbox(nextData.id);
+          }
+        }
+        
+        // Setup click events on gallery items
+        function setupGalleryInteractions() {
+          galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+              const title = this.querySelector('.gallery-title').textContent;
+              const data = galleryData.find(item => item.title === title);
+              if (data) {
+                openLightbox(data.id);
+              }
+            });
+            
+            // Add keyboard support
+            item.setAttribute('tabindex', '0');
+            item.addEventListener('keypress', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const title = this.querySelector('.gallery-title').textContent;
+                const data = galleryData.find(item => item.title === title);
+                if (data) {
+                  openLightbox(data.id);
+                }
+              }
+            });
+          });
+        }
+        
+        // Setup scroll animations
+        function setupScrollAnimations() {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }
+            });
+          }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+          });
+          
+          galleryItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+          });
+        }
+        
+        // Event Listeners
+        filterButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            filterGallery(this.dataset.filter);
+          });
+        });
+        
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+        lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+        
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+          if (lightboxModal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+              closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+              navigateLightbox('next');
+            } else if (e.key === 'ArrowLeft') {
+              navigateLightbox('prev');
+            }
+          }
+        });
+        
+        // Close lightbox when clicking outside content
+        lightboxModal.addEventListener('click', function(e) {
+          if (e.target === lightboxModal) {
+            closeLightbox();
+          }
+        });
+        
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Initialize
+        let currentLightboxItem = null;
+        setupGalleryInteractions();
+        setupScrollAnimations();
+        filterGallery('all');
+      }
+    })();
+  </script>
+
+</body>
+</html>

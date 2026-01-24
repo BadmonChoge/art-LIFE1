@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>What We Do | Art-Life</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Courier+New&display=swap"
+        onload="this.media='all'"
+        onerror="this.remove()"
+        media="none">
+
+  <style>
+    /* System fonts */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    code, pre {
+      font-family: 'Courier', 'Courier New', monospace;
+    }
+
+    /* ========== ENHANCED WHAT WE DO STYLES ========== */
+    .whatwedo-container {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .whatwedo-intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-2xl);
+      padding: 0 var(--spacing-md);
+    }
+
+    .whatwedo-intro p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Vision Statement */
+    .vision-statement {
+      background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(42, 42, 45, 0.8));
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-2xl);
+      margin: var(--spacing-2xl) 0;
+      border: 2px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .vision-statement::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .vision-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .vision-title {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .vision-text {
+      color: var(--text-light);
+      line-height: 1.7;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Our Work Grid */
+    .ourwork-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) 0;
+    }
+
+    .work-card {
+      background: rgba(42, 42, 45, 0.8);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid transparent;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(42, 42, 45, 0.9);
+    }
+
+    .work-card-header {
+      padding: var(--spacing-xl);
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .work-card-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0.7;
+    }
+
+    .work-card-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-md);
+      height: 80px;
+      width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(218, 165, 32, 0.1);
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      transition: transform var(--transition-normal);
+    }
+
+    .work-card:hover .work-card-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .work-card-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--light);
+      line-height: 1.3;
+    }
+
+    .work-card-content {
+      padding: var(--spacing-lg);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-card-description {
+      color: var(--text-light);
+      margin-bottom: var(--spacing-md);
+      font-size: 1rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .work-features {
+      background: rgba(0, 0, 0, 0.2);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .work-features h4 {
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .work-features ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .work-features li {
+      padding: var(--spacing-xs) 0;
+      color: var(--text-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .work-features li::before {
+      content: '→';
+      color: var(--secondary);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .work-impact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+
+    .impact-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .impact-tag.youth {
+      background: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+      border-color: rgba(33, 150, 243, 0.3);
+    }
+
+    .impact-tag.women {
+      background: rgba(233, 30, 99, 0.1);
+      color: #E91E63;
+      border-color: rgba(233, 30, 99, 0.3);
+    }
+
+    .impact-tag.community {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+      border-color: rgba(76, 175, 80, 0.3);
+    }
+
+    .impact-tag.digital {
+      background: rgba(156, 39, 176, 0.1);
+      color: #9C27B0;
+      border-color: rgba(156, 39, 176, 0.3);
+    }
+
+    .impact-tag.mental-health {
+      background: rgba(255, 193, 7, 0.1);
+      color: #FFC107;
+      border-color: rgba(255, 193, 7, 0.3);
+    }
+
+    .impact-tag.innovation {
+      background: rgba(0, 150, 136, 0.1);
+      color: #009688;
+      border-color: rgba(0, 150, 136, 0.3);
+    }
+
+    /* Stats Section */
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-2xl) auto;
+      max-width: 1000px;
+      padding: 0 var(--spacing-md);
+    }
+
+    .impact-stat {
+      text-align: center;
+      padding: var(--spacing-xl);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      transition: all var(--transition-normal);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .impact-stat:hover {
+      background: rgba(42, 42, 45, 0.8);
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* CTA Section */
+    .whatwedo-cta {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      background: linear-gradient(135deg, rgba(42, 42, 45, 0.8), rgba(218, 165, 32, 0.1));
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: var(--spacing-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .whatwedo-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .whatwedo-cta-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: var(--spacing-sm);
+      font-weight: 700;
+    }
+    
+    .whatwedo-cta-description {
+      margin-bottom: var(--spacing-lg);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .whatwedo-cta-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(218, 165, 32, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Filter Navigation */
+    .work-filter {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-md);
+      background: rgba(42, 42, 45, 0.6);
+      border-radius: var(--border-radius-lg);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(218, 165, 32, 0.1);
+    }
+
+    .filter-btn:hover:not(.active) {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(218, 165, 32, 0.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .whatwedo-container {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .ourwork-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .impact-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .whatwedo-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .work-filter {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .vision-statement {
+        padding: var(--spacing-xl);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .impact-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .work-card {
+        padding: var(--spacing-md);
+      }
+      
+      .whatwedo-cta-title {
+        font-size: 1.5rem;
+      }
+      
+      .whatwedo-cta {
+        padding: var(--spacing-xl);
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .vision-icon {
+        font-size: 2.5rem;
+      }
+      
+      .vision-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .work-card,
+      .impact-stat,
+      .btn-primary,
+      .btn-secondary,
+      .filter-btn {
+        transition: none;
+      }
+      
+      .work-card:hover,
+      .impact-stat:hover,
+      .btn-primary:hover,
+      .btn-secondary:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <!-- Mobile Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true">
+    <div class="search-box">
+      <form role="search">
+        <label for="search-input" class="sr-only">Search Art-Life</label>
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="button" class="close-search" aria-label="Close search">✕</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <!-- Search Icon - LEFT SIDE -->
+      <button class="mobile-search-icon" id="mobile-search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <!-- Logo - CENTER -->
+      <div class="subpage-logo-container mobile-nav-logo">
+        <a href="Index.html" class="subpage-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <!-- Placeholder for right side balance -->
+      <div class="mobile-header-placeholder"></div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Full Screen Navigation Overlay -->
+    <div id="nav-overlay" class="fullscreen-overlay" aria-hidden="true">
+      <div class="overlay-content">
+        <nav class="fullscreen-nav">
+          <div class="nav-main-item" data-bg-color="about">
+            <button class="nav-toggle" data-target="about-submenu">About</button>
+            <div class="nav-submenu" id="about-submenu">
+              <a href="About.html">Get to Know Us</a>
+              <a href="OurJourney.html">Our Journey</a>
+              <a href="People.html">People</a>
+              <a href="Contact.html">Contact Us</a>
+              <a href="FAQ.html">FAQ</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="what-we-do">
+            <button class="nav-toggle" data-target="what-we-do-submenu">What We Do</button>
+            <div class="nav-submenu" id="what-we-do-submenu">
+              <a href="WhatWeDo.html">Defining Us</a>
+              <a href="ResearchAdvocacy.html">Research & Advocacy</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="community">
+            <button class="nav-toggle" data-target="community-submenu">Community</button>
+            <div class="nav-submenu" id="community-submenu">
+              <a href="Community.html">Participation</a>
+              <a href="JoinAProgram.html">Support Us</a>
+            </div>
+          </div>
+
+          <div class="nav-main-item" data-bg-color="projects">
+            <button class="nav-toggle" data-target="projects-submenu">Projects</button>
+            <div class="nav-submenu" id="projects-submenu">
+              <a href="Projects.html">Legacy Projects</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Social media icons at bottom -->
+        <div class="overlay-social">
+          <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227">
+              <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+            </svg>
+          </a>
+          <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <aside class="sidebar">
+      <!-- Logo at the top of the sidebar -->
+      <div class="sidebar-logo">
+        <a href="Index.html" class="sidebar-logo-link" aria-label="Art-Life Home">
+          <span class="word art">Art-</span>
+          <span class="word life">Life</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="About.html" class="nav-link">About</a>        
+        <a href="WhatWeDo.html" class="nav-link active">What we do</a>
+
+        <!-- Vertical Section Menu -->
+        <div class="section-menu">
+          <a href="WhatWeDo.html" class="section-menu-item active" data-target="OurWork">
+            <span>Defining Us</span>
+          </a>
+          <a href="ResearchAdvocacy.html" class="section-menu-item" data-target="research">
+            <span>Research & Advocacy</span>
+          </a>
+        </div>
+
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+      </nav>
+    </aside>
+  
+    <!-- Search Icon - RIGHT SIDE -->
+    <div class="subpage-search-container" id="search-icon-container">
+      <button class="subpage-search-icon" id="search-icon" aria-label="Open search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 2a8 8 0 105.293 14.293l5.707 5.707 1.414-1.414-5.707-5.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <main class="scroll-content">
+      <div class="content-container">
+        <section class="whatwedo-container">
+          <!-- What We Do Intro -->
+          <div class="whatwedo-intro">
+            <h1 class="main-heading">Defining Us</h1>
+            <p>Art-Life transforms communities through creative expression. Our comprehensive programs empower artists, foster innovation, and build sustainable creative economies that uplift Nairobi's neighborhoods and beyond.</p>
+          </div>
+
+          <!-- Vision Statement -->
+          <div class="vision-statement">
+            <div class="vision-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h2 class="vision-title">Our Driving Vision</h2>
+            <p class="vision-text">Our strong drive for the industry is to spearhead research, organize incubation programs through training and mentorship, curate and promote legacy art-cultural festivals and events that support community-engaged artists to break new ground for Nairobi's creative economy; and transform the city's poor suburbs into vibrant, friendly and dynamic neighborhoods; that widen opportunities for wealth and job creation.</p>
+          </div>
+
+          <!-- Impact Stats -->
+          <div class="impact-stats">
+            <div class="impact-stat">
+              <div class="stat-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Artists Trained Annually</div>
+            </div>
+            
+            <div class="impact-stat">
+              <div class="stat-icon">
+                <i class="fas fa-hands-helping"></i>
+              </div>
+              <div class="stat-number">15</div>
+              <div class="stat-label">Community Programs</div>
+            </div>
+            
+            <div class="impact-stat">
+              <div class="stat-icon">
+                <i class="fas fa-calendar-star"></i>
+              </div>
+              <div class="stat-number">8+</div>
+              <div class="stat-label">Annual Festivals</div>
+            </div>
+            
+            <div class="impact-stat">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-number">2000+</div>
+              <div class="stat-label">Community Members Impacted</div>
+            </div>
+          </div>
+
+          <!-- Work Filter -->
+          <div class="work-filter">
+            <button class="filter-btn active" data-filter="all">
+              <i class="fas fa-layer-group"></i> All Programs
+            </button>
+            <button class="filter-btn" data-filter="training">
+              <i class="fas fa-chalkboard-teacher"></i> Training
+            </button>
+            <button class="filter-btn" data-filter="incubation">
+              <i class="fas fa-seedling"></i> Incubation
+            </button>
+            <button class="filter-btn" data-filter="wellness">
+              <i class="fas fa-heart"></i> Wellness
+            </button>
+            <button class="filter-btn" data-filter="festival">
+              <i class="fas fa-music"></i> Festivals
+            </button>
+            <button class="filter-btn" data-filter="innovation">
+              <i class="fas fa-lightbulb"></i> Innovation
+            </button>
+          </div>
+
+          <!-- Our Work Grid -->
+          <div class="ourwork-grid" id="work-grid">
+            <!-- Training Program -->
+            <div class="work-card" data-category="training">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="work-card-title">Training Programs</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  Offers short- and long-term programs tailored to diverse artistic skill levels. In partnership with the University of Nairobi, Art-Life hosts an annual Symposium and monthly "Let's Talk Art" workshops.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-check-circle"></i> Key Features:</h4>
+                  <ul>
+                    <li>Annual Symposium with University of Nairobi</li>
+                    <li>Monthly "Let's Talk Art" workshops</li>
+                    <li>Specialized programs for women and PWDs</li>
+                    <li>Business skills for creative entrepreneurs</li>
+                    <li>Community artivist development</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag youth">Youth Focus</span>
+                  <span class="impact-tag women">Women Empowerment</span>
+                  <span class="impact-tag community">Community Building</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Incubation Program -->
+            <div class="work-card" data-category="incubation">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <h3 class="work-card-title">Arts Innovation Hub</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  Supports emerging artists through mentorship, market access, and entrepreneurial training. Focused on women, disabled, and marginalized youth, it helps artists turn creative ideas into viable ventures.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-rocket"></i> Incubation Support:</h4>
+                  <ul>
+                    <li>One-on-one mentorship programs</li>
+                    <li>Market access and networking</li>
+                    <li>Entrepreneurial skills training</li>
+                    <li>University expert guidance</li>
+                    <li>Business development support</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag innovation">Innovation</span>
+                  <span class="impact-tag women">Women Focus</span>
+                  <span class="impact-tag community">Marginalized Groups</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Psycho-social Support -->
+            <div class="work-card" data-category="wellness">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="work-card-title">Art-Life Wellness Center</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  In collaboration with the University of Nairobi, provides affordable mental health support to artists. Promotes art as therapy and includes clinical music programs for non-pharmacological mental health rehabilitation.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-hand-holding-heart"></i> Wellness Services:</h4>
+                  <ul>
+                    <li>Affordable mental health support</li>
+                    <li>Art therapy programs</li>
+                    <li>Clinical music therapy</li>
+                    <li>Non-pharmacological rehabilitation</li>
+                    <li>Artist wellness workshops</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag mental-health">Mental Health</span>
+                  <span class="impact-tag community">Community Support</span>
+                  <span class="impact-tag innovation">Innovative Therapy</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Music Development -->
+            <div class="work-card" data-category="training">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <h3 class="work-card-title">Art-Life Musical Academy</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  A one-year program offering boot camps in songwriting, vocals, and instrumentation. It fuses Kenyan traditional and modern music, encouraging storytelling and artistic collaboration for local and global impact.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-guitar"></i> Program Features:</h4>
+                  <ul>
+                    <li>One-year comprehensive program</li>
+                    <li>Songwriting and vocal training</li>
+                    <li>Instrumentation workshops</li>
+                    <li>Traditional-modern music fusion</li>
+                    <li>Global collaboration opportunities</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag innovation">Cultural Fusion</span>
+                  <span class="impact-tag youth">Youth Development</span>
+                  <span class="impact-tag community">Cultural Preservation</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Digital Arts -->
+            <div class="work-card" data-category="innovation">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="work-card-title">Digital Arts Program</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  Equips artists with digital tools and AI techniques, enhancing competitiveness in animation, gaming, and crypto art. It fosters innovation and unlocks global creative economies through co-creation and tech-driven expression.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-robot"></i> Digital Skills:</h4>
+                  <ul>
+                    <li>Animation and game development</li>
+                    <li>Crypto art and blockchain</li>
+                    <li>AI-assisted creative tools</li>
+                    <li>Digital collaboration platforms</li>
+                    <li>Global market access training</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag digital">Digital Innovation</span>
+                  <span class="impact-tag innovation">Tech Integration</span>
+                  <span class="impact-tag youth">Future Skills</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Festival Programs -->
+            <div class="work-card" data-category="festival">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="work-card-title">Festival Programs</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  Art-Life hosts festivals to spotlight emerging artists through live events, workshops, and cultural collaborations. Flagship events include the Nairobi Art-Life Festival, Nature-Fest (climate-focused), and West'A Fest (cycling and arts).
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-star"></i> Flagship Events:</h4>
+                  <ul>
+                    <li>Nairobi Art-Life Festival</li>
+                    <li>Nature-Fest (climate focus)</li>
+                    <li>West'A Fest (cycling & arts)</li>
+                    <li>Live workshops and exhibitions</li>
+                    <li>Cultural exchange programs</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag community">Community Events</span>
+                  <span class="impact-tag innovation">Cultural Innovation</span>
+                  <span class="impact-tag youth">Youth Engagement</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fashion Program -->
+            <div class="work-card" data-category="innovation">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-tshirt"></i>
+                </div>
+                <h3 class="work-card-title">Fashion Innovation</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  Merging Kenya's traditional fashion with modern design and AI, this program revives cultural aesthetics using local materials. Young designers explore the country's 45 ethnic groups to inspire innovative fashion rooted in heritage.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-palette"></i> Design Focus:</h4>
+                  <ul>
+                    <li>Traditional-modern fusion</li>
+                    <li>AI-assisted design tools</li>
+                    <li>Local material innovation</li>
+                    <li>Cultural heritage exploration</li>
+                    <li>Sustainable fashion practices</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag innovation">Cultural Innovation</span>
+                  <span class="impact-tag digital">Tech Integration</span>
+                  <span class="impact-tag youth">Designer Development</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hand-craft Programs -->
+            <div class="work-card" data-category="training">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-hands"></i>
+                </div>
+                <h3 class="work-card-title">Hand-craft Programs</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  Revitalizes traditional crafts like pottery, beadwork, and textiles into scalable cottage industries. The program promotes artisanal innovation, tech integration, and connects crafts to wider industries like decor and events.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-tools"></i> Craft Focus:</h4>
+                  <ul>
+                    <li>Traditional craft revitalization</li>
+                    <li>Cottage industry development</li>
+                    <li>Tech integration in crafts</li>
+                    <li>Market expansion strategies</li>
+                    <li>Inter-industry collaboration</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag community">Artisan Support</span>
+                  <span class="impact-tag innovation">Traditional Innovation</span>
+                  <span class="impact-tag women">Women Artisans</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Arts Residency -->
+            <div class="work-card" data-category="incubation">
+              <div class="work-card-header">
+                <div class="work-card-icon">
+                  <i class="fas fa-home"></i>
+                </div>
+                <h3 class="work-card-title">Arts Residency</h3>
+              </div>
+              <div class="work-card-content">
+                <p class="work-card-description">
+                  A creative space offering mentorship, co-creation, and cultural exchange for local and international artists. It nurtures at-risk creators while building bridges across communities and global arts scenes.
+                </p>
+                
+                <div class="work-features">
+                  <h4><i class="fas fa-users"></i> Residency Features:</h4>
+                  <ul>
+                    <li>Mentorship from established artists</li>
+                    <li>Co-creation spaces and studios</li>
+                    <li>International cultural exchange</li>
+                    <li>At-risk creator support</li>
+                    <li>Community integration programs</li>
+                  </ul>
+                </div>
+                
+                <div class="work-impact">
+                  <span class="impact-tag community">Global Exchange</span>
+                  <span class="impact-tag innovation">Creative Space</span>
+                  <span class="impact-tag youth">At-risk Support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Section -->
+          <div class="whatwedo-cta">
+            <h2 class="whatwedo-cta-title">Join Our Creative Revolution</h2>
+            <p class="whatwedo-cta-description">Whether you're an artist seeking support, a community member wanting to participate, or an organization looking to collaborate, there's a place for you in the Art-Life movement.</p>
+            <div class="whatwedo-cta-buttons">
+              <a href="Community.html" class="btn-primary">
+                <i class="fas fa-user-plus"></i> Get Involved
+              </a>
+              <a href="Contact.html" class="btn-secondary">
+                <i class="fas fa-envelope"></i> Contact Us
+              </a>
+              <a href="ResearchAdvocacy.html" class="btn-secondary">
+                <i class="fas fa-book"></i> Research & Advocacy
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer reveal">
+    <div class="footer-content">
+      <div class="footer-group">
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/art_life_group_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/Art_Life_Group" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="32" height="32" fill="white">
+                <path d="M714.299 536.809 1181.38 0H1073.9L664.906 470.61 337.154 0H0L489.932 710.652 0 1227h107.477l433.206-488.444L862.846 1227H1200L714.299 536.809Zm-152.289 171.713-50.266-73.648L163.503 90.75h127.736l293.225 429.721 50.266 73.648 372.225 545.813H879.954L562.01 708.522Z"/>
+              </svg>
+            </a>
+            <a href="https://ke.linkedin.com/company/art-life-group" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6v9.9h-4v-8.7c0-2.1-.1-4.7-2.9-4.7-2.9 0-3.4 2.3-3.4 4.6v8.8h-4V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>    
+
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="Privacy.html">Privacy Policy</a>
+          <a href="Terms.html">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; <span id="current-year"></span> Art-Life. All rights reserved.</p>
+      </div>
+
+      <div class="self-promo">
+        <p>
+          If this site concept, design & development resonates with you, <a href="mailto:kibiwott.studio@proton.me">drop me a line</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ENHANCED WHAT WE DO INTERACTIVITY
+    (function() {
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        initWhatWeDoSystem();
+      });
+      
+      function initWhatWeDoSystem() {
+        console.log('🎭 Enhanced What We Do System Initialized');
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const workCards = document.querySelectorAll('.work-card');
+        
+        filterButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
+            // Update active filter button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter work cards
+            workCards.forEach(card => {
+              if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                  card.style.opacity = '1';
+                  card.style.transform = 'translateY(0)';
+                }, 100);
+              } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                  card.style.display = 'none';
+                }, 300);
+              }
+            });
+            
+            // Smooth scroll to grid
+            document.getElementById('work-grid').scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          });
+        });
+        
+        // Animate work cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }, index * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px'
+        });
+        
+        workCards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+          observer.observe(card);
+        });
+        
+        // Animate stats counting
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const stat = entry.target;
+              let targetNumber;
+              
+              if (stat.textContent.includes('+')) {
+                targetNumber = parseInt(stat.textContent.replace('+', ''));
+                animateCounter(stat, targetNumber, true);
+              } else {
+                targetNumber = parseInt(stat.textContent);
+                animateCounter(stat, targetNumber, false);
+              }
+              
+              statObserver.unobserve(stat);
+            }
+          });
+        }, {
+          threshold: 0.5
+        });
+        
+        statNumbers.forEach(stat => statObserver.observe(stat));
+        
+        function animateCounter(element, target, hasPlus = false) {
+          const duration = 2000;
+          const frameRate = 1000 / 60;
+          const totalFrames = Math.round(duration / frameRate);
+          let frame = 0;
+          
+          const counter = setInterval(() => {
+            frame++;
+            const progress = frame / totalFrames;
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+            const currentNumber = Math.round(target * easeProgress);
+            
+            element.textContent = currentNumber.toLocaleString() + (hasPlus ? '+' : '');
+            
+            if (frame === totalFrames) {
+              clearInterval(counter);
+            }
+          }, frameRate);
+        }
+        
+        // Work card click expansion
+        workCards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            if (e.target.closest('a') || e.target.closest('button')) return;
+            
+            const description = this.querySelector('.work-card-description');
+            const features = this.querySelector('.work-features');
+            
+            if (description && features) {
+              const isExpanded = description.style.maxHeight;
+              
+              if (!isExpanded) {
+                description.style.maxHeight = description.scrollHeight + 'px';
+                features.style.maxHeight = features.scrollHeight + 'px';
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+              } else {
+                description.style.maxHeight = null;
+                features.style.maxHeight = null;
+                this.style.transform = '';
+              }
+              
+              description.style.transition = 'max-height 0.3s ease';
+              features.style.transition = 'max-height 0.3s ease';
+            }
+          });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+        
+        // Add hover effect to impact tags
+        const impactTags = document.querySelectorAll('.impact-tag');
+        impactTags.forEach(tag => {
+          tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+          });
+          
+          tag.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
