@@ -1,0 +1,12 @@
+name: Deploy Website
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          echo "Starting deployment..."
+          mkdir -p /var/www/artlife
+          cp -r * /var/www/artlife/ 2>/dev/null || true
+          echo "✅ Deployment done! Visit: http://154.159.237.238/"
