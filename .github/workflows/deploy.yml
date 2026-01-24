@@ -1,11 +1,46 @@
-name: Deploy ArtLife
-on: push
+name: Deploy ArtLife Website
+
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v3
-      - run: |
+      
+      - name: Smart File Deployment
+        run: |
+          echo "🧠 Smart deployment for ArtLife website"
+          
+          # Create directory
           mkdir -p /var/www/artlife
-          cp -r ./* /var/www/artlife/
-          echo "✅ Deployed! Visit: http://154.159.237.238/"
+          
+          # Copy everything
+          echo "Copying all files..."
+          find . -type f -name "*" ! -path "./.git/*" ! -path "./.github/*" -exec cp --parents {} /var/www/artlife/ \; 2>/dev/null || true
+          
+          # Handle index.html vs Index.html intelligently
+          echo "Handling index files..."
+          if [ -f "/var/www/artlife/Index.html" ] && [ -f "/var/www/artlife/index.html" ]; then
+            echo "Both index files exist. Checking if they're different..."
+            if ! cmp -s "/var/www/artlife/index.html" "/var/www/artlife/Index.html"; then
+              echo "Files are different. Analyzing..."
+              # Check if index.html is a redirect
+              if grep -qi "refresh\|location\|redirect" "/var/www/artlife/index.html"; then
+                echo "index.html is a redirect file. Keeping both."
+              else
+                echo "Both have content. Making Index.html the main..."
+                cp "/var/www/artlife/Index.html" "/var/www/artlife/index.html"
+              fi
+            else
+              echo "Files are identical. Removing duplicate..."
+              rm "/var/www/artlife/Index.html"
+            fi
+          fi
+          
+          echo "✅ Deployment ready!"
+          echo "📁 Files deployed: $(find /var/www/artlife -type f | wc -l)"
+          echo "🌐 URL: http://154.159.237.238/"
