@@ -1,12 +1,35 @@
-name: Deploy Website
-on: push
+name: Deploy ArtLife Website
+
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          echo "Starting deployment..."
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Deploy Files
+        run: |
+          echo "🚀 Starting deployment..."
+          
+          # Ensure directory exists
           mkdir -p /var/www/artlife
-          cp -r * /var/www/artlife/ 2>/dev/null || true
-          echo "✅ Deployment done! Visit: http://154.159.237.238/"
+          
+          # Remove old files
+          echo "Cleaning old files..."
+          rm -rf /var/www/artlife/* 2>/dev/null || true
+          
+          # Copy all files
+          echo "Copying new files..."
+          cp -r ./* /var/www/artlife/ 2>/dev/null || true
+          
+          # Verify
+          echo "Verifying..."
+          echo "Files deployed: $(ls -1 /var/www/artlife/ | wc -l)"
+          
+          echo "✅ Deployment successful!"
+          echo "🌐 Visit: http://154.159.237.238/"
