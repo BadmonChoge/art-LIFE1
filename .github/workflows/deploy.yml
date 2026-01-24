@@ -9,40 +9,27 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # 1. Get the code
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # 2. Setup SSH (still need private key for authentication)
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
-      # 3. Deploy using localhost
       - name: Deploy to Server
         run: |
-          echo "=== Starting Deployment ==="
-          
-          # Setup SSH known hosts
           mkdir -p ~/.ssh
-          ssh-keyscan -H localhost >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -H localhost >> ~/.ssh/known_hosts
           
-          # Test SSH connection first
-          echo "Testing SSH connection..."
-          ssh -o ConnectTimeout=5 badmon_choge@localhost 'echo "SSH connection successful"'
-          
-          # Deploy files
           echo "Deploying files..."
           rsync -avz \
-            --progress \
             --delete \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.vscode' \
-            --exclude='sandbox/' \
             ./ \
             badmon_choge@localhost:/var/www/artlife/
           
           echo "✅ Deployment complete!"
-          echo "🌐 Visit: http://154.159.237.238/"
+          echo "Visit: http://154.159.237.238/"
