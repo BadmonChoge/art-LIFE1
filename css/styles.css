@@ -100,8 +100,8 @@
 html {
   scroll-behavior: smooth;
   height: 100%;  
-  max-width: 100vw;              /* Cap to viewport width */
-  overflow-x: hidden !important;  /* Force hide horizontal scrollbar site-wide */
+  max-width: 100vw;
+  overflow-x: hidden !important;
 }
 
 body {
@@ -114,9 +114,72 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* SUBPAGE OVERRIDES - Always show content on subpages */
+/* ========== HOMEPAGE ANIMATION STATES - FIXED ========== */
+/* Phase 1 & 2: Hide everything except logo */
+body.homepage:not(.phase-3) .menu-bar,
+body.homepage:not(.phase-3) .skyline-container,
+body.homepage:not(.phase-3) #search-icon-container,
+body.homepage:not(.phase-3) .hover-text,
+body.homepage:not(.phase-3) .content-wrapper,
+body.homepage:not(.phase-3) .site-footer,
+body.homepage:not(.phase-3) .ticker-container {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* IMPORTANT: MOBILE HEADER IS ALWAYS VISIBLE ON MOBILE */
+@media (max-width: 768px) {
+  body.homepage .mobile-header {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Phase 3: Show all elements with staggered animation */
+body.homepage.phase-3 .menu-bar.visible,
+body.homepage.phase-3 #search-icon-container.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.8s ease-out 0.2s, visibility 0.8s ease-out 0.2s;
+}
+
+body.homepage.phase-3 .skyline-container.visible,
+body.homepage.phase-3 .hover-text.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.8s ease-out 0.4s, visibility 0.8s ease-out 0.4s;
+}
+
+body.homepage.phase-3 .content-wrapper.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.8s ease-out 0.6s, visibility 0.8s ease-out 0.6s;
+}
+
+body.homepage.phase-3 .ticker-container.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.8s ease-out 0.8s, visibility 0.8s ease-out 0.8s;
+}
+
+body.homepage.phase-3 .site-footer.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.8s ease-out 1s, visibility 0.8s ease-out 1s;
+}
+
+/* ========== SUBPAGE OVERRIDES ========== */
 body.subpage .content-wrapper,
 body.subpage .scroll-content,
 body.subpage .site-footer,
@@ -125,10 +188,8 @@ body.subpage .ticker-container {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  display: block !important;
 }
 
-/* Ensure title is positioned correctly on subpages */
 body.subpage .title-container {
   transform: scale(0.4) translate(0, 0) !important;
   top: 20px !important;
@@ -136,7 +197,6 @@ body.subpage .title-container {
   pointer-events: auto !important;
 }
 
-/* Remove animations from subpages */
 body.subpage {
   transition: none !important;
 }
@@ -148,57 +208,6 @@ body.subpage .hover-text {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-}
-
-/* HOMEPAGE ANIMATION STATES */
-body.homepage:not(.phase-3) .menu-bar,
-body.homepage:not(.phase-3) .skyline-container,
-body.homepage:not(.phase-3) #search-icon-container,
-body.homepage:not(.phase-3) .hover-text,
-body.homepage:not(.phase-3) .content-wrapper,
-body.homepage:not(.phase-3) .site-footer,
-body.homepage:not(.phase-3) .mobile-header,
-body.homepage:not(.phase-3) .ticker-container {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-body.homepage .menu-bar.visible,
-body.homepage #search-icon-container.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.8s ease-out 0.2s, visibility 0.8s ease-out 0.2s;
-}
-
-body.homepage .skyline-container.visible,
-body.homepage .hover-text.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.8s ease-out 0.4s, visibility 0.8s ease-out 0.4s;
-}
-
-body.homepage .content-wrapper.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.8s ease-out 0.6s, visibility 0.8s ease-out 0.6s;
-}
-
-body.homepage .ticker-container.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.8s ease-out 0.8s, visibility 0.8s ease-out 0.8s;
-}
-
-body.homepage .site-footer.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.8s ease-out 1s, visibility 0.8s ease-out 1s;
 }
 
 /* ========== ENHANCED UTILITY CLASSES ========== */
@@ -239,7 +248,7 @@ body.homepage .site-footer.visible {
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* Single scroll point */
+  overflow-y: auto;
 }
 
 /* ========== ENHANCED LAYOUT STYLES ========== */
@@ -260,28 +269,28 @@ body.homepage .site-footer.visible {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4000; /* Boosted for safety above potential overlaps */
+  z-index: 4000;
   display: flex;
   justify-content: center;
   will-change: transform;
   pointer-events: auto !important;
   cursor: pointer !important;
-  opacity: 1; /* Start visible */
-  transition: all 1.5s cubic-bezier(0.2, 0.7, 0.3, 1), opacity 0.5s ease; /* Add opacity to transition */
+  opacity: 1;
+  transition: all 1.5s cubic-bezier(0.2, 0.7, 0.3, 1), opacity 0.5s ease;
 }
 
 .hero-link {
   display: flex;
   text-decoration: none;
-  z-index: 4001; /* Slightly higher to avoid overlaps */
+  z-index: 4001;
   pointer-events: auto !important;
   cursor: pointer !important;
-  transition: opacity 0.3s ease; /* Subtle hover feedback */
+  transition: opacity 0.3s ease;
 }
 
 .hero-link:hover,
 .hero-link:focus {
-  opacity: 0.85; /* Dim slightly on hover for visual cue */
+  opacity: 0.85;
 }
 
 .word {
@@ -322,7 +331,7 @@ body.homepage.phase-2 .title-container {
 }
 
 body.homepage.phase-3 .title-container {
-  transition: all 1.5s cubic-bezier(0.2, 0.7, 0.3, 1); /* Ensure applies */
+  transition: all 1.5s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
 /* Mobile and tablet: central position */
@@ -347,7 +356,7 @@ body.homepage.phase-3 .title-container {
     left: 20px;
     transform: scale(0.4) translate(0, 0);
     transform-origin: top left;
-    transition-duration: 1.8s; /* Optional: Slightly longer for better visibility */
+    transition-duration: 1.8s;
   }
 
   .subpage-search-container {
@@ -426,7 +435,7 @@ body.homepage.phase-3 .title-container {
 /* ========== ENHANCED NAVIGATION ========== */
 .menu-bar {
   position: fixed;
-  top: 20px; /* Increased top spacing to avoid logo overlap after animation */
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -884,20 +893,22 @@ body::after {
 }
 
 body::before, body::after {
-  position: fixed;  /* Change to fixed to prevent document flow overflow */
-  overflow: hidden; /* Clip any internal overflow */
+  position: fixed;
+  overflow: hidden;
 }
 
+/* ========== HAMBURGER (BASE STYLES) ========== */
 .hamburger {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 15px;
-  display: block;
-  cursor: pointer;
-  z-index: 2000;
   background: none;
   border: none;
+  cursor: pointer;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .hamburger-box {
@@ -951,40 +962,13 @@ body::before, body::after {
   transform: rotate(90deg);
 }
 
-@media (min-width: 768px) {
+/* Hamburger positioning handled by mobile.css on mobile */
+@media (min-width: 769px) {
   .hamburger {
-    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
   }
-}
-
-.mobile-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(28, 28, 30, 0.95);
-  backdrop-filter: blur(15px);
-  z-index: 1500;
-  padding: 80px 20px;
-  display: none;
-}
-
-.mobile-nav.active {
-  display: block;
-}
-
-.mobile-nav a {
-  font-size: 1.2rem;
-  color: var(--primary);
-  padding: 1rem 0;
-  display: block;
-  text-align: center;
-  transition: color var(--transition-fast);
-}
-
-.mobile-nav a:hover {
-  color: var(--secondary);
 }
 
 /* ========== MEDIA QUERIES ========== */
@@ -1011,10 +995,6 @@ body::before, body::after {
     pointer-events: none !important;
   }
   
-  .mobile-header {
-    display: none !important;
-  }
-  
   .overlay {
     display: none !important;
   }
@@ -1024,10 +1004,6 @@ body::before, body::after {
 @media (max-width: 768px) {
   .mobile-nav {
     display: block;
-  }
-  
-  .mobile-header {
-    display: flex;
   }
   
   .menu-bar {
@@ -1790,9 +1766,6 @@ body > *:not(.overlay):not(.fullscreen-overlay):not(.search-overlay) {
   z-index: 10;
 }
 
-/* ========== ANIMATION TIMING CONTROL ========== */
-/* Animation states are now handled by homepage/subpage classes above */
-
 /* ========== LOGO CLICKABILITY FIX - FINAL ========== */
 /* Enable title container to receive clicks */
 .title-container {
@@ -1855,3 +1828,79 @@ body.subpage .sidebar-logo {
 /* ===== LEGACY STATE ALIASES ===== */
 .active.is-hidden { display: none !important; }
 .open.is-visible { display: block; }
+
+/* Hide mobile header (and its logo) completely on laptops/desktops */
+@media (min-width: 769px) {
+  .mobile-header {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Extra safety: Reset any lingering transforms on mobile logo parts */
+  .mobile-nav-logo .word.life {
+    transform: none !important;
+    display: none !important;
+  }
+}
+
+/* Hide mobile header completely on laptops/desktops (min-width: 769px) */
+@media (min-width: 769px) {
+  .mobile-header {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+  
+  /* Extra safety: Hide any sub-elements like the logo if they persist */
+  .mobile-header * {
+    display: none !important;
+  }
+}
+
+/* FIX FOR SUBPAGES */
+body.subpage {
+  /* Ensure body doesn't clip content */
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+body.subpage .mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* High but reasonable */
+  background: rgba(28, 28, 30, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+body.subpage .content-wrapper {
+  position: relative;
+  z-index: 1; /* Lower than header */
+  margin-top: 60px; /* Push content down below fixed header */
+  padding-top: 0;
+}
+
+body.subpage .scroll-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove any stacking context from content wrapper */
+body.subpage .content-wrapper,
+body.subpage .scroll-content {
+  transform: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+}
