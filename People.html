@@ -46,15 +46,15 @@
 
     .people-intro {
       text-align: center;
-      max-width: 900px;
-      margin: 0 auto var(--spacing-2xl);
+      max-width: 800px;
+      margin: 0 auto var(--spacing-xl);
       padding: 0 var(--spacing-md);
     }
 
     .people-intro p {
       color: var(--text-muted);
-      font-size: 1.2rem;
-      line-height: 1.7;
+      font-size: 1.1rem;
+      line-height: 1.6;
       margin-bottom: var(--spacing-lg);
     }
 
@@ -551,63 +551,72 @@
     /* Responsive Design */
     @media (max-width: 768px) {
       .people-carousel-enhanced {
-        padding: var(--spacing-lg) 0;
+        overflow: hidden; /* Prevent horizontal scroll */
+        touch-action: pan-y; /* Better touch control */
+      }
+      
+      .carousel-track {
+        padding: var(--spacing-md) 0;
+        /* Ensure smooth snapping */
+        scroll-snap-type: x mandatory;
       }
       
       .carousel-slide {
-        flex: 0 0 100%;
+        scroll-snap-align: center;
+        /* Add slight scaling for active state */
+        transform: scale(0.85);
       }
       
-      .team-grid-enhanced {
-        grid-template-columns: 1fr;
+      .carousel-slide.active {
+        transform: scale(0.95); /* Slightly bigger on mobile */
       }
       
-      .department-list-enhanced {
-        grid-template-columns: 1fr;
+      /* Improve button sizing */
+      .carousel-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
       }
       
-      .people-stats {
-        grid-template-columns: repeat(2, 1fr);
+      /* Reduce padding on mobile */
+      .person-content {
+        padding: var(--spacing-md);
       }
       
       .person-name {
-        font-size: 1.5rem;
-      }
-      
-      .person-content {
-        padding: var(--spacing-lg);
+        font-size: 1.3rem; /* Smaller on mobile */
       }
     }
 
     @media (max-width: 480px) {
-      .team-section-enhanced {
-        padding: var(--spacing-lg);
+      .people-container {
+        padding: var(--spacing-md) 0;
+      }
+      
+      .people-intro p {
+        font-size: 1rem; /* Smaller text on mobile */
+        line-height: 1.5;
+      }
+      
+      .team-member-enhanced {
+        padding: var(--spacing-md);
       }
       
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem; /* Smaller section titles */
       }
       
-      .people-stats {
-        grid-template-columns: 1fr;
+      /* Ensure carousel doesn't overflow */
+      .people-carousel-enhanced {
+        max-width: 100vw;
+        overflow-x: hidden;
       }
       
-      .carousel-nav {
-        flex-direction: column;
-        gap: var(--spacing-md);
-      }
-      
-      .view-toggle {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .view-btn {
-        width: 100%;
-        justify-content: center;
+      /* Fix for iOS touch scrolling */
+      .carousel-track {
+        -webkit-overflow-scrolling: touch;
       }
     }
-
     /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
       .person-card,
@@ -625,6 +634,84 @@
         transform: none;
       }
     }
+    
+    @media (max-width: 768px) {
+      /* FIX: Ensure carousel fits viewport */
+      .people-carousel-enhanced {
+        width: 100vw !important;
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        overflow: hidden !important;
+      }
+      
+      .carousel-track {
+        width: 100% !important;
+      }
+      
+      .carousel-slide {
+        flex: 0 0 100vw !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 0 16px !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* FIX: Containers should not exceed viewport */
+      .people-container,
+      .leadership-section,
+      .team-section-enhanced {
+        max-width: 100vw !important;
+        width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      
+      /* FIX: Team grid */
+      .team-grid-enhanced {
+        display: block !important;
+        width: 100% !important;
+      }
+      
+      .team-member-enhanced {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 20px !important;
+      }
+    }
+
+    /* MOBILE CAROUSEL FIX */
+    @media (max-width: 768px) {
+      .carousel-track {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        transform: translateX(0px) !important;
+        left: 0 !important;
+      }
+      
+      .carousel-slide {
+        flex: 0 0 100% !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        display: none !important;
+      }
+      
+      .carousel-slide.active {
+        display: block !important;
+        opacity: 1 !important;
+        transform: scale(1) !important;
+      }
+      
+      .carousel-slide:not(.active) {
+        opacity: 0.5 !important;
+        transform: scale(0.9) !important;
+      }
+    }      
+
   </style>
 
   <!-- Performance & Core Utilities First -->
@@ -636,7 +723,6 @@
   <!-- Component System -->
   <script src="js/components/components.js" defer></script>
   <script src="js/components/formValidator.js" defer></script>
-  <script src="js/components/carousels.js" defer></script>
 
   <!-- Navigation & UI -->
   <script src="js/navigation.js" defer></script>
@@ -820,9 +906,10 @@
     <main class="scroll-content">
       <div class="content-container">
         <section class="people-container">
+          <h1 class="main-heading">People</h1>
+
           <!-- People Intro -->
           <div class="people-intro">
-            <h1 class="main-heading">People</h1>
             <p>Meet the passionate individuals and teams behind Art-Life's transformative work. Our diverse collective of artists, administrators, and advisors work together to nurture creativity and build sustainable arts communities.</p>
           </div>
 
@@ -1295,38 +1382,59 @@
   </footer>
 
   <script>
-    // ENHANCED PEOPLE PAGE SYSTEM
+    // SIMPLIFIED PEOPLE PAGE SYSTEM - NO CONFLICTS
     (function() {
+      // PREVENT DOUBLE INITIALIZATION
+      if (window.peoplePageInitialized) {
+        console.log('People page already initialized, skipping...');
+        return;
+      }
+      window.peoplePageInitialized = true;
+      
       // Wait for DOM to load
       document.addEventListener('DOMContentLoaded', function() {
         initPeopleSystem();
       });
       
       function initPeopleSystem() {
-        console.log('👥 Enhanced People System Initialized');
+        console.log('👥 People System Initialized');
         
-        // Elements
+        // CAROUSEL SYSTEM
+        initCarousel();
+        
+        // VIEW TOGGLE SYSTEM  
+        initViewToggle();
+        
+        // ANIMATION SYSTEM
+        initAnimations();
+      }
+      
+      // ======================
+      // CAROUSEL SYSTEM
+      // ======================
+      function initCarousel() {
         const carouselTrack = document.getElementById('carousel-track');
         const prevBtn = document.getElementById('prev-slide');
         const nextBtn = document.getElementById('next-slide');
         const carouselDots = document.getElementById('carousel-dots');
         const slides = document.querySelectorAll('.carousel-slide');
-        const viewBtns = document.querySelectorAll('.view-btn');
-        const teamViews = document.querySelectorAll('.team-section-enhanced');
         
-        // Carousel State
+        // Check if carousel exists
+        if (!carouselTrack || slides.length === 0) {
+          console.log('Carousel not found, skipping...');
+          return;
+        }
+        
+        console.log(`Found ${slides.length} carousel slides`);
+        
+        // Simple state
         let currentSlide = 0;
         const totalSlides = slides.length;
         let autoPlayInterval;
-        let isDragging = false;
-        let startPos = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let animationID;
         
-        // Initialize carousel
-        function initCarousel() {
-          // Create dots
+        // Initialize dots
+        if (carouselDots) {
+          carouselDots.innerHTML = '';
           slides.forEach((_, index) => {
             const dot = document.createElement('button');
             dot.className = 'carousel-dot';
@@ -1335,161 +1443,135 @@
             dot.addEventListener('click', () => goToSlide(index));
             carouselDots.appendChild(dot);
           });
-          
-          // Update buttons
-          updateCarouselButtons();
-          
-          // Start autoplay
-          startAutoPlay();
-          
-          // Touch/swipe support
-          carouselTrack.addEventListener('mousedown', dragStart);
-          carouselTrack.addEventListener('touchstart', dragStart);
-          carouselTrack.addEventListener('mouseup', dragEnd);
-          carouselTrack.addEventListener('touchend', dragEnd);
-          carouselTrack.addEventListener('mouseleave', dragEnd);
-          carouselTrack.addEventListener('mousemove', drag);
-          carouselTrack.addEventListener('touchmove', drag);
-          
-          // Prevent image drag
-          carouselTrack.querySelectorAll('img').forEach(img => {
-            img.addEventListener('dragstart', (e) => e.preventDefault());
-          });
         }
         
-        // Go to specific slide
+        // Go to specific slide - SIMPLE MOBILE-FIRST APPROACH
         function goToSlide(index) {
-          // Reset position
-          currentTranslate = -index * 100;
-          carouselTrack.style.transform = `translateX(${currentTranslate}%)`;
+          // Keep index in bounds
+          if (index < 0) index = 0;
+          if (index >= totalSlides) index = totalSlides - 1;
           
-          // Update active states
-          slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-          });
+          // MOBILE: Use simple display switching
+          if (window.innerWidth <= 768) {
+            // Hide all slides
+            slides.forEach(slide => {
+              slide.style.display = 'none';
+              slide.classList.remove('active');
+            });
+            
+            // Show current slide
+            slides[index].style.display = 'block';
+            slides[index].classList.add('active');
+            
+            // Reset track to ensure it's visible
+            carouselTrack.style.transform = 'translateX(0px)';
+            carouselTrack.style.left = '0px';
+          } 
+          // DESKTOP: Use transform animation
+          else {
+            const translateX = -index * 100;
+            carouselTrack.style.transform = `translateX(${translateX}%)`;
+            
+            // Update active class
+            slides.forEach((slide, i) => {
+              slide.classList.toggle('active', i === index);
+            });
+          }
           
           // Update dots
           document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === index);
           });
           
-          // Update current slide
           currentSlide = index;
-          
-          // Update buttons
-          updateCarouselButtons();
-          
-          // Reset autoplay
-          resetAutoPlay();
+          console.log(`Now showing slide ${index + 1}`);
         }
         
         // Next slide
         function nextSlide() {
-          if (currentSlide < totalSlides - 1) {
-            goToSlide(currentSlide + 1);
-          } else {
-            goToSlide(0); // Loop to first
-          }
+          const nextIndex = (currentSlide + 1) % totalSlides;
+          goToSlide(nextIndex);
         }
         
         // Previous slide
         function prevSlide() {
-          if (currentSlide > 0) {
-            goToSlide(currentSlide - 1);
-          } else {
-            goToSlide(totalSlides - 1); // Loop to last
-          }
-        }
-        
-        // Update carousel buttons
-        function updateCarouselButtons() {
-          prevBtn.disabled = false;
-          nextBtn.disabled = false;
+          const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+          goToSlide(prevIndex);
         }
         
         // Auto-play functionality
         function startAutoPlay() {
+          if (autoPlayInterval) clearInterval(autoPlayInterval);
           autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds
         }
         
         function stopAutoPlay() {
-          clearInterval(autoPlayInterval);
+          if (autoPlayInterval) clearInterval(autoPlayInterval);
         }
         
-        function resetAutoPlay() {
-          stopAutoPlay();
-          startAutoPlay();
-        }
+        // Event listeners
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
         
-        // Touch/swipe functionality
-        function dragStart(e) {
-          if (e.type === 'touchstart') {
-            startPos = e.touches[0].clientX;
-          } else {
-            startPos = e.clientX;
-            e.preventDefault();
+        // Initialize carousel at slide 0
+        goToSlide(0);
+        startAutoPlay();
+        
+        // Pause on hover
+        carouselTrack.addEventListener('mouseenter', stopAutoPlay);
+        carouselTrack.addEventListener('mouseleave', startAutoPlay);
+        
+        // Responsive behavior
+        window.addEventListener('resize', function() {
+          goToSlide(currentSlide);
+        });
+        
+        // Simple touch swipe for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carouselTrack.addEventListener('touchstart', function(e) {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carouselTrack.addEventListener('touchend', function(e) {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        });
+        
+        function handleSwipe() {
+          const swipeThreshold = 50; // pixels
+          const diff = touchStartX - touchEndX;
+          
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+              // Swipe left = next slide
+              nextSlide();
+            } else {
+              // Swipe right = previous slide
+              prevSlide();
+            }
           }
-          
-          isDragging = true;
-          stopAutoPlay();
-          
-          animationID = requestAnimationFrame(animation);
         }
         
-        function drag(e) {
-          if (!isDragging) return;
-          
-          let currentPosition;
-          if (e.type === 'touchmove') {
-            currentPosition = e.touches[0].clientX;
-          } else {
-            currentPosition = e.clientX;
-          }
-          
-          const diff = currentPosition - startPos;
-          const maxDrag = window.innerWidth * 0.3; // Max 30% of screen width
-          
-          // Limit drag distance
-          if (Math.abs(diff) > maxDrag) {
-            currentTranslate = prevTranslate + (diff > 0 ? maxDrag : -maxDrag);
-          } else {
-            currentTranslate = prevTranslate + diff;
-          }
-        }
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft') prevSlide();
+          if (e.key === 'ArrowRight') nextSlide();
+        });
         
-        function dragEnd() {
-          if (!isDragging) return;
-          
-          isDragging = false;
-          cancelAnimationFrame(animationID);
-          
-          const movedBy = currentTranslate - prevTranslate;
-          
-          // If drag distance is significant, change slide
-          if (movedBy < -50 && currentSlide < totalSlides - 1) {
-            nextSlide();
-          } else if (movedBy > 50 && currentSlide > 0) {
-            prevSlide();
-          }
-          
-          // Reset position
-          currentTranslate = -currentSlide * 100;
-          setSliderPosition();
-          
-          // Restart autoplay
-          resetAutoPlay();
-        }
+        console.log('✅ Carousel initialized');
+      }
+      
+      // ======================
+      // VIEW TOGGLE SYSTEM
+      // ======================
+      function initViewToggle() {
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const teamViews = document.querySelectorAll('.team-section-enhanced');
         
-        function setSliderPosition() {
-          carouselTrack.style.transform = `translateX(${currentTranslate}%)`;
-        }
+        if (viewBtns.length === 0) return;
         
-        function animation() {
-          setSliderPosition();
-          if (isDragging) requestAnimationFrame(animation);
-        }
-        
-        // View toggle functionality
         function switchView(view) {
           // Update view buttons
           viewBtns.forEach(btn => btn.classList.remove('active'));
@@ -1503,60 +1585,53 @@
           
           // Show target view
           const targetView = document.getElementById(`${view}-view`);
-          targetView.style.display = 'block';
-          setTimeout(() => {
-            targetView.classList.add('active-view');
-          }, 50);
+          if (targetView) {
+            targetView.style.display = 'block';
+            setTimeout(() => {
+              targetView.classList.add('active-view');
+            }, 50);
+          }
         }
         
-        // Intersection Observer for animations
-        function setupAnimations() {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-              }
-            });
-          }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-          });
-          
-          // Observe team members and departments
-          document.querySelectorAll('.team-member-enhanced, .department-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
-          });
-        }
-        
-        // Event Listeners
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowLeft') prevSlide();
-          if (e.key === 'ArrowRight') nextSlide;
-        });
-        
-        // View toggle listeners
+        // Event listeners
         viewBtns.forEach(btn => {
           btn.addEventListener('click', function() {
             switchView(this.dataset.view);
           });
         });
         
-        // Pause autoplay on hover
-        carouselTrack.addEventListener('mouseenter', stopAutoPlay);
-        carouselTrack.addEventListener('mouseleave', startAutoPlay);
-        
-        // Initialize
-        initCarousel();
-        setupAnimations();
+        // Initialize with board view
         switchView('board');
+        
+        console.log('✅ View toggle initialized');
+      }
+      
+      // ======================
+      // ANIMATION SYSTEM
+      // ======================
+      function initAnimations() {
+        // Simple fade-in animation for team members
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe team members and departments
+        document.querySelectorAll('.team-member-enhanced, .department-item, .people-stat').forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(el);
+        });
+        
+        console.log('✅ Animations initialized');
       }
     })();
   </script>
