@@ -36,12 +36,17 @@
       font-family: 'Courier', 'Courier New', monospace;
     }
 
-    /* Enhanced People Page */
+    /* ============================
+      PEOPLE PAGE LAYOUT
+    ============================ */
+    
     .people-container {
       padding: var(--spacing-xl) 0;
       position: relative;
       max-width: 1400px;
       margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .people-intro {
@@ -49,6 +54,7 @@
       max-width: 800px;
       margin: 0 auto var(--spacing-xl);
       padding: 0 var(--spacing-md);
+      box-sizing: border-box;
     }
 
     .people-intro p {
@@ -58,15 +64,24 @@
       margin-bottom: var(--spacing-lg);
     }
 
-    /* Enhanced Carousel */
+    /* ============================
+      CAROUSEL SECTION
+    ============================ */
+    
     .leadership-section {
       margin: var(--spacing-2xl) 0;
       padding: 0 var(--spacing-md);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .carousel-header {
       text-align: center;
+      margin-top: var(--spacing-xl);
       margin-bottom: var(--spacing-xl);
+      width: 100%;
     }
 
     .carousel-subtitle {
@@ -74,36 +89,89 @@
       font-size: 1.1rem;
       max-width: 700px;
       margin: var(--spacing-md) auto;
+      line-height: 1.6;
     }
 
-    /* Enhanced Carousel */
+    /* ============================
+      CAROUSEL CONTAINER - CENTERED
+    ============================ */
+    
     .people-carousel-enhanced {
       position: relative;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: var(--spacing-xl) 0;
+      padding: var(--spacing-xl) 40px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
+    /* ============================
+      CAROUSEL TRACK
+    ============================ */
+    
     .carousel-track {
       display: flex;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      gap: var(--spacing-lg);
-      padding: var(--spacing-md) 0;
+      padding: var(--spacing-xl) 0;
+      will-change: transform;
+      box-sizing: border-box;
+      width: 100%;
+      align-items: center;
     }
 
+    /* ============================
+      CAROUSEL SLIDES
+    ============================ */
+    
     .carousel-slide {
-      flex: 0 0 100%;
-      min-width: 0;
-      opacity: 0.5;
-      transform: scale(0.9);
-      transition: all 0.5s ease;
+      flex: 0 0 33.333%;
+      opacity: 0.4;
+      transform: scale(0.85);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       position: relative;
+      will-change: opacity, transform, flex;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 20px;
     }
 
     .carousel-slide.active {
+      flex: 0 0 40%;
       opacity: 1;
       transform: scale(1);
       z-index: 10;
+      padding: 0 25px;
+    }
+
+    .carousel-slide.prev-slide,
+    .carousel-slide.next-slide {
+      flex: 0 0 30%;
+      opacity: 0.7;
+      transform: scale(0.95);
+    }
+
+    /* ============================
+      PERSON CARD
+    ============================ */
+    
+    .carousel-slide > .person-card {
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+      transition: all 0.5s ease;
+    }
+
+    .carousel-slide.active > .person-card {
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+      border-color: var(--primary);
+      border-width: 2px;
     }
 
     .person-card {
@@ -111,9 +179,12 @@
       border-radius: var(--border-radius-lg);
       overflow: hidden;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      transition: all 0.4s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
       height: 100%;
       border: 1px solid rgba(218, 165, 32, 0.2);
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .person-card:hover {
@@ -127,13 +198,17 @@
       height: 300px;
       overflow: hidden;
       position: relative;
+      background-color: rgba(42, 42, 45, 0.5);
     }
 
     .person-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       transition: transform 0.5s ease;
+      display: block;
+      box-sizing: border-box;
     }
 
     .person-card:hover .person-image img {
@@ -153,6 +228,7 @@
     .person-content {
       padding: var(--spacing-xl);
       position: relative;
+      box-sizing: border-box;
     }
 
     .person-role {
@@ -172,6 +248,7 @@
       color: var(--light);
       margin-bottom: var(--spacing-sm);
       font-weight: 700;
+      line-height: 1.2;
     }
 
     .person-title {
@@ -179,6 +256,7 @@
       font-size: 1.1rem;
       margin-bottom: var(--spacing-lg);
       font-weight: 500;
+      line-height: 1.4;
     }
 
     .person-bio {
@@ -203,7 +281,7 @@
       align-items: center;
       justify-content: center;
       color: var(--text-light);
-      transition: all var(--transition-fast);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     }
 
     .social-link:hover {
@@ -212,13 +290,21 @@
       transform: translateY(-3px);
     }
 
-    /* Carousel Navigation */
+    /* ============================
+      CAROUSEL NAVIGATION - SINGLE LINE
+    ============================ */
+    
     .carousel-nav {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: var(--spacing-lg);
       margin-top: var(--spacing-xl);
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      box-sizing: border-box;
+      flex-wrap: nowrap;
     }
 
     .carousel-arrow {
@@ -232,14 +318,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all var(--transition-fast);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       font-size: 1.2rem;
+      flex-shrink: 0;
+      box-sizing: border-box;
     }
 
     .carousel-arrow:hover {
       background: var(--primary);
       color: var(--dark);
       transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(218, 165, 32, 0.3);
     }
 
     .carousel-arrow:disabled {
@@ -251,34 +340,107 @@
       background: rgba(218, 165, 32, 0.1);
       color: var(--primary);
       transform: none;
+      box-shadow: none;
     }
+
+    /* ============================
+      CAROUSEL DOTS - SINGLE LINE RESPONSIVE
+    ============================ */
 
     .carousel-dots {
       display: flex;
-      gap: var(--spacing-sm);
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 30px;
+      background: rgba(42, 42, 45, 0.4);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      flex-shrink: 1;
+      min-width: 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .carousel-dots:hover {
+      background: rgba(42, 42, 45, 0.6);
+      transform: translateY(-2px);
     }
 
     .carousel-dot {
-      width: 12px;
-      height: 12px;
-      background: rgba(255, 255, 255, 0.2);
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid transparent;
+      padding: 0;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-dot::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
     }
 
     .carousel-dot.active {
-      background: var(--primary);
-      transform: scale(1.2);
+      background: transparent;
+      border-color: var(--primary);
+      transform: scale(1.3);
+      box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+    }
+
+    .carousel-dot.active::before {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .carousel-dot:hover:not(.active) {
-      background: rgba(218, 165, 32, 0.5);
+      background: rgba(218, 165, 32, 0.4);
+      transform: scale(1.2);
+      border-color: rgba(218, 165, 32, 0.3);
     }
 
-    /* Team Sections */
+    .carousel-dot:active {
+      transform: scale(1.1);
+    }
+
+    /* Pulse animation for active dot */
+    @keyframes dotPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 4px rgba(218, 165, 32, 0);
+      }
+    }
+
+    .carousel-dot.active {
+      animation: dotPulse 2s infinite;
+    }
+
+    /* ============================
+      TEAM SECTIONS
+    ============================ */
+    
     .team-sections {
       margin: var(--spacing-2xl) 0;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .team-section-enhanced {
@@ -289,6 +451,8 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
       overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .team-section-enhanced::before {
@@ -300,6 +464,7 @@
       height: 3px;
       background: linear-gradient(to right, var(--primary), var(--secondary));
       opacity: 0.3;
+      transition: opacity 0.3s ease;
     }
 
     .team-section-enhanced:hover::before {
@@ -310,6 +475,7 @@
       text-align: center;
       margin-bottom: var(--spacing-xl);
       position: relative;
+      width: 100%;
     }
 
     .section-title {
@@ -317,6 +483,7 @@
       color: var(--primary);
       margin-bottom: var(--spacing-sm);
       font-weight: 700;
+      line-height: 1.2;
     }
 
     .section-subtitle {
@@ -327,22 +494,31 @@
       line-height: 1.6;
     }
 
-    /* Team Grid - Enhanced */
+    /* ============================
+      TEAM GRID
+    ============================ */
+    
     .team-grid-enhanced {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
       gap: var(--spacing-lg);
       margin-top: var(--spacing-xl);
+      width: 100%;
     }
 
     .team-member-enhanced {
       background: rgba(42, 42, 45, 0.8);
       border-radius: var(--border-radius-lg);
       padding: var(--spacing-xl);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                  box-shadow 0.4s ease,
+                  background-color 0.4s ease,
+                  border-color 0.4s ease;
       border: 1px solid transparent;
       position: relative;
       overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .team-member-enhanced:hover {
@@ -361,7 +537,7 @@
       height: 3px;
       background: var(--primary);
       transform: scaleX(0);
-      transition: transform var(--transition-normal);
+      transition: transform 0.3s ease;
     }
 
     .team-member-enhanced:hover::before {
@@ -384,6 +560,7 @@
       color: var(--light);
       margin-bottom: var(--spacing-xs);
       font-weight: 600;
+      line-height: 1.2;
     }
 
     .member-title {
@@ -391,6 +568,7 @@
       font-size: 1.1rem;
       margin-bottom: var(--spacing-md);
       font-weight: 500;
+      line-height: 1.4;
     }
 
     .member-expertise {
@@ -417,12 +595,16 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Department List - Enhanced */
+    /* ============================
+      DEPARTMENT LIST
+    ============================ */
+    
     .department-list-enhanced {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
       gap: var(--spacing-md);
       margin-top: var(--spacing-xl);
+      width: 100%;
     }
 
     .department-item {
@@ -430,9 +612,11 @@
       padding: var(--spacing-lg);
       border-radius: var(--border-radius-lg);
       border-left: 4px solid var(--primary);
-      transition: all var(--transition-normal);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
       position: relative;
       overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .department-item:hover {
@@ -450,7 +634,7 @@
       bottom: 0;
       background: linear-gradient(45deg, transparent, rgba(218, 165, 32, 0.05), transparent);
       transform: translateX(-100%);
-      transition: transform var(--transition-normal);
+      transition: transform 0.3s ease;
     }
 
     .department-item:hover::before {
@@ -462,6 +646,7 @@
       color: var(--light);
       margin-bottom: var(--spacing-sm);
       font-weight: 600;
+      line-height: 1.2;
     }
 
     .department-desc {
@@ -470,7 +655,10 @@
       line-height: 1.6;
     }
 
-    /* People Stats */
+    /* ============================
+      PEOPLE STATS
+    ============================ */
+    
     .people-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -478,6 +666,8 @@
       margin: var(--spacing-2xl) auto;
       max-width: 1000px;
       padding: 0 var(--spacing-md);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .people-stat {
@@ -485,7 +675,9 @@
       padding: var(--spacing-xl);
       background: rgba(42, 42, 45, 0.6);
       border-radius: var(--border-radius-lg);
-      transition: all var(--transition-normal);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .people-stat:hover {
@@ -510,9 +702,13 @@
     .people-desc {
       color: var(--text-muted);
       font-size: 0.95rem;
+      line-height: 1.4;
     }
 
-    /* View Toggle */
+    /* ============================
+      VIEW TOGGLE
+    ============================ */
+    
     .view-toggle {
       display: flex;
       justify-content: center;
@@ -522,6 +718,9 @@
       background: rgba(42, 42, 45, 0.6);
       border-radius: var(--border-radius-lg);
       max-width: 500px;
+      width: 100%;
+      box-sizing: border-box;
+      flex-wrap: wrap;
     }
 
     .view-btn {
@@ -531,10 +730,11 @@
       border: 2px solid transparent;
       border-radius: var(--border-radius);
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-shrink: 0;
     }
 
     .view-btn.active {
@@ -548,172 +748,802 @@
       border-color: var(--secondary);
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+    /* ============================
+      RESPONSIVE DESIGN - DESKTOP
+    ============================ */
+    
+    /* Large Desktop */
+    @media (min-width: 1600px) {
       .people-carousel-enhanced {
-        overflow: hidden; /* Prevent horizontal scroll */
-        touch-action: pan-y; /* Better touch control */
+        max-width: 1600px;
+        padding: var(--spacing-xl) 60px;
       }
       
-      .carousel-track {
-        padding: var(--spacing-md) 0;
-        /* Ensure smooth snapping */
-        scroll-snap-type: x mandatory;
+      .carousel-slide > .person-card {
+        max-width: 420px;
+      }
+      
+      /* Navigation - Large Desktop */
+      .carousel-nav {
+        gap: var(--spacing-xl);
+      }
+      
+      .carousel-arrow {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+      
+      .carousel-dots {
+        gap: 10px;
+        padding: 8px 16px;
+      }
+      
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-width: 1.5px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.4);
+        box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
+      }
+    }
+
+    @media (min-width: 1921px) {
+      .people-container {
+        max-width: 1600px;
+      }
+      
+      .people-carousel-enhanced {
+        max-width: 1600px;
+        padding: var(--spacing-2xl) 80px;
+      }
+      
+      .person-image {
+        height: 350px;
+      }
+      
+      .person-name {
+        font-size: 2.2rem;
+      }
+      
+      .person-bio {
+        font-size: 1.1rem;
+      }
+      
+      /* Navigation - 4K */
+      .carousel-nav {
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+      
+      .carousel-arrow {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+      }
+      
+      .carousel-dots {
+        gap: 12px;
+        padding: 10px 20px;
+      }
+      
+      .carousel-dot {
+        width: 14px;
+        height: 14px;
+        border-width: 2px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.5);
+        box-shadow: 0 0 0 4px rgba(218, 165, 32, 0.2);
+      }
+      
+      .carousel-slide > .person-card {
+        max-width: 450px;
+      }
+    }
+
+    @media (min-width: 2560px) {
+      .people-container {
+        max-width: 2000px;
+      }
+      
+      .people-carousel-enhanced {
+        max-width: 2000px;
+        padding: var(--spacing-2xl) 100px;
+      }
+      
+      .person-image {
+        height: 400px;
+      }
+      
+      /* Navigation - Ultra Wide */
+      .carousel-arrow {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+      
+      .carousel-dots {
+        gap: 14px;
+        padding: 12px 24px;
+      }
+      
+      .carousel-dot {
+        width: 16px;
+        height: 16px;
+      }
+      
+      .carousel-slide > .person-card {
+        max-width: 500px;
+      }
+    }
+
+    /* ============================
+      RESPONSIVE DESIGN - TABLET
+    ============================ */
+    
+    /* Tablet & Small Desktop */
+    @media (max-width: 1200px) {
+      .people-container {
+        max-width: 1000px;
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .people-carousel-enhanced {
+        max-width: 1000px;
+        padding: var(--spacing-lg) 30px;
+      }
+      
+      .person-image {
+        height: 280px;
+      }
+      
+      .person-name {
+        font-size: 1.6rem;
       }
       
       .carousel-slide {
-        scroll-snap-align: center;
-        /* Add slight scaling for active state */
-        transform: scale(0.85);
+        padding: 0 15px;
       }
       
       .carousel-slide.active {
-        transform: scale(0.95); /* Slightly bigger on mobile */
+        padding: 0 20px;
       }
       
-      /* Improve button sizing */
+      /* Navigation - Tablet Large */
+      .carousel-nav {
+        gap: var(--spacing-lg);
+      }
+      
+      .carousel-arrow {
+        width: 46px;
+        height: 46px;
+        font-size: 1.1rem;
+      }
+      
+      .carousel-dots {
+        gap: 6px;
+        padding: 5px 10px;
+      }
+      
+      .carousel-dot {
+        width: 9px;
+        height: 9px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.25);
+        box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .people-container {
+        max-width: 900px;
+      }
+      
+      .people-carousel-enhanced {
+        max-width: 900px;
+        padding: var(--spacing-lg) 25px;
+      }
+      
+      .carousel-track {
+        gap: var(--spacing-md);
+      }
+      
+      .person-image {
+        height: 260px;
+      }
+      
+      .person-name {
+        font-size: 1.5rem;
+      }
+      
+      .person-bio {
+        font-size: 0.9rem;
+      }
+      
+      /* Navigation - Tablet */
+      .carousel-nav {
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+      }
+      
       .carousel-arrow {
         width: 44px;
         height: 44px;
         font-size: 1rem;
       }
       
-      /* Reduce padding on mobile */
+      .carousel-dots {
+        gap: 5px;
+        padding: 4px 8px;
+      }
+      
+      .carousel-dot {
+        width: 8px;
+        height: 8px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 1px rgba(218, 165, 32, 0.2);
+      }
+      
+      /* Tablet - 2 slides visible */
+      .carousel-slide {
+        flex: 0 0 50%;
+        padding: 0 12px;
+      }
+      
+      .carousel-slide.active {
+        flex: 0 0 60%;
+        padding: 0 18px;
+      }
+      
+      .carousel-slide.prev-slide,
+      .carousel-slide.next-slide {
+        flex: 0 0 40%;
+      }
+      
+      .carousel-slide > .person-card {
+        max-width: 350px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .people-container {
+        max-width: 95%;
+      }
+      
+      .people-carousel-enhanced {
+        max-width: 95%;
+        padding: var(--spacing-lg) 20px;
+      }
+      
+      .carousel-track {
+        gap: var(--spacing-sm);
+      }
+      
+      .person-image {
+        height: 240px;
+      }
+      
+      .person-content {
+        padding: var(--spacing-lg);
+      }
+      
+      /* Navigation - Small Tablet */
+      .carousel-nav {
+        gap: var(--spacing-sm);
+      }
+      
+      .carousel-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+      }
+      
+      .carousel-dots {
+        gap: 4px;
+        padding: 3px 6px;
+      }
+      
+      .carousel-dot {
+        width: 7px;
+        height: 7px;
+      }
+      
+      .carousel-slide {
+        padding: 0 10px;
+      }
+      
+      .carousel-slide.active {
+        padding: 0 15px;
+      }
+    }
+
+    /* ============================
+       RESPONSIVE DESIGN - MOBILE
+    ============================ */
+    
+    @media (max-width: 768px) {
+      /* Reset all containers to 100% width */
+      .people-container,
+      .leadership-section,
+      .team-section-enhanced,
+      .team-grid-enhanced,
+      .people-intro,
+      .carousel-header,
+      .section-header {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* Carousel fixes - CENTERED */
+      .people-carousel-enhanced {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: var(--spacing-lg) 20px !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+      }
+      
+      .carousel-track {
+        gap: 0 !important;
+        width: 100% !important;
+        padding: var(--spacing-lg) 0 !important;
+      }
+      
+      /* Mobile - Single slide (fully centered) */
+      .carousel-slide {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        opacity: 0.3 !important;
+        transform: scale(0.95) !important;
+        box-sizing: border-box !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      
+      .carousel-slide.active {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+        padding: 0 15px !important;
+      }
+      
+      .carousel-slide.prev-slide,
+      .carousel-slide.next-slide {
+        display: none !important;
+      }
+      
+      .carousel-slide > .person-card {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      
+      /* Image fixes */
+      .person-image {
+        height: 200px;
+      }
+      
       .person-content {
         padding: var(--spacing-md);
       }
       
       .person-name {
-        font-size: 1.3rem; /* Smaller on mobile */
+        font-size: 1.4rem;
+      }
+      
+      .person-title {
+        font-size: 1rem;
+      }
+      
+      .person-bio {
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      
+      /* Navigation - Mobile (STAYS ON ONE LINE, ALL DOTS VISIBLE) */
+      .carousel-nav {
+        flex-direction: row;
+        gap: 8px;
+        margin-top: var(--spacing-md);
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+      }
+      
+      /* Dots - Mobile (ALL DOTS VISIBLE, NO SCROLL) */
+      .carousel-dots {
+        gap: 3px;
+        padding: 4px 8px;
+        max-width: none !important; /* Remove max-width restriction */
+        min-width: auto;
+        overflow: visible !important; /* No overflow scrolling */
+        flex-wrap: nowrap;
+        justify-content: center;
+        background: rgba(42, 42, 45, 0.7); /* Slightly darker for better visibility */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      /* Remove scrollbar styles since no scrolling needed */
+      .carousel-dots::-webkit-scrollbar {
+        display: none !important;
+      }
+      
+      .carousel-dot {
+        width: 6px;
+        height: 6px;
+        min-width: 6px;
+        flex-shrink: 0;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.4);
+        box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+      }
+      
+      .carousel-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      
+      /* Team section fixes */
+      .team-member-enhanced {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 16px;
+        padding: var(--spacing-md);
+      }
+      
+      .view-toggle {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .view-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      /* Text wrapping */
+      .member-name,
+      .member-title,
+      .member-expertise,
+      .section-title,
+      .section-subtitle,
+      .person-name,
+      .person-title,
+      .person-bio {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 640px) {
       .people-container {
         padding: var(--spacing-md) 0;
       }
       
       .people-intro p {
-        font-size: 1rem; /* Smaller text on mobile */
-        line-height: 1.5;
+        font-size: 1rem;
       }
       
-      .team-member-enhanced {
-        padding: var(--spacing-md);
+      .person-image {
+        height: 180px;
       }
       
       .section-title {
-        font-size: 1.3rem; /* Smaller section titles */
+        font-size: 1.5rem;
       }
       
-      /* Ensure carousel doesn't overflow */
+      /* Navigation - Small Mobile */
+      .carousel-nav {
+        gap: 6px;
+      }
+      
+      .carousel-dots {
+        gap: 2px;
+        padding: 3px 6px;
+      }
+      
+      .carousel-dot {
+        width: 5px;
+        height: 5px;
+        min-width: 5px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.5);
+      }
+      
+      .carousel-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 0.8rem;
+      }
+      
       .people-carousel-enhanced {
-        max-width: 100vw;
-        overflow-x: hidden;
-      }
-      
-      /* Fix for iOS touch scrolling */
-      .carousel-track {
-        -webkit-overflow-scrolling: touch;
+        padding: var(--spacing-md) 15px !important;
       }
     }
-    /* Accessibility */
+
+    @media (max-width: 480px) {
+      .person-image {
+        height: 160px;
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .person-name {
+        font-size: 1.2rem;
+      }
+      
+      .person-title {
+        font-size: 0.9rem;
+      }
+      
+      /* Navigation - Extra Small Mobile */
+      .carousel-nav {
+        gap: 4px;
+        margin-top: var(--spacing-sm);
+      }
+      
+      .carousel-dots {
+        gap: 1px;
+        padding: 2px 4px;
+      }
+      
+      .carousel-dot {
+        width: 4px;
+        height: 4px;
+        min-width: 4px;
+        border-width: 0.5px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.6);
+        box-shadow: 0 0 0 1px rgba(218, 165, 32, 0.2);
+      }
+      
+      .carousel-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+      }
+      
+      .people-carousel-enhanced {
+        padding: var(--spacing-sm) 10px !important;
+      }
+      
+      /* Simplify animation on mobile for performance */
+      .carousel-dot.active {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .people-container {
+        padding: var(--spacing-sm) 0;
+      }
+      
+      .person-image {
+        height: 140px;
+      }
+      
+      .person-name {
+        font-size: 1.1rem;
+      }
+      
+      /* Navigation - Tiny Mobile */
+      .carousel-nav {
+        gap: 3px;
+      }
+      
+      .carousel-dots {
+        gap: 1px;
+        padding: 2px 3px;
+      }
+      
+      .carousel-dot {
+        width: 3px;
+        height: 3px;
+        min-width: 3px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.7);
+      }
+      
+      .carousel-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 0.7rem;
+      }
+      
+      .people-carousel-enhanced {
+        padding: var(--spacing-sm) 8px !important;
+      }
+    }
+
+    /* ============================
+       EXTRA SMALL MOBILE FIX
+       For very small screens with many dots
+    ============================ */
+    
+    @media (max-width: 320px) {
+      /* If there are many dots (8+), make them even smaller */
+      .carousel-dots {
+        gap: 0.5px;
+        padding: 1px 2px;
+      }
+      
+      .carousel-dot {
+        width: 2.5px;
+        height: 2.5px;
+        min-width: 2.5px;
+      }
+      
+      .carousel-dot.active {
+        transform: scale(1.8);
+      }
+      
+      .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 0.65rem;
+      }
+      
+      .carousel-nav {
+        gap: 2px;
+      }
+    }
+
+    /* ============================
+       TOUCH-FRIENDLY ENHANCEMENTS
+       Updated for all dots visible
+    ============================ */
+
+    @media (hover: none) and (pointer: coarse) {
+      .carousel-dot {
+        min-width: 8px !important; /* Smaller touch target since all dots visible */
+        min-height: 8px !important;
+        width: 6px;
+        height: 6px;
+        padding: 4px;
+        margin: 1px;
+        position: relative;
+      }
+      
+      .carousel-dot::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+        height: 6px;
+        background: currentColor;
+        border-radius: 50%;
+        opacity: 0.3;
+      }
+      
+      .carousel-dot.active::after {
+        opacity: 1;
+        width: 8px;
+        height: 8px;
+      }
+      
+      .carousel-dots {
+        padding: 6px;
+        gap: 4px;
+      }
+      
+      /* Ensure arrows are still touch-friendly */
+      .carousel-arrow {
+        min-width: 44px;
+        min-height: 44px;
+      }
+    }
+    
+    /* ============================
+      ACCESSIBILITY
+    ============================ */
+    
     @media (prefers-reduced-motion: reduce) {
       .person-card,
       .team-member-enhanced,
       .department-item,
       .people-stat,
-      .carousel-arrow {
-        transition: none;
+      .carousel-arrow,
+      .carousel-slide,
+      .social-link,
+      .carousel-track,
+      .carousel-dot,
+      .carousel-dots {
+        transition: none !important;
       }
       
       .person-card:hover,
       .team-member-enhanced:hover,
       .department-item:hover,
-      .people-stat:hover {
-        transform: none;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      /* FIX: Ensure carousel fits viewport */
-      .people-carousel-enhanced {
-        width: 100vw !important;
-        margin-left: -16px !important;
-        margin-right: -16px !important;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-        overflow: hidden !important;
-      }
-      
-      .carousel-track {
-        width: 100% !important;
-      }
-      
-      .carousel-slide {
-        flex: 0 0 100vw !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-        padding: 0 16px !important;
-        box-sizing: border-box !important;
-      }
-      
-      /* FIX: Containers should not exceed viewport */
-      .people-container,
-      .leadership-section,
-      .team-section-enhanced {
-        max-width: 100vw !important;
-        width: 100% !important;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-        box-sizing: border-box !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-      }
-      
-      /* FIX: Team grid */
-      .team-grid-enhanced {
-        display: block !important;
-        width: 100% !important;
-      }
-      
-      .team-member-enhanced {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-bottom: 20px !important;
-      }
-    }
-
-    /* MOBILE CAROUSEL FIX */
-    @media (max-width: 768px) {
-      .carousel-track {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        transform: translateX(0px) !important;
-        left: 0 !important;
-      }
-      
-      .carousel-slide {
-        flex: 0 0 100% !important;
-        min-width: 100% !important;
-        width: 100% !important;
-        display: none !important;
-      }
-      
+      .people-stat:hover,
+      .carousel-arrow:hover,
+      .carousel-dot:hover,
+      .person-card:hover .person-image img,
+      .carousel-slide,
       .carousel-slide.active {
-        display: block !important;
-        opacity: 1 !important;
-        transform: scale(1) !important;
+        transform: none !important;
       }
       
-      .carousel-slide:not(.active) {
-        opacity: 0.5 !important;
-        transform: scale(0.9) !important;
+      .carousel-dot.active {
+        animation: none !important;
       }
-    }      
+      
+      .carousel-dot:hover:not(.active),
+      .carousel-dot.active,
+      .carousel-arrow:hover {
+        transform: none !important;
+      }
+    }
 
+    @media (prefers-contrast: high) {
+      .person-card,
+      .team-member-enhanced,
+      .department-item,
+      .people-stat {
+        border-width: 2px;
+        border-color: var(--light);
+      }
+      
+      .carousel-arrow {
+        border-width: 3px;
+      }
+      
+      .carousel-dot {
+        border: 2px solid var(--text-light);
+      }
+      
+      .carousel-dot.active {
+        border-width: 3px;
+        background: var(--primary) !important;
+      }
+    }
+
+    /* Focus styles for accessibility */
+    .carousel-arrow:focus,
+    .carousel-dot:focus,
+    .view-btn:focus,
+    .social-link:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .carousel-dot:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
   </style>
-
   <!-- Performance & Core Utilities First -->
   <script src="js/performance.js" defer></script>
   <script src="js/utils/imageLoader.js" defer></script>
@@ -1382,258 +2212,373 @@
   </footer>
 
   <script>
-    // SIMPLIFIED PEOPLE PAGE SYSTEM - NO CONFLICTS
-    (function() {
-      // PREVENT DOUBLE INITIALIZATION
+    // PEOPLE PAGE SYSTEM - CENTERED MULTI-SLIDE CAROUSEL
+    // Proper initialization without race conditions
+    function initPeoplePage() {
+      // Prevent duplicate initialization
       if (window.peoplePageInitialized) {
         console.log('People page already initialized, skipping...');
         return;
       }
       window.peoplePageInitialized = true;
       
-      // Wait for DOM to load
-      document.addEventListener('DOMContentLoaded', function() {
-        initPeopleSystem();
+      console.log('👥 People System Initialized');
+      
+      // Initialize systems
+      initCarousel();
+      initViewToggle();
+      initAnimations();
+    }
+    
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPeoplePage);
+    } else {
+      // DOM already loaded
+      initPeoplePage();
+    }
+    
+    // ======================
+    // CAROUSEL SYSTEM - CENTERED MULTI-SLIDE
+    // ======================
+    function initCarousel() {
+      const carouselTrack = document.getElementById('carousel-track');
+      const prevBtn = document.getElementById('prev-slide');
+      const nextBtn = document.getElementById('next-slide');
+      const carouselDots = document.getElementById('carousel-dots');
+      const slides = document.querySelectorAll('.carousel-slide');
+      
+      // Check if carousel exists
+      if (!carouselTrack || slides.length === 0) {
+        console.log('Carousel not found, skipping...');
+        return;
+      }
+      
+      console.log(`Found ${slides.length} carousel slides`);
+      
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+      let autoPlayInterval;
+      let isTransitioning = false;
+      
+      // Calculate slides per view based on screen width
+      function getSlidesPerView() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+      }
+      
+      // Get the effective container padding for centering calculations
+      function getContainerPadding() {
+        const carousel = document.querySelector('.people-carousel-enhanced');
+        if (!carousel) return 5; // Default 5% padding
+        
+        const computedStyle = window.getComputedStyle(carousel);
+        const paddingLeft = parseFloat(computedStyle.paddingLeft);
+        const paddingRight = parseFloat(computedStyle.paddingRight);
+        
+        // Convert to percentage of container width
+        const containerWidth = carousel.offsetWidth;
+        const totalPadding = ((paddingLeft + paddingRight) / containerWidth) * 100;
+        
+        return Math.min(totalPadding, 10) || 5; // Cap at 10%
+      }
+      
+      // Calculate the transform offset for perfect centering
+      function calculateTransform(index) {
+        const slidesPerView = getSlidesPerView();
+        
+        if (slidesPerView === 1) {
+          // Single slide - simple translation
+          return -index * 100;
+        } else {
+          // Multiple slides - perfect centering with dynamic padding
+          const slideWidth = 100 / slidesPerView;
+          const containerPadding = getContainerPadding();
+          
+          // Perfect centering formula
+          // Centers the active slide while accounting for container padding
+          const centerOffset = (100 - slideWidth) / 2;
+          const paddingAdjustment = containerPadding / 2;
+          
+          return -(index * slideWidth) + (centerOffset - paddingAdjustment);
+        }
+      }
+      
+      // Update slide classes (prev/active/next)
+      function updateSlideClasses(index) {
+        const slidesPerView = getSlidesPerView();
+        
+        slides.forEach((slide, i) => {
+          // Reset all classes
+          slide.classList.remove('active', 'prev-slide', 'next-slide');
+          
+          // Mobile - only show active
+          if (slidesPerView === 1) {
+            if (i === index) {
+              slide.classList.add('active');
+            }
+          } 
+          // Desktop/Tablet - show active + sides
+          else {
+            if (i === index) {
+              slide.classList.add('active');
+            } else if (i === index - 1) {
+              slide.classList.add('prev-slide');
+            } else if (i === index + 1) {
+              slide.classList.add('next-slide');
+            }
+          }
+        });
+      }
+      
+      // Go to specific slide
+      function goToSlide(index, instant = false) {
+        // Prevent rapid clicking during transitions
+        if (isTransitioning) return;
+        
+        // Keep index in bounds
+        if (index < 0) index = 0;
+        if (index >= totalSlides) index = totalSlides - 1;
+        
+        // If already on this slide, do nothing
+        if (index === currentSlide) return;
+        
+        isTransitioning = true;
+        
+        // Calculate and apply transform
+        const translateX = calculateTransform(index);
+        carouselTrack.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        carouselTrack.style.transform = `translateX(${translateX}%)`;
+        
+        // Update slide classes
+        updateSlideClasses(index);
+        
+        // Update dots
+        document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+        
+        // Update prev/next button states
+        const slidesPerView = getSlidesPerView();
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index >= totalSlides - 1;
+        
+        currentSlide = index;
+        
+        console.log(`Carousel: Slide ${currentSlide + 1}, transform: translateX(${translateX}%)`);
+        
+        // Reset transitioning flag after animation
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 500);
+      }
+      
+      // Next slide
+      function nextSlide() {
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        goToSlide(nextIndex);
+      }
+      
+      // Previous slide
+      function prevSlide() {
+        const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        goToSlide(prevIndex);
+      }
+      
+      // Initialize dots
+      if (carouselDots) {
+        carouselDots.innerHTML = '';
+        slides.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot';
+          if (index === 0) dot.classList.add('active');
+          dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+          dot.addEventListener('click', () => goToSlide(index));
+          carouselDots.appendChild(dot);
+        });
+      }
+      
+      // Auto-play functionality
+      function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds
+      }
+      
+      function stopAutoPlay() {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+        }
+      }
+      
+      // Event listeners
+      if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+        prevBtn.disabled = currentSlide === 0;
+      }
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+      }
+      
+      // Initialize carousel
+      updateSlideClasses(0);
+      goToSlide(0, true);
+      startAutoPlay();
+      
+      // Force initial centering after CSS is applied
+      setTimeout(() => {
+        const translateX = calculateTransform(currentSlide);
+        carouselTrack.style.transform = `translateX(${translateX}%)`;
+        updateSlideClasses(currentSlide);
+      }, 100);
+      
+      // Pause on hover
+      carouselTrack.addEventListener('mouseenter', stopAutoPlay);
+      carouselTrack.addEventListener('mouseleave', startAutoPlay);
+      
+      // Responsive handling
+      let resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // Recalculate position for current slide
+          const translateX = calculateTransform(currentSlide);
+          carouselTrack.style.transform = `translateX(${translateX}%)`;
+          updateSlideClasses(currentSlide);
+        }, 250);
       });
       
-      function initPeopleSystem() {
-        console.log('👥 People System Initialized');
-        
-        // CAROUSEL SYSTEM
-        initCarousel();
-        
-        // VIEW TOGGLE SYSTEM  
-        initViewToggle();
-        
-        // ANIMATION SYSTEM
-        initAnimations();
-      }
+      // Simple touch swipe for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
       
-      // ======================
-      // CAROUSEL SYSTEM
-      // ======================
-      function initCarousel() {
-        const carouselTrack = document.getElementById('carousel-track');
-        const prevBtn = document.getElementById('prev-slide');
-        const nextBtn = document.getElementById('next-slide');
-        const carouselDots = document.getElementById('carousel-dots');
-        const slides = document.querySelectorAll('.carousel-slide');
-        
-        // Check if carousel exists
-        if (!carouselTrack || slides.length === 0) {
-          console.log('Carousel not found, skipping...');
-          return;
-        }
-        
-        console.log(`Found ${slides.length} carousel slides`);
-        
-        // Simple state
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        let autoPlayInterval;
-        
-        // Initialize dots
-        if (carouselDots) {
-          carouselDots.innerHTML = '';
-          slides.forEach((_, index) => {
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot';
-            if (index === 0) dot.classList.add('active');
-            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-            dot.addEventListener('click', () => goToSlide(index));
-            carouselDots.appendChild(dot);
-          });
-        }
-        
-        // Go to specific slide - SIMPLE MOBILE-FIRST APPROACH
-        function goToSlide(index) {
-          // Keep index in bounds
-          if (index < 0) index = 0;
-          if (index >= totalSlides) index = totalSlides - 1;
-          
-          // MOBILE: Use simple display switching
-          if (window.innerWidth <= 768) {
-            // Hide all slides
-            slides.forEach(slide => {
-              slide.style.display = 'none';
-              slide.classList.remove('active');
-            });
-            
-            // Show current slide
-            slides[index].style.display = 'block';
-            slides[index].classList.add('active');
-            
-            // Reset track to ensure it's visible
-            carouselTrack.style.transform = 'translateX(0px)';
-            carouselTrack.style.left = '0px';
-          } 
-          // DESKTOP: Use transform animation
-          else {
-            const translateX = -index * 100;
-            carouselTrack.style.transform = `translateX(${translateX}%)`;
-            
-            // Update active class
-            slides.forEach((slide, i) => {
-              slide.classList.toggle('active', i === index);
-            });
-          }
-          
-          // Update dots
-          document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-          });
-          
-          currentSlide = index;
-          console.log(`Now showing slide ${index + 1}`);
-        }
-        
-        // Next slide
-        function nextSlide() {
-          const nextIndex = (currentSlide + 1) % totalSlides;
-          goToSlide(nextIndex);
-        }
-        
-        // Previous slide
-        function prevSlide() {
-          const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-          goToSlide(prevIndex);
-        }
-        
-        // Auto-play functionality
-        function startAutoPlay() {
-          if (autoPlayInterval) clearInterval(autoPlayInterval);
-          autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds
-        }
-        
-        function stopAutoPlay() {
-          if (autoPlayInterval) clearInterval(autoPlayInterval);
-        }
-        
-        // Event listeners
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-        
-        // Initialize carousel at slide 0
-        goToSlide(0);
+      carouselTrack.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        stopAutoPlay();
+      }, { passive: true });
+      
+      carouselTrack.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
         startAutoPlay();
+      }, { passive: true });
+      
+      function handleSwipe() {
+        const swipeThreshold = 50; // pixels
+        const diff = touchStartX - touchEndX;
         
-        // Pause on hover
-        carouselTrack.addEventListener('mouseenter', stopAutoPlay);
-        carouselTrack.addEventListener('mouseleave', startAutoPlay);
-        
-        // Responsive behavior
-        window.addEventListener('resize', function() {
-          goToSlide(currentSlide);
-        });
-        
-        // Simple touch swipe for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        carouselTrack.addEventListener('touchstart', function(e) {
-          touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        carouselTrack.addEventListener('touchend', function(e) {
-          touchEndX = e.changedTouches[0].screenX;
-          handleSwipe();
-        });
-        
-        function handleSwipe() {
-          const swipeThreshold = 50; // pixels
-          const diff = touchStartX - touchEndX;
-          
-          if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-              // Swipe left = next slide
-              nextSlide();
-            } else {
-              // Swipe right = previous slide
-              prevSlide();
-            }
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            // Swipe left = next slide
+            nextSlide();
+          } else {
+            // Swipe right = previous slide
+            prevSlide();
           }
         }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'ArrowLeft') prevSlide();
-          if (e.key === 'ArrowRight') nextSlide();
-        });
-        
-        console.log('✅ Carousel initialized');
       }
       
-      // ======================
-      // VIEW TOGGLE SYSTEM
-      // ======================
-      function initViewToggle() {
-        const viewBtns = document.querySelectorAll('.view-btn');
-        const teamViews = document.querySelectorAll('.team-section-enhanced');
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        // Only handle if carousel is visible
+        const carousel = document.querySelector('.people-carousel-enhanced');
+        if (!carousel) return;
         
-        if (viewBtns.length === 0) return;
+        const rect = carousel.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
         
-        function switchView(view) {
-          // Update view buttons
-          viewBtns.forEach(btn => btn.classList.remove('active'));
-          document.querySelector(`[data-view="${view}"]`).classList.add('active');
-          
-          // Hide all views
-          teamViews.forEach(view => {
-            view.classList.remove('active-view');
-            view.style.display = 'none';
-          });
-          
-          // Show target view
-          const targetView = document.getElementById(`${view}-view`);
-          if (targetView) {
-            targetView.style.display = 'block';
-            setTimeout(() => {
-              targetView.classList.add('active-view');
-            }, 50);
-          }
+        if (!isVisible) return;
+        
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevSlide();
         }
-        
-        // Event listeners
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextSlide();
+        }
+      });
+      
+      console.log('✅ Centered Multi-Slide Carousel initialized');
+    }
+    
+    // ======================
+    // VIEW TOGGLE SYSTEM
+    // ======================
+    function initViewToggle() {
+      const viewBtns = document.querySelectorAll('.view-btn');
+      const teamViews = document.querySelectorAll('.team-section-enhanced');
+      
+      if (viewBtns.length === 0) return;
+      
+      function switchView(view) {
+        // Update view buttons
         viewBtns.forEach(btn => {
-          btn.addEventListener('click', function() {
-            switchView(this.dataset.view);
-          });
+          const isActive = btn.dataset.view === view;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
         
-        // Initialize with board view
-        switchView('board');
+        // Hide all views
+        teamViews.forEach(viewEl => {
+          viewEl.classList.remove('active-view');
+          viewEl.style.display = 'none';
+        });
         
-        console.log('✅ View toggle initialized');
+        // Show target view
+        const targetView = document.getElementById(`${view}-view`);
+        if (targetView) {
+          targetView.style.display = 'block';
+          setTimeout(() => {
+            targetView.classList.add('active-view');
+          }, 10);
+        }
       }
       
-      // ======================
-      // ANIMATION SYSTEM
-      // ======================
-      function initAnimations() {
-        // Simple fade-in animation for team members
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
+      // Event listeners
+      viewBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          switchView(this.dataset.view);
         });
-        
-        // Observe team members and departments
-        document.querySelectorAll('.team-member-enhanced, .department-item, .people-stat').forEach(el => {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(20px)';
-          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          observer.observe(el);
+      });
+      
+      // Initialize with board view
+      switchView('board');
+      
+      console.log('✅ View toggle initialized');
+    }
+    
+    // ======================
+    // ANIMATION SYSTEM
+    // ======================
+    function initAnimations() {
+      // Simple fade-in animation for team members
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
         });
-        
-        console.log('✅ Animations initialized');
-      }
-    })();
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      // Observe team members and departments
+      document.querySelectorAll('.team-member-enhanced, .department-item, .people-stat').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
+      
+      console.log('✅ Animations initialized');
+    }
   </script>
 
 </body>
