@@ -737,8 +737,8 @@ body .fullscreen-overlay[data-bg-color="projects"].active ~ .hamburger.active .h
   /* --- SCROLL-BASED BEHAVIOR --- */
   /* Gentle fade when scrolling */
   body.scrolling .hover-text {
-    opacity: 0.4 !important;
-    transform: translate(-50%, -45%) !important;
+    opacity: 1;
+    transform: translate(-50%, -50%) !important;
   }
   
   /* Restore when stopping */
