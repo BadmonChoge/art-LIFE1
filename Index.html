@@ -24,8 +24,8 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/mobile.css">
   <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/mobile.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -522,14 +522,6 @@
       transform: translate(-50%, -40%);
     }
 
-    /* Mobile complete removal */
-    @media (max-width: 768px) {
-      .skyline-container,
-      .hover-text {
-        display: none !important;
-      }
-    }
-
     /* Desktop enhancements */
     @media (min-width: 769px) {
       .skyline-container,
@@ -545,6 +537,61 @@
       }
     }
 
+    /* ========== MOBILE Z-INDEX & VISIBILITY FIXES (≤1023px) ========== */
+    @media (max-width: 1023px) {
+      /* EMERGENCY FIX: Ensure mobile welcome elements are visible */
+      body.homepage.phase-3 .hover-text.typewriter-ready,
+      body.homepage.phase-3 .hover-text.visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        pointer-events: none !important;
+        z-index: 5 !important; /* CHANGED: Lowered from 15 to 5 */
+      }
+      
+      /* Force hide typewriter when menu is open */
+      .fullscreen-overlay.active ~ .hover-text,
+      .fullscreen-overlay.active + .hover-text,
+      body.homepage .fullscreen-overlay.active ~ .hover-text {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        z-index: 1 !important; /* CHANGED: Lowered from 5 to 1 */
+      }
+          
+      /* General typewriter styling - always below hamburger */
+      .hover-text {
+        pointer-events: none !important;
+        z-index: 5 !important; /* ADDED: Force z-index */
+      }
+      
+      body.homepage.phase-3 .skyline-container.visible,
+      body.homepage.phase-3 .skyline-container.fade-in {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        z-index: 3 !important; /* CHANGED: Lowered from 10 to 3 */
+      }
+      
+      /* Override any conflicting scroll-fade styles */
+      .hover-text.scroll-fade,
+      .skyline-container.scroll-fade {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      /* Ensure typewriter text doesn't block anything */
+      .hover-text * {
+        pointer-events: none !important;
+      }
+      
+      /* Mobile header should also be above typewriter */
+      .mobile-header {
+        z-index: 2500 !important; /* ADDED: Just below hamburger */
+      }
+    }
+
+    /* Reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       .skyline-container,
       .hover-text {
@@ -792,8 +839,50 @@
     .skyline-container {
       pointer-events: none !important;
     }
-  </style>
 
+    /* Add this to your existing CSS in the mobile section */
+    @media (max-width: 1023px) {
+      /* EMERGENCY FIX: Ensure mobile welcome elements are visible */
+      body.homepage.phase-3 .hover-text.typewriter-ready,
+      body.homepage.phase-3 .hover-text.visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        pointer-events: none !important;
+        z-index: 5 !important; /* CHANGED: Lowered from 15 to 5 */
+      }
+      
+      body.homepage.phase-3 .skyline-container.visible,
+      body.homepage.phase-3 .skyline-container.fade-in {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+      }
+      
+      /* Override any conflicting scroll-fade styles */
+      .hover-text.scroll-fade,
+      .skyline-container.scroll-fade {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      /* Force hide typewriter when overlay is active */
+      .fullscreen-overlay.active ~ .hover-text,
+      .fullscreen-overlay.active + .hover-text,
+      body.homepage .fullscreen-overlay.active ~ .hover-text {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        z-index: 1 !important;
+      }
+      
+      /* Overlay should be high z-index */
+      .fullscreen-overlay.active {
+        z-index: 10000 !important;
+      }
+    }
+  </style>
+  
   <!-- Performance & Core Utilities First -->
   <script src="js/performance.js" defer></script>
   <script src="js/utils/imageLoader.js" defer></script>
@@ -1251,125 +1340,393 @@
   </footer>
 
   <script>
-    // ENHANCED HOMEPAGE INTERACTIVITY
-    (function() {
-      // Wait for DOM to load
+  // ENHANCED HOMEPAGE INTERACTIVITY - FINAL FIXED VERSION
+  (function() {
+    // PREVENT DUPLICATE INITIALIZATION
+    if (window.homepageInitialized) {
+      console.warn('Homepage already initialized, skipping');
+      return;
+    }
+    window.homepageInitialized = true;
+    
+    // Wait for DOM to load COMPLETELY with delay
+    if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
-        initHomepageSystem();
+        setTimeout(initializeHomepage, 100);
+      });
+    } else {
+      setTimeout(initializeHomepage, 100);
+    }
+    
+    function initializeHomepage() {
+      console.log('🏠 Enhanced Homepage System Initialized');
+      initHomepageSystem();
+      initMobileEnhancements();
+      initTypewriterMobile();
+    }
+    
+    function initHomepageSystem() {
+      // Set current year in footer
+      const currentYear = document.getElementById('current-year');
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+      
+      // Animate event cards on scroll
+      const eventCards = document.querySelectorAll('.event-card');
+      const tileElements = document.querySelectorAll('.tile');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }, index * 50);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
       });
       
-      function initHomepageSystem() {
-        console.log('🏠 Enhanced Homepage System Initialized');
-        
-        // Set current year in footer
-        const currentYear = document.getElementById('current-year');
-        if (currentYear) {
-          currentYear.textContent = new Date().getFullYear();
-        }
-        
-        // Animate event cards on scroll
-        const eventCards = document.querySelectorAll('.event-card');
-        const tileElements = document.querySelectorAll('.tile');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-              }, index * 50);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -100px 0px'
+      eventCards.forEach((card, index) => {
+        card.style.opacity = '0.3';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `opacity 0.4s ease-out ${index * 0.05}s, transform 0.4s ease-out ${index * 0.05}s`;
+        observer.observe(card);
+      });
+      
+      // Animate gallery tiles
+      tileElements.forEach((tile, index) => {
+        tile.style.opacity = '0.3';
+        tile.style.transform = 'translateY(20px)';
+        tile.style.transition = `opacity 0.4s ease-out ${index * 0.05}s, transform 0.4s ease-out ${index * 0.05}s`;
+        observer.observe(tile);
+      });
+      
+      // Tile flip on click or keypress
+      tileElements.forEach(tile => {
+        tile.addEventListener('click', function(e) {
+          if (e.target.closest('a')) return;
+          this.classList.toggle('flipped');
         });
-        
-        eventCards.forEach((card, index) => {
-          card.style.opacity = '0.3';
-          card.style.transform = 'translateY(20px)';
-          card.style.transition = `opacity 0.4s ease-out ${index * 0.05}s, transform 0.4s ease-out ${index * 0.05}s`;
-          observer.observe(card);
-        });
-        
-        // Animate gallery tiles
-        tileElements.forEach((tile, index) => {
-          tile.style.opacity = '0.3';
-          tile.style.transform = 'translateY(20px)';
-          tile.style.transition = `opacity 0.4s ease-out ${index * 0.05}s, transform 0.4s ease-out ${index * 0.05}s`;
-          observer.observe(tile);
-        });
-        
-        // Tile flip on click or keypress
-        tileElements.forEach(tile => {
-          tile.addEventListener('click', function(e) {
-            if (e.target.closest('a')) return;
-            this.classList.toggle('flipped');
-          });
-          tile.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              this.classList.toggle('flipped');
-            }
-          });
-        });
-        
-        // Newsletter form handling
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-          newsletterForm.addEventListener('submit', function(e) {
-            // Basic validation
-            const emailInput = this.querySelector('#email');
-            if (!emailInput.value.trim()) {
-              e.preventDefault();
-              alert('Please enter a valid email address.');
-              return;
-            }
-            // Simulate subscription (replace with actual API call if needed)
-            alert('Thank you for subscribing to the Art-Life newsletter!');
-            this.reset();
-          });
-        }
-        
-        // Partner ticker pause on hover
-        const tickerContainer = document.getElementById('partnerTicker');
-        const tickerTrack = document.getElementById('tickerTrack');
-        if (tickerContainer && tickerTrack) {
-          tickerContainer.addEventListener('mouseenter', () => {
-            tickerTrack.style.animationPlayState = 'paused';
-          });
-          
-          tickerContainer.addEventListener('mouseleave', () => {
-            tickerTrack.style.animationPlayState = 'running';
-          });
-        }
-        
-        // Partner ticker click navigation
-        if (tickerContainer) {
-        tickerContainer.addEventListener('click', function() {
-            window.location.href = 'Partners.html';
-        });
-        }
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function(e) {
+        tile.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          });
+            this.classList.toggle('flipped');
+          }
+        });
+      });
+      
+      // Newsletter form handling
+      const newsletterForm = document.querySelector('.newsletter-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          // Basic validation
+          const emailInput = this.querySelector('#email');
+          if (!emailInput.value.trim()) {
+            e.preventDefault();
+            alert('Please enter a valid email address.');
+            return;
+          }
+          // Simulate subscription (replace with actual API call if needed)
+          alert('Thank you for subscribing to the Art-Life newsletter!');
+          this.reset();
         });
       }
-    })();
+      
+      // Partner ticker pause on hover
+      const tickerContainer = document.getElementById('partnerTicker');
+      const tickerTrack = document.getElementById('tickerTrack');
+      if (tickerContainer && tickerTrack) {
+        tickerContainer.addEventListener('mouseenter', () => {
+          tickerTrack.style.animationPlayState = 'paused';
+        });
+        
+        tickerContainer.addEventListener('mouseleave', () => {
+          tickerTrack.style.animationPlayState = 'running';
+        });
+      }
+      
+      // Partner ticker click navigation
+      if (tickerContainer) {
+        tickerContainer.addEventListener('click', function() {
+          window.location.href = 'Partners.html';
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+    
+    // ======================================================
+    // MOBILE ENHANCEMENTS FOR SKYLINE & HOVER TEXT
+    // ======================================================
+    function initMobileEnhancements() {
+      const hoverText = document.querySelector('.hover-text');
+      const body = document.body;
+      
+      // Only run on mobile/tablet
+      if (hoverText && window.innerWidth <= 1023) {
+        console.log('📱 Mobile Enhancements Initialized');
+        
+        // REMOVED: Interactive tooltip behavior
+        // Now it's a static welcome message, not interactive
+        hoverText.style.cursor = 'default';
+        
+        // Scroll behavior
+        let scrollTimer;
+        window.addEventListener('scroll', function() {
+          body.classList.add('scrolling');
+          clearTimeout(scrollTimer);
+          
+          // Check if at bottom (within 100px)
+          const isAtBottom = window.innerHeight + window.scrollY >= 
+                          document.body.offsetHeight - 100;
+          body.classList.toggle('at-bottom', isAtBottom);
+          
+          scrollTimer = setTimeout(() => {
+            body.classList.remove('scrolling');
+          }, 500);
+        });
+        
+        // Also handle touch scroll
+        window.addEventListener('touchmove', function() {
+          body.classList.add('scrolling');
+          clearTimeout(scrollTimer);
+          
+          scrollTimer = setTimeout(() => {
+            body.classList.remove('scrolling');
+          }, 500);
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+          // If user resizes to desktop, remove mobile classes
+          if (window.innerWidth > 1023) {
+            body.classList.remove('scrolling', 'at-bottom');
+          }
+        });
+      }
+    }
+
+    // ======================================================
+    // WELCOMING TYPEWRITER TEXT FOR MOBILE/TABLET - FINAL FIX
+    // ======================================================
+    function initTypewriterMobile() {
+      // NUCLEAR DUPLICATION PREVENTION - SET FLAG IMMEDIATELY
+      if (window.mobileWelcomeExecuted) {
+        console.log('⚠️ Mobile welcome already executed, skipping');
+        return;
+      }
+      window.mobileWelcomeExecuted = true; // LOCK FIRST
+      
+      // Only run on mobile/tablet (≤1023px)
+      if (window.innerWidth > 1023) {
+        console.log('📱 Typewriter: Desktop detected, skipping mobile welcome');
+        return;
+      }
+      
+      const hoverText = document.querySelector('.hover-text');
+      const skyline = document.querySelector('.skyline-container');
+      const hamburger = document.getElementById('hamburger');
+      const fullscreenOverlay = document.getElementById('nav-overlay');
+      
+      if (!hoverText || !skyline) {
+        console.warn('📱 Typewriter: Required elements not found');
+        return;
+      }
+      
+      console.log('📱 Mobile welcome system initialized');
+      
+      // FIX 1: FORCE HAMBURGER TO BE ON TOP
+      if (hamburger) {
+        hamburger.style.zIndex = '2501';
+        hamburger.style.position = 'fixed';
+        hamburger.style.top = '8px';
+        hamburger.style.right = '1rem';
+      }
+      
+      // FIX 2: LOWER TYPEWRITER Z-INDEX AND DISABLE CLICKS
+      hoverText.style.zIndex = '5';
+      hoverText.style.pointerEvents = 'none';
+      hoverText.classList.remove('scroll-fade', 'hidden');
+      hoverText.classList.add('typewriter-ready', 'visible');
+      
+      // Clear any existing text
+      hoverText.textContent = '';
+      
+      // FIX 3: MAKE SKYLINE VISIBLE
+      skyline.style.opacity = '1';
+      skyline.style.visibility = 'visible';
+      skyline.style.pointerEvents = 'none';
+      skyline.classList.remove('scroll-fade', 'hidden');
+      skyline.classList.add('visible', 'fade-in');
+      
+      // WELCOMING MESSAGES
+      let welcomeText;
+      const width = window.innerWidth;
+      
+      if (width <= 480) {
+        welcomeText = "Welcome to Art-Life\nNairobi's Creative Heart";
+      } else if (width <= 768) {
+        welcomeText = "Welcome to Art-Life\nWhere Art Meets Community";
+      } else {
+        welcomeText = "Welcome to Art-Life\nNairobi's Vibrant Arts Community";
+      }
+      
+      // Function to start the welcome sequence - WITH DUPLICATION PROTECTION
+      let welcomeSequenceStarted = false;
+      
+      const startWelcomeSequence = () => {
+        // DOUBLE-CHECK: Prevent multiple calls
+        if (welcomeSequenceStarted) {
+          console.log('🚫 Welcome sequence already started, blocking');
+          return;
+        }
+        welcomeSequenceStarted = true;
+        
+        console.log('🎬 Starting mobile welcome sequence (once only)');
+        
+        // Typewriter animation
+        let i = 0;
+        let typewriterTimer;
+        
+        function typeWriterStep() {
+          if (i < welcomeText.length) {
+            // Add character by character
+            hoverText.textContent += welcomeText.charAt(i);
+            i++;
+            typewriterTimer = setTimeout(typeWriterStep, 40);
+          } else {
+            // Typing complete
+            // Remove cursor after typing completes
+            setTimeout(() => {
+              hoverText.classList.remove('typewriter-ready');
+              console.log('✅ Mobile welcome sequence completed');
+            }, 2000);
+          }
+        }
+        
+        // Start typewriter with delay
+        typewriterTimer = setTimeout(typeWriterStep, 500);
+        
+        // Cleanup function in case we need to stop
+        window.stopTypewriter = function() {
+          if (typewriterTimer) {
+            clearTimeout(typewriterTimer);
+          }
+          hoverText.textContent = '';
+          hoverText.classList.remove('typewriter-ready');
+          welcomeSequenceStarted = false;
+        };
+      };
+      
+      // FIX 4: HIDE TYPEWRITER WHEN HAMBURGER MENU OPENS
+      function setupOverlayControl() {
+        if (!fullscreenOverlay || !hamburger) return;
+        
+        // Handle hamburger click directly
+        hamburger.addEventListener('click', function() {
+          const isOpening = !this.classList.contains('active');
+          
+          if (isOpening) {
+            hoverText.style.opacity = '0';
+            hoverText.style.visibility = 'hidden';
+          } else {
+            setTimeout(() => {
+              hoverText.style.opacity = '1';
+              hoverText.style.visibility = 'visible';
+            }, 300);
+          }
+        });
+        
+        // Also watch overlay directly
+        const observer = new MutationObserver(() => {
+          const isOverlayActive = fullscreenOverlay.classList.contains('active');
+          
+          if (isOverlayActive) {
+            hoverText.style.opacity = '0';
+            hoverText.style.visibility = 'hidden';
+          } else {
+            setTimeout(() => {
+              hoverText.style.opacity = '1';
+              hoverText.style.visibility = 'visible';
+            }, 300);
+          }
+        });
+        
+        observer.observe(fullscreenOverlay, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+      }
+      
+      // Setup overlay control
+      setupOverlayControl();
+      
+      // SIMPLIFIED: Wait for phase-3 with SINGLE trigger
+      function startTypewriterWhenReady() {
+        // If already in phase-3, start immediately
+        if (document.body.classList.contains('phase-3')) {
+          setTimeout(startWelcomeSequence, 300);
+          return true;
+        }
+        
+        // Otherwise, set up a SINGLE observer
+        let observerDisconnected = false;
+        
+        const phaseObserver = new MutationObserver(() => {
+          if (observerDisconnected) return;
+          
+          if (document.body.classList.contains('phase-3')) {
+            setTimeout(startWelcomeSequence, 300);
+            phaseObserver.disconnect();
+            observerDisconnected = true;
+          }
+        });
+        
+        phaseObserver.observe(document.body, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+        
+        // Safety timeout - DISCONNECTS OBSERVER FIRST
+        setTimeout(() => {
+          if (!observerDisconnected) {
+            phaseObserver.disconnect();
+            observerDisconnected = true;
+            
+            if (document.body.classList.contains('phase-3')) {
+              setTimeout(startWelcomeSequence, 300);
+            }
+          }
+        }, 5000);
+        
+        return false;
+      }
+      
+      // Start the typewriter when ready
+      startTypewriterWhenReady();
+    }
+  
+  })();
   </script>
 
 </body>

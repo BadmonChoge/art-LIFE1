@@ -10,7 +10,6 @@
    Desktop never hides mobile things — mobile does.
 ====================================================== */
 
-
 .subpage-logo-container {
   display: none; /* Hide desktop logo on mobile */
 }
@@ -74,49 +73,57 @@
   color: var(--primary);
 }
 
-/* ========== HAMBURGER CONTRAST CONTROL ========== */
+/* ========== HAMBURGER - FIXED VERSION ========== */
 .hamburger {
-  flex: 0 0 44px;
-  position: fixed;
-  top: 5px;
-  right: 1rem;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 2501;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  order: 3;
+  /* POSITIONING - ABSOLUTELY FIXED */
+  position: fixed !important;
+  top: 8px !important;
+  right: 1rem !important;
+  width: 44px !important;
+  height: 44px !important;
+  
+  /* VISIBILITY */
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  
+  /* STACKING - ULTRA HIGH */
+  z-index: 999999 !important;
+  
+  /* BASIC STYLING */
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Hamburger lines - default light color */
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
+/* Hamburger lines */
+.hamburger-inner {
   width: 30px;
   height: 3px;
-  background-color: var(--light); /* Default white */
-  border-radius: 4px;
+  background-color: white !important;
   position: absolute;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
-}
-
-.hamburger-inner {
   top: 50%;
   transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
 .hamburger-inner::before,
 .hamburger-inner::after {
-  content: "";
-  display: block;
+  content: '';
+  width: 30px;
+  height: 3px;
+  background-color: var(--light);
+  position: absolute;
+  left: 0;
   transition: transform 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
 .hamburger-inner::before {
@@ -127,96 +134,93 @@
   bottom: -10px;
 }
 
-.hamburger.active {
-  transform: scale(1.1); /* Slightly enlarge when active */
-}
-
-/* Active state - X shape with contrasting colors */
+/* X TRANSFORMATION - SIMPLE */
 .hamburger.active .hamburger-inner {
-  transform: rotate(135deg); /* Rotate the middle line */
-  background-color: transparent; /* Make it invisible */
-}
-
-.hamburger.active .hamburger-inner::before,
-.hamburger.active .hamburger-inner::after {
-  /* Use contrasting colors based on background */
-  background-color: var(--hamburger-contrast, var(--light));
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.9); /* Stronger shadow when active */
+  transform: rotate(45deg) translateY(-50%) !important;
 }
 
 .hamburger.active .hamburger-inner::before {
-  transform: translateY(0) rotate(90deg); /* Position and rotate the first line */
-  top: 0;
+  transform: rotate(90deg) !important;
+  top: 0 !important;
 }
 
 .hamburger.active .hamburger-inner::after {
-  transform: translateY(0) rotate(0); /* Position the second line */
-  bottom: 0;
-  opacity: 0; /* Hide the third line */
+  transform: rotate(90deg) !important;
+  bottom: 0 !important;
 }
 
-/* ========== OVERLAY "X" COLOR CHANGES ========== */
-/* Specific contrast rules for each background */
-.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
-  background-color: var(--life-gold); /* Gold contrast on green background */
+/* ========== CRITICAL: OVERLAY FIX ========== */
+/* Force overlay to be BELOW hamburger */
+.fullscreen-overlay {
+  z-index: 2400 !important; /* MUST be lower than 999999 */
 }
 
-.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
-  background-color: var(--life-gold); /* Gold contrast on black background */
+/* When overlay is active, hamburger X gets contrast colors */
+body .fullscreen-overlay.active ~ .hamburger.active .hamburger-inner,
+body .fullscreen-overlay.active ~ .hamburger.active .hamburger-inner::before,
+body .fullscreen-overlay.active ~ .hamburger.active .hamburger-inner::after {
+  /* Default: white X on dark overlay */
+  background-color: white !important;
 }
 
-.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
-  background-color: var(--art-green); /* Green contrast on gold background */
+/* Gold X for green background (about) */
+body .fullscreen-overlay[data-bg-color="about"].active ~ .hamburger.active .hamburger-inner,
+body .fullscreen-overlay[data-bg-color="about"].active ~ .hamburger.active .hamburger-inner::before,
+body .fullscreen-overlay[data-bg-color="about"].active ~ .hamburger.active .hamburger-inner::after {
+  background-color: var(--life-gold) !important;
 }
 
-.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger.active .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger.active .hamburger-inner::after {
-  background-color: var(--art-green); /* Green contrast on white background */
+/* Gold X for black background (what-we-do) */
+body .fullscreen-overlay[data-bg-color="what-we-do"].active ~ .hamburger.active .hamburger-inner,
+body .fullscreen-overlay[data-bg-color="what-we-do"].active ~ .hamburger.active .hamburger-inner::before,
+body .fullscreen-overlay[data-bg-color="what-we-do"].active ~ .hamburger.active .hamburger-inner::after {
+  background-color: var(--life-gold) !important;
 }
 
-/* Regular hamburger state contrast */
-.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
-.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="about"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
-  background-color: var(--light); /* White on green */
+/* Green X for gold background (community) */
+body .fullscreen-overlay[data-bg-color="community"].active ~ .hamburger.active .hamburger-inner,
+body .fullscreen-overlay[data-bg-color="community"].active ~ .hamburger.active .hamburger-inner::before,
+body .fullscreen-overlay[data-bg-color="community"].active ~ .hamburger.active .hamburger-inner::after {
+  background-color: var(--art-green) !important;
 }
 
-.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
-.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="what-we-do"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
-  background-color: var(--light); /* White on black */
+/* Green X for white background (projects) */
+body .fullscreen-overlay[data-bg-color="projects"].active ~ .hamburger.active .hamburger-inner,
+body .fullscreen-overlay[data-bg-color="projects"].active ~ .hamburger.active .hamburger-inner::before,
+body .fullscreen-overlay[data-bg-color="projects"].active ~ .hamburger.active .hamburger-inner::after {
+  background-color: var(--art-green) !important;
 }
 
-.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
-.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="community"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
-  background-color: var(--dark); /* Dark on gold */
+/* Regular hamburger (3 bars) colors for different overlays */
+.fullscreen-overlay[data-bg-color="about"] ~ .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="about"] ~ .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="about"] ~ .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--light) !important; /* White on green */
 }
 
-.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner,
-.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::before,
-.fullscreen-overlay[data-bg-color="projects"] ~ .mobile-header .hamburger:not(.active) .hamburger-inner::after {
-  background-color: var(--dark); /* Dark on white */
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="what-we-do"] ~ .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--light) !important; /* White on black */
+}
+
+.fullscreen-overlay[data-bg-color="community"] ~ .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="community"] ~ .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="community"] ~ .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--dark) !important; /* Dark on gold */
+}
+
+.fullscreen-overlay[data-bg-color="projects"] ~ .hamburger:not(.active) .hamburger-inner,
+.fullscreen-overlay[data-bg-color="projects"] ~ .hamburger:not(.active) .hamburger-inner::before,
+.fullscreen-overlay[data-bg-color="projects"] ~ .hamburger:not(.active) .hamburger-inner::after {
+  background-color: var(--dark) !important; /* Dark on white */
 }
 
 /* Hover effects */
 .hamburger:hover .hamburger-inner,
 .hamburger:hover .hamburger-inner::before,
 .hamburger:hover .hamburger-inner::after {
-  background-color: var(--primary);
-}
-
-.hamburger.active:hover .hamburger-inner::before,
-.hamburger.active:hover .hamburger-inner::after {
-  background-color: var(--light);
-}
-
-.hamburger-inner::before,
-.hamburger-inner::after {
-  transition: transform 0.3s ease;
+  background-color: var(--primary) !important;
 }
 
 .hamburger-overlay {
@@ -555,7 +559,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2400;
+  z-index: 2400 !important; /* CHANGED: Added !important */
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
@@ -565,7 +569,8 @@
 }
 
 .fullscreen-overlay.active ~ .mobile-header {
-  display: none;
+  opacity: 0.5;
+  pointer-events: none; 
 }
 
 /* Overlay close button (X) positioned exactly where hamburger was */
@@ -588,8 +593,301 @@
   display: flex;
 }
 
+/* ======================================================
+   PROGRESSIVE MOBILE EXPERIENCE - ENHANCED
+   Welcoming skyline and typewriter for mobile/tablet
+====================================================== */
 
+/* Tablet & Mobile (max-width: 1023px) */
+@media (max-width: 1023px) {
+  /* --- WELCOMING SKYLINE --- */
+  .skyline-container {
+    /* Keep the real skyline SVG */
+    background: transparent !important;
+    height: auto !important;
+    min-height: 100px !important;
+    backdrop-filter: none !important;
+    mask: none;
+    -webkit-mask: none;
+    border: none;
+    opacity: 0; /* Start invisible for animation */
+    visibility: hidden; /* Hidden until shown */
+    pointer-events: none;
+    transform: translateY(20px); /* Start position for animation */
+    transition: none; /* We'll use animation instead of transition */
+  }
+  
+  body.homepage.phase-3 .skyline-container.visible {
+    visibility: visible !important;
+  }
 
+  /* When fade-in class is added, trigger animation */
+  body.homepage.phase-3 .skyline-container.fade-in {
+    animation: skylineFadeIn 1.5s ease-out forwards;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Show the actual skyline SVG */
+  .skyline-container .skyline-svg {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    opacity: 0.8 !important;
+    filter: drop-shadow(0 -2px 15px rgba(218, 165, 32, 0.3));
+  }
+  
+  /* Add soft gradient overlay for depth */
+  .skyline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top,
+      rgba(28, 28, 30, 0.7) 0%,
+      rgba(28, 28, 30, 0.3) 30%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+  
+  /* Remove the gradient bar decorations */
+  .skyline-container::after {
+    display: none !important;
+  }
+  
+  /* --- WELCOMING TYPEWRITER TEXT --- */
+  .hover-text {
+    /* CENTERED WELCOME MESSAGE */
+    position: fixed !important;
+    top: 35% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    bottom: auto !important;
+    right: auto !important;
+    
+    /* CLEAN, PROMINENT STYLING */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 90% !important;
+    width: auto !important;
+    
+    /* WELCOMING TYPOGRAPHY */
+    font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    color: var(--primary-light) !important;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9),
+                 0 0 40px rgba(218, 165, 32, 0.4);
+    font-family: var(--font-accent);
+    white-space: normal;
+    text-wrap: pretty;
+    
+    /* REMOVE TOOLTIP BEHAVIOR */
+    max-height: none !important;
+    overflow: visible !important;
+    cursor: default !important;
+    min-height: auto !important;
+    min-width: auto !important;
 
+    /* Start hidden - only show after phase-3 */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: block !important;
+    z-index: 5 !important;
+  }
 
+  /* Make visible only when phase-3 and typewriter-ready */
+  body.homepage.phase-3 .hover-text.typewriter-ready {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.5s ease-out;
+  }
+  
+  /* Remove all tooltip indicators/buttons */
+  .hover-text::after,
+  .hover-text::before,
+  .hover-text.expanded::after,
+  .hover-text.expanded::before {
+    display: none !important;
+    content: none !important;
+  }
+  
+  /* Remove expandable behavior */
+  .hover-text.expanded {
+    max-height: none !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Typewriter cursor for mobile */
+  .hover-text.typewriter-ready::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: var(--secondary);
+    display: inline-block !important;
+    margin-left: 2px;
+  }
+  
+  /* --- SCROLL-BASED BEHAVIOR --- */
+  /* Gentle fade when scrolling */
+  body.scrolling .hover-text {
+    opacity: 0.4 !important;
+    transform: translate(-50%, -45%) !important;
+  }
+  
+  /* Restore when stopping */
+  body:not(.scrolling) .hover-text {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  /* Skyline slightly fades when scrolling */
+  body.scrolling .skyline-container {
+    opacity: 0.6 !important;
+  }
+  
+  /* --- TABLET-SPECIFIC ADJUSTMENTS (768-1023px) --- */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .skyline-container {
+      min-height: 120px !important;
+    }
+    
+    .hover-text {
+      top: 32% !important;
+      font-size: clamp(2rem, 4vw, 3rem) !important;
+      line-height: 1.4 !important;
+    }
+  }
+  
+  /* --- SMALL MOBILE ADJUSTMENTS (≤480px) --- */
+  @media (max-width: 480px) {
+    .skyline-container {
+      min-height: 80px !important;
+    }
+    
+    .skyline-container .skyline-svg {
+      opacity: 0.9 !important;
+    }
+    
+    .hover-text {
+      top: 38% !important;
+      font-size: clamp(1.5rem, 7vw, 2rem) !important;
+      line-height: 1.4 !important;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9),
+                   0 0 30px rgba(218, 165, 32, 0.3);
+    }
+    
+    /* Better spacing on very small screens */
+    .hover-text.typewriter-ready::after {
+      margin-left: 1px;
+    }
+  }
+}
 
+/* Animation for the blinking cursor */
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ======================================================
+   SKYLINE FADE-IN ANIMATION
+   For coordinated welcome with typewriter
+====================================================== */
+
+/* Skyline fade-in animation */
+@keyframes skylineFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply the animation when .fade-in class is added */
+.skyline-container.fade-in {
+  animation: skylineFadeIn 1.5s ease-out forwards;
+}
+
+/* Ensure the animation works with reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .skyline-container.fade-in {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease;
+  }
+  
+  .hover-text.typewriter-ready::after {
+    animation: none !important;
+  }
+}
+
+/* Force proper skyline display on mobile */
+@media (max-width: 1023px) {
+  .skyline-container {
+    width: 100% !important;
+  }
+  
+  .skyline-container::before {
+    display: block !important;
+  }
+}
+
+/* ========== MOBILE Z-INDEX FIXES ========== */
+@media (max-width: 1023px) {
+  /* Ensure overlay doesn't create stacking context that traps hamburger */
+  .fullscreen-overlay {
+    isolation: auto !important;
+  }
+  
+  /* Make sure mobile header is below hamburger but above overlay */
+  .mobile-header {
+    z-index: 2200 !important;
+  }
+
+  /* Force typewriter to be below hamburger */
+  .hover-text {
+    z-index: 5 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Hide typewriter when overlay is active */
+  .fullscreen-overlay.active ~ .hover-text {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  /* Ensure typewriter text doesn't block anything */
+  .hover-text * {
+    pointer-events: none !important;
+  }
+}
+
+/* ========== CRITICAL: HAMBURGER EMERGENCY OVERRIDE ========== */
+@media (max-width: 768px) {
+  /* Force hamburger to break out of any stacking contexts */
+  .hamburger {
+    z-index: 999999 !important;
+    position: fixed !important;
+    transform: none !important;
+    will-change: transform !important;
+    isolation: isolate !important;
+  }
+  
+  /* Override any parent opacity/visibility */
+  body .hamburger,
+  .mobile-header .hamburger,
+  .header .hamburger {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}

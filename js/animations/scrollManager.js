@@ -160,6 +160,12 @@ if (typeof window.ScrollAnimationManager === 'undefined') {
         }
 
         setupHeaderFade() {
+            // SKIP ON MOBILE - mobile has its own welcome sequence
+            if (window.innerWidth <= 1023) {
+                console.log('Header fade: Skipped on mobile');
+                return;
+            }
+            
             const fadeElements = document.querySelectorAll('.scroll-fade');
             
             if (fadeElements.length === 0) {

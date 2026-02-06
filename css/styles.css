@@ -1611,13 +1611,6 @@ body::before, body::after {
   }
 }
 
-/* ========== SKYLINE MOBILE HIDING ========== */
-@media (max-width: 768px) {
-  .skyline-container {
-    display: none !important;
-  }
-}
-
 /* Content fading (for featured-events, newsletter) */
 .content-faded {
     opacity: 0.3 !important;
@@ -1640,13 +1633,6 @@ body::before, body::after {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-  }
-}
-
-/* Hide skyline on mobile */
-@media (max-width: 768px) {
-  .skyline-container {
-    display: none !important;
   }
 }
 
@@ -1683,7 +1669,7 @@ body::before, body::after {
 
 /* ===== UNIVERSAL EDGE FADE EFFECT ===== */
 .content-wrapper {
-    position: relative;
+  position: relative;
 }
 
 /* Create fade masks at top and bottom */
@@ -1916,4 +1902,55 @@ body.subpage .scroll-content {
 .ticker-track {
   max-width: 100vw;
   overflow: hidden !important;
+}
+
+/* ========== HAMBURGER FIXES (Add to END of styles.css) ========== */
+
+/* Override base hamburger styles for mobile */
+@media (max-width: 768px) {
+  /* Ensure hamburger is visible and properly positioned on mobile */
+  .hamburger {
+    position: fixed !important;
+    top: 8px !important;
+    right: 1rem !important;
+    z-index: 2501 !important; /* Match mobile.css */
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  /* Remove any desktop interference */
+  .hamburger,
+  .hamburger * {
+    box-sizing: border-box !important;
+  }
+}
+
+/* Keep desktop hamburger hidden (it shouldn't exist on desktop) */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none !important;
+  }
+}
+
+/* Ensure fullscreen overlay is BELOW hamburger */
+.fullscreen-overlay {
+  z-index: 2400; /* Keep below hamburger's 2501 */
+}
+
+/* Mobile header should be above content but below hamburger */
+@media (max-width: 768px) {
+  .mobile-header {
+    z-index: 2200 !important;
+  }
+  
+  /* When overlay is active, hamburger should still be on top */
+  .fullscreen-overlay.active ~ .mobile-header .hamburger {
+    z-index: 2501 !important;
+  }
 }
