@@ -1973,12 +1973,6 @@ body.subpage .scroll-content {
   opacity: 1;
 }
 
-/* Alternative: Logo above copyright */
-.footer-logo-above-copyright {
-  text-align: center;
-  margin: var(--spacing-xl) 0 var(--spacing-md);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .footer-logo {
