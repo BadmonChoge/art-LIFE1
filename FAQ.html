@@ -275,6 +275,7 @@
       font-weight: 600;
       position: relative;
     }
+    
 
     .faq-question:hover {
       color: var(--primary);
@@ -318,39 +319,49 @@
       transform: rotate(180deg);
     }
 
+    /* CRITICAL FIX: Remove display: none and fix transitions */
     .faq-answer {
-      padding: 0;
+      display: block !important; /* Remove display: none */
       max-height: 0;
+      opacity: 0;
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                  opacity 0.3s ease,
+                  padding 0.3s ease !important;
     }
 
     .faq-answer[aria-hidden="false"] {
-      padding: var(--spacing-md);
-      max-height: 1000px;
+      max-height: 500px !important; /* Adjust based on content */
+      opacity: 1 !important;
+      padding: var(--spacing-md) !important;
+    }
+
+    /* Ensure the button state changes */
+    .faq-question[aria-expanded="true"] {
+      color: var(--primary) !important;
+      background: rgba(218, 165, 32, 0.1) !important;
+    }
+
+    .faq-question[aria-expanded="true"] .faq-icon {
+      transform: rotate(180deg) !important;
     }
 
     .faq-answer p {
       color: var(--text-light);
-      line-height: 1.7;
+      line-height: 1.4;
       margin-bottom: var(--spacing-sm);
       font-size: 1rem;
-    }
-
-    .faq-answer ul {
-      padding-left: var(--spacing-lg);
-      margin: var(--spacing-sm) 0;
     }
 
     .faq-answer li {
       color: var(--text-light);
       margin-bottom: var(--spacing-xs);
-      line-height: 1.6;
+      line-height: 1.2;
       position: relative;
     }
 
     .faq-answer li::before {
-      content: '•';
       color: var(--primary);
       font-weight: bold;
       position: absolute;
@@ -1102,246 +1113,106 @@
   </footer>
 
   <script>
-    // ENHANCED FAQ SYSTEM
-    (function() {
-      document.addEventListener('DOMContentLoaded', function() {
-        initFAQSystem();
+  // FAQ ACCORDION FIXED VERSION
+  (function() {
+    // Wait for DOM to be ready
+    function initFAQ() {
+      console.log('🎯 FAQ System Initializing...');
+      
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      console.log(`Found ${faqQuestions.length} FAQ questions`);
+      
+      if (faqQuestions.length === 0) {
+        console.error('No FAQ questions found');
+        return;
+      }
+      
+      // Remove ALL existing event listeners by cloning
+      faqQuestions.forEach(question => {
+        const newQuestion = question.cloneNode(true);
+        question.parentNode.replaceChild(newQuestion, question);
       });
       
-      function initFAQSystem() {
-        console.log('❓ Enhanced FAQ System Initialized');
+      // Add fresh event listeners
+      document.querySelectorAll('.faq-question').forEach(question => {
+        // Force cursor pointer
+        question.style.cursor = 'pointer';
         
-        // Elements
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        const faqCategories = document.querySelectorAll('.faq-category');
-        const faqItems = document.querySelectorAll('.faq-item');
-        const filterButtons = document.querySelectorAll('.faq-filter-btn');
-        const searchInput = document.getElementById('faq-search-input');
-        const noResultsMsg = document.getElementById('no-results-message');
-        
-        // Current filter state
-        let currentFilter = 'all';
-        let currentSearch = '';
-        
-        // FAQ Data for search functionality
-        const faqData = Array.from(faqItems).map(item => {
-          const question = item.querySelector('.faq-question-text').textContent.trim();
-          const answer = item.querySelector('.faq-answer').textContent.trim();
-          const category = item.closest('.faq-category').dataset.category;
-          const number = item.querySelector('.faq-number').textContent;
-          return { question, answer, category, number, element: item };
-        });
-        
-        // Toggle FAQ answer
-        function toggleFAQ(questionButton) {
-          const isExpanded = questionButton.getAttribute('aria-expanded') === 'true';
-          const answerId = questionButton.getAttribute('aria-controls');
+        question.addEventListener('click', function(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+          
+          console.log('FAQ Clicked!');
+          
+          const answerId = this.getAttribute('aria-controls');
           const answer = document.getElementById(answerId);
           
-          // Close all other FAQs in same category
-          const category = questionButton.closest('.faq-category');
-          category.querySelectorAll('.faq-question').forEach(q => {
-            if (q !== questionButton && q.getAttribute('aria-expanded') === 'true') {
-              q.setAttribute('aria-expanded', 'false');
-              const otherAnswer = document.getElementById(q.getAttribute('aria-controls'));
-              otherAnswer.setAttribute('aria-hidden', 'true');
-            }
-          });
-          
-          // Toggle current FAQ
-          questionButton.setAttribute('aria-expanded', !isExpanded);
-          answer.setAttribute('aria-hidden', isExpanded);
-          
-          // Scroll to question if opening
-          if (!isExpanded) {
-            setTimeout(() => {
-              questionButton.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
+          if (!answer) {
+            console.error('Answer not found:', answerId);
+            return;
           }
-        }
-        
-        // Filter FAQs by category
-        function filterFAQs(category) {
-          currentFilter = category;
           
-          // Update active filter button
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+          // Get current state
+          const wasExpanded = this.getAttribute('aria-expanded') === 'true';
           
-          // Apply filter
-          applyFilters();
-        }
-        
-        // Search FAQs
-        function searchFAQs(query) {
-          currentSearch = query.toLowerCase().trim();
-          applyFilters();
-        }
-        
-        // Apply both filters and search
-        function applyFilters() {
-          let visibleCount = 0;
+          // Toggle state
+          this.setAttribute('aria-expanded', !wasExpanded);
+          answer.setAttribute('aria-hidden', wasExpanded);
           
-          faqData.forEach(data => {
-            const { element, question, answer, category } = data;
-            const categoryElement = element.closest('.faq-category');
-            
-            // Check category filter
-            const categoryMatch = currentFilter === 'all' || category === currentFilter;
-            
-            // Check search filter
-            const searchMatch = !currentSearch || 
-                              question.toLowerCase().includes(currentSearch) || 
-                              answer.toLowerCase().includes(currentSearch);
-            
-            // Show/hide FAQ item
-            if (categoryMatch && searchMatch) {
-              element.style.display = 'block';
-              element.style.opacity = '1';
-              element.style.transform = 'translateY(0)';
-              visibleCount++;
-              
-              // Ensure parent category is visible
-              categoryElement.style.display = 'block';
-              categoryElement.style.opacity = '1';
-              categoryElement.style.transform = 'translateY(0)';
-            } else {
-              element.style.display = 'none';
-              element.style.opacity = '0';
-              element.style.transform = 'translateY(10px)';
-            }
-          });
-          
-          // Hide empty categories
-          faqCategories.forEach(category => {
-            const visibleItems = category.querySelectorAll('.faq-item[style*="display: block"]').length;
-            if (visibleItems === 0) {
-              category.style.display = 'none';
-              category.style.opacity = '0';
-              category.style.transform = 'translateY(20px)';
-            }
-          });
-          
-          // Show/hide no results message
-          if (visibleCount === 0) {
-            noResultsMsg.classList.add('active');
+          // Visual feedback
+          if (!wasExpanded) {
+            console.log('Opening FAQ');
+            this.style.backgroundColor = 'rgba(218, 165, 32, 0.1)';
           } else {
-            noResultsMsg.classList.remove('active');
+            console.log('Closing FAQ');
+            this.style.backgroundColor = '';
           }
           
-          // Highlight search terms
-          if (currentSearch) {
-            highlightSearchTerms(currentSearch);
-          } else {
-            removeHighlights();
-          }
-        }
-        
-        // Highlight search terms in visible FAQs
-        function highlightSearchTerms(term) {
-          const visibleFAQs = document.querySelectorAll('.faq-item[style*="display: block"]');
-          
-          visibleFAQs.forEach(faq => {
-            const questionText = faq.querySelector('.faq-question-text');
-            const answer = faq.querySelector('.faq-answer');
-            
-            // Create highlighted versions
-            const highlightedQuestion = highlightText(questionText.textContent, term);
-            const highlightedAnswer = highlightText(answer.textContent, term);
-            
-            // Update with highlights (preserving HTML structure)
-            if (term.length > 2) {
-              questionText.innerHTML = highlightedQuestion;
-              answer.querySelector('p').innerHTML = highlightedAnswer;
-            }
-          });
-        }
-        
-        function highlightText(text, term) {
-          if (!term) return text;
-          const regex = new RegExp(`(${term})`, 'gi');
-          return text.replace(regex, '<mark class="search-highlight">$1</mark>');
-        }
-        
-        function removeHighlights() {
-          document.querySelectorAll('.search-highlight').forEach(highlight => {
-            const parent = highlight.parentNode;
-            parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
-            parent.normalize();
-          });
-        }
-        
-        // Reset all filters
-        window.resetFAQFilters = function() {
-          currentFilter = 'all';
-          currentSearch = '';
-          searchInput.value = '';
-          
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          document.querySelector('[data-filter="all"]').classList.add('active');
-          
-          applyFilters();
-          removeHighlights();
-        };
-        
-        // Event Listeners
-        faqQuestions.forEach(question => {
-          question.addEventListener('click', function() {
-            toggleFAQ(this);
-          });
-          
-          // Keyboard support
-          question.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              toggleFAQ(this);
-            }
-          });
+          // Prevent default again
+          return false;
         });
         
-        filterButtons.forEach(button => {
-          button.addEventListener('click', function() {
-            filterFAQs(this.dataset.filter);
-          });
-        });
-        
-        // Search input with debounce
-        let searchTimeout;
-        searchInput.addEventListener('input', function() {
-          clearTimeout(searchTimeout);
-          searchTimeout = setTimeout(() => {
-            searchFAQs(this.value);
-          }, 300);
-        });
-        
-        // Clear search on escape
-        searchInput.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            this.value = '';
-            searchFAQs('');
+        // Keyboard support
+        question.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
           }
         });
-        
-        // Initialize
-        applyFilters();
-        
-        // Add CSS for search highlights
-        const style = document.createElement('style');
-        style.textContent = `
-          .search-highlight {
-            background-color: rgba(218, 165, 32, 0.3);
-            color: var(--primary);
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-weight: 600;
+      });
+      
+      // Test: Force first FAQ to work
+      setTimeout(() => {
+        const firstFAQ = document.querySelector('.faq-question');
+        if (firstFAQ) {
+          // Manually set attributes to test CSS
+          firstFAQ.setAttribute('aria-expanded', 'true');
+          const answer = document.getElementById(firstFAQ.getAttribute('aria-controls'));
+          if (answer) {
+            answer.setAttribute('aria-hidden', 'false');
           }
-        `;
-        document.head.appendChild(style);
-        
-        // Update copyright year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+          console.log('Test: First FAQ manually opened for CSS testing');
+        }
+      }, 1000);
+    }
+    
+    // Initialize
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFAQ);
+    } else {
+      // If already loaded, wait a bit
+      setTimeout(initFAQ, 500);
+    }
+    
+    // Global test function
+    window.testFAQ = function(index = 0) {
+      const questions = document.querySelectorAll('.faq-question');
+      if (index < questions.length) {
+        questions[index].click();
       }
-    })();
+    };
+  })();
   </script>
 
 </body>
