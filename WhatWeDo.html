@@ -544,6 +544,44 @@
         transform: none;
       }
     }
+
+    /* Simple Center Alignment Fix */
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .whatwedo-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .whatwedo-intro,
+    .vision-statement,
+    .work-filter,
+    .whatwedo-cta {
+      text-align: center;
+    }
+
+    .ourwork-grid {
+      justify-items: center;
+    }
+
+    .work-card {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .work-card {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
   </style>
 
   <!-- Performance & Core Utilities First -->

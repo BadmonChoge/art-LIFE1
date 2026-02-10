@@ -504,6 +504,82 @@
         transform: none;
       }
     }
+
+    /* ========== SIMPLE CENTER ALIGNMENT FIX ========== */
+    /* Add this to your existing <style> section */
+
+    /* Force center alignment */
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .support-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Center all text containers */
+    .support-intro,
+    .support-card-header,
+    .support-cta-section {
+      text-align: center;
+    }
+
+    /* Center grid items */
+    .support-options {
+      justify-items: center;
+    }
+
+    /* Center support cards */
+    .support-card {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* Center stats */
+    .support-stats {
+      justify-items: center;
+    }
+
+    /* Center donation tiers */
+    .donation-tiers {
+      justify-items: center;
+    }
+
+    /* Center volunteer benefits */
+    .volunteer-benefits {
+      justify-items: center;
+    }
+
+    /* Center payment methods */
+    .payment-methods-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-lg);
+    }
+
+    /* Center buttons */
+    .support-cta-buttons,
+    .support-card-actions {
+      justify-content: center;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .support-card {
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      .payment-methods-grid {
+        gap: var(--spacing-md);
+      }
+    }
   </style>
 
   <!-- Performance & Core Utilities First -->

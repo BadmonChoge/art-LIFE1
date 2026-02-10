@@ -694,13 +694,14 @@
 
     .ticker-track {
       display: flex;
-      width: max-content;
-      animation: scroll 30s linear infinite;
+      min-width: max-content;
+      animation: scroll 45s linear infinite;
     }
 
     .ticker-item {
       flex: 0 0 auto;
       padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+      min-width: 120px;
     }
 
     .ticker-item img {
@@ -720,7 +721,7 @@
         transform: translateX(0%);
       }
       100% {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
       }
     }
 
@@ -742,16 +743,17 @@
       }
       
       .ticker-item {
-        padding: 0 20px;
+        padding: 0 15px;
+        min-width: 100px;
       }
       
       .ticker-item img {
         height: 30px;
-        max-width: 80px;
+        max-width: 70px;
       }
       
       .ticker-track {
-        animation: scroll 40s linear infinite;
+        animation: scroll 45s linear infinite;
       }
     }
 
@@ -1243,52 +1245,51 @@
           <div class="partners-label">PARTNERS</div>
           <div class="ticker-wrapper">
             <div class="ticker-track" id="tickerTrack">
-              <div class="ticker-item"><img src="assets/images/logos/partners/A imagery Visuals logo copy-1.png" alt="A Imagery Visuals Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/AKIWACU Gold PNG (1).png" alt="AKIWACU Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/inkingi logo. (3).jpg" alt="Inkingi Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/KCCAA LOGO.jpg" alt="KCCAA Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Kenya Cultural Centre Logo.jpg" alt="Kenya Cultural Centre Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/KIUESA LOGO.png" alt="KIUESA Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Banza Sema DRC.jpg" alt="Banza Sema DRC Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ekulusu Studio by Paulvi DRC.jpg" alt="Ekulusu Studio by Paulvi DRC Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ministry of Youth Affairs, Sports & The Arts.jpg" alt="Ministry of Youth Affairs, Sports & The Arts Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AKOGO FESTIVAL UGANDA.jpg" alt="Akogo Festival Uganda Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AWJAMA CULTURAL CENTRE.jpg" alt="Awjama Cultural Centre Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF BANZA SEMA DRC.png" alt="Banza Sema DRC Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF HOPE SOCIETY SOUTH SUDAN.jpg" alt="Hope Society South Sudan Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KAREN VILLAGE.jpg" alt="Karen Village Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA INSTITUTE OF PUPPET THEATRE.jpg" alt="Kenya Institute of Puppet Theatre Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA NATIONAL VISUAL ARTISTS ASSOCIATION.jpg" alt="Kenya National Visual Artists Association Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF REFUGEE TALENT GROUP.jpg" alt="Refugee Talent Group Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF WAJUKUU ARTS COLLECTIVE.jpg" alt="Wajukuu Arts Collective Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Nairobi City County Logo.jpg" alt="Nairobi City County Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Sanaa-Fusion-Logo.jpg" alt="Sanaa Fusion Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/ubuntu-ai-logo.png" alt="Ubuntu AI Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/University of Nairobi Logo.jpg" alt="University of Nairobi Logo" width="120" height="50" loading="lazy"></div>
-
+              <div class="ticker-item"><img src="assets/images/logos/partners/A imagery Visuals logo copy-1.png" alt="A Imagery Visuals Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/AKIWACU Gold PNG (1).png" alt="AKIWACU Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/inkingi logo. (3).jpg" alt="Inkingi Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/KCCAA LOGO.jpg" alt="KCCAA Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Kenya Cultural Centre Logo.jpg" alt="Kenya Cultural Centre Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/KIUESA LOGO.png" alt="KIUESA Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Banza Sema DRC.jpg" alt="Banza Sema DRC Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ekulusu Studio by Paulvi DRC.jpg" alt="Ekulusu Studio by Paulvi DRC Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ministry of Youth Affairs, Sports & The Arts.jpg" alt="Ministry of Youth Affairs, Sports & The Arts Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AKOGO FESTIVAL UGANDA.jpg" alt="Akogo Festival Uganda Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AWJAMA CULTURAL CENTRE.jpg" alt="Awjama Cultural Centre Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF BANZA SEMA DRC.png" alt="Banza Sema DRC Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF HOPE SOCIETY SOUTH SUDAN.jpg" alt="Hope Society South Sudan Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KAREN VILLAGE.jpg" alt="Karen Village Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA INSTITUTE OF PUPPET THEATRE.jpg" alt="Kenya Institute of Puppet Theatre Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA NATIONAL VISUAL ARTISTS ASSOCIATION.jpg" alt="Kenya National Visual Artists Association Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF REFUGEE TALENT GROUP.jpg" alt="Refugee Talent Group Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF WAJUKUU ARTS COLLECTIVE.jpg" alt="Wajukuu Arts Collective Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Nairobi City County Logo.jpg" alt="Nairobi City County Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Sanaa-Fusion-Logo.jpg" alt="Sanaa Fusion Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/ubuntu-ai-logo.png" alt="Ubuntu AI Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/University of Nairobi Logo.jpg" alt="University of Nairobi Logo" width="120" height="50"></div>
               <!-- Duplicate logos for seamless scrolling -->
-              <div class="ticker-item"><img src="assets/images/logos/partners/A imagery Visuals logo copy-1.png" alt="A Imagery Visuals Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/AKIWACU Gold PNG (1).png" alt="AKIWACU Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/inkingi logo. (3).jpg" alt="Inkingi Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/KCCAA LOGO.jpg" alt="KCCAA Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Kenya Cultural Centre Logo.jpg" alt="Kenya Cultural Centre Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/KIUESA LOGO.png" alt="KIUESA Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Banza Sema DRC.jpg" alt="Banza Sema DRC Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ekulusu Studio by Paulvi DRC.jpg" alt="Ekulusu Studio by Paulvi DRC Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ministry of Youth Affairs, Sports & The Arts.jpg" alt="Ministry of Youth Affairs, Sports & The Arts Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AKOGO FESTIVAL UGANDA.jpg" alt="Akogo Festival Uganda Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AWJAMA CULTURAL CENTRE.jpg" alt="Awjama Cultural Centre Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF BANZA SEMA DRC.png" alt="Banza Sema DRC Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF HOPE SOCIETY SOUTH SUDAN.jpg" alt="Hope Society South Sudan Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KAREN VILLAGE.jpg" alt="Karen Village Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA INSTITUTE OF PUPPET THEATRE.jpg" alt="Kenya Institute of Puppet Theatre Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA NATIONAL VISUAL ARTISTS ASSOCIATION.jpg" alt="Kenya National Visual Artists Association Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF REFUGEE TALENT GROUP.jpg" alt="Refugee Talent Group Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF WAJUKUU ARTS COLLECTIVE.jpg" alt="Wajukuu Arts Collective Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Nairobi City County Logo.jpg" alt="Nairobi City County Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/Sanaa-Fusion-Logo.jpg" alt="Sanaa Fusion Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/ubuntu-ai-logo.png" alt="Ubuntu AI Logo" width="120" height="50" loading="lazy"></div>
-              <div class="ticker-item"><img src="assets/images/logos/partners/University of Nairobi Logo.jpg" alt="University of Nairobi Logo" width="120" height="50" loading="lazy"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/A imagery Visuals logo copy-1.png" alt="A Imagery Visuals Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/AKIWACU Gold PNG (1).png" alt="AKIWACU Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/inkingi logo. (3).jpg" alt="Inkingi Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/KCCAA LOGO.jpg" alt="KCCAA Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Kenya Cultural Centre Logo.jpg" alt="Kenya Cultural Centre Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/KIUESA LOGO.png" alt="KIUESA Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Banza Sema DRC.jpg" alt="Banza Sema DRC Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ekulusu Studio by Paulvi DRC.jpg" alt="Ekulusu Studio by Paulvi DRC Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Logo for Ministry of Youth Affairs, Sports & The Arts.jpg" alt="Ministry of Youth Affairs, Sports & The Arts Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AKOGO FESTIVAL UGANDA.jpg" alt="Akogo Festival Uganda Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF AWJAMA CULTURAL CENTRE.jpg" alt="Awjama Cultural Centre Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF BANZA SEMA DRC.png" alt="Banza Sema DRC Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF HOPE SOCIETY SOUTH SUDAN.jpg" alt="Hope Society South Sudan Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KAREN VILLAGE.jpg" alt="Karen Village Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA INSTITUTE OF PUPPET THEATRE.jpg" alt="Kenya Institute of Puppet Theatre Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF KENYA NATIONAL VISUAL ARTISTS ASSOCIATION.jpg" alt="Kenya National Visual Artists Association Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF REFUGEE TALENT GROUP.jpg" alt="Refugee Talent Group Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/LOGO OF WAJUKUU ARTS COLLECTIVE.jpg" alt="Wajukuu Arts Collective Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Nairobi City County Logo.jpg" alt="Nairobi City County Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/Sanaa-Fusion-Logo.jpg" alt="Sanaa Fusion Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/ubuntu-ai-logo.png" alt="Ubuntu AI Logo" width="120" height="50"></div>
+              <div class="ticker-item"><img src="assets/images/logos/partners/University of Nairobi Logo.jpg" alt="University of Nairobi Logo" width="120" height="50"></div>
             </div>
           </div>
         </div>
@@ -1637,7 +1638,29 @@
           welcomeSequenceStarted = false;
         };
       };
-      
+
+      // FIX PARTNER TICKER WIDTH
+      (function fixTickerWidth() {
+        const tickerTrack = document.getElementById('tickerTrack');
+        if (!tickerTrack) return;
+        
+        // Wait for images to load
+        window.addEventListener('load', function() {
+          // Calculate total width of all logo items
+          const items = tickerTrack.querySelectorAll('.ticker-item');
+          let totalWidth = 0;
+          
+          items.forEach(item => {
+            totalWidth += item.offsetWidth;
+          });
+          
+          // Set the track width to the total width of items
+          tickerTrack.style.width = totalWidth + 'px';
+          
+          console.log('Ticker track width set to:', totalWidth, 'px for', items.length, 'items');
+        });
+      })();
+            
       // FIX 4: HIDE TYPEWRITER WHEN HAMBURGER MENU OPENS
       function setupOverlayControl() {
         if (!fullscreenOverlay || !hamburger) return;

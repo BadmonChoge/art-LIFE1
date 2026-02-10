@@ -574,6 +574,54 @@
         transform: none;
       }
     }
+
+    /* Force center alignment on Community page */
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .community-container {
+      width: 100%;
+      max-width: 1200px;
+      padding: var(--spacing-xl) var(--spacing-md);
+      margin: 0 auto;
+    }
+
+    /* Center all headers and text */
+    .community-container > * {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Center the grids */
+    .pathways-grid,
+    .links-grid,
+    .stories-grid {
+      justify-items: center;
+    }
+
+    /* Ensure cards are centered */
+    .pathway-card,
+    .link-card,
+    .story-card {
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .community-container {
+        padding: var(--spacing-lg) var(--spacing-sm);
+      }
+      
+      .pathway-card,
+      .link-card,
+      .story-card {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
   </style>
   
   <!-- Performance & Core Utilities First -->

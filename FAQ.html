@@ -563,8 +563,44 @@
         transition: none;
       }
     }
-  </style>
 
+    /* Simple Center Alignment Fix */
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .faq-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .faq-intro,
+    .faq-filters,
+    .faq-cta-section {
+      text-align: center;
+    }
+
+    .faq-grid {
+      justify-items: center;
+    }
+
+    .faq-category {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .faq-category {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+  
   <!-- Performance & Core Utilities First -->
   <script src="js/performance.js" defer></script>
   <script src="js/utils/imageLoader.js" defer></script>
