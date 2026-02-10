@@ -1954,3 +1954,34 @@ body.subpage .scroll-content {
     z-index: 2501 !important;
   }
 }
+
+/* Footer Logo Styles */
+.footer-logo-center {
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+}
+
+/* Alternative: Logo above copyright */
+.footer-logo-above-copyright {
+  text-align: center;
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-logo {
+    height: 80px;
+  }
+}
